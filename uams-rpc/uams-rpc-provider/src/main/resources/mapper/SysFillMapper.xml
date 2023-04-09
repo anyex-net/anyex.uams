@@ -1,0 +1,701 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uams.rpc.api.mapper.SysFillMapper">
+    <!-- 基础列 -->
+    <sql id="sysFillColumns">
+        a.id as id,
+        a.accountNo as accountNo,
+        a.callOrPutFlag as callOrPutFlag,
+        a.closePrositionPrice as closePrositionPrice,
+        a.commodityNo as commodityNo,
+        a.commodityType as commodityType,
+        a.contractNo as contractNo,
+        a.exchangeNo as exchangeNo,
+        a.feeCurrency as feeCurrency,
+        a.feeCurrencyGroup as feeCurrencyGroup,
+        a.feeValue as feeValue,
+        a.isAddOne as isAddOne,
+        a.isDeleted as isDeleted,
+        a.isManualFee as isManualFee,
+        a.matchDateTime as matchDateTime,
+        a.matchNo as matchNo,
+        a.matchPrice as matchPrice,
+        a.matchQty as matchQty,
+        a.matchSide as matchSide,
+        a.matchSource as matchSource,
+        a.orderNo as orderNo,
+        a.orderSystemNo as orderSystemNo,
+        a.positionEffect as positionEffect,
+        a.serverFlag as serverFlag,
+        a.strikePrice as strikePrice,
+        a.upperMatchDateTime as upperMatchDateTime,
+        a.upperMatchNo as upperMatchNo,
+        a.upperNo as upperNo,
+        a.remark as remark,
+        a.createDate as createDate,
+        a.updateDate as updateDate
+    </sql>
+
+    <resultMap id="sysFillResultMap" type="com.uams.rpc.api.model.SysFillModel">
+        <id column="id" property="id" />
+        <result column="accountNo" property="accountNo"/>
+        <result column="callOrPutFlag" property="callOrPutFlag"/>
+        <result column="closePrositionPrice" property="closePrositionPrice"/>
+        <result column="commodityNo" property="commodityNo"/>
+        <result column="commodityType" property="commodityType"/>
+        <result column="contractNo" property="contractNo"/>
+        <result column="exchangeNo" property="exchangeNo"/>
+        <result column="feeCurrency" property="feeCurrency"/>
+        <result column="feeCurrencyGroup" property="feeCurrencyGroup"/>
+        <result column="feeValue" property="feeValue"/>
+        <result column="isAddOne" property="isAddOne"/>
+        <result column="isDeleted" property="isDeleted"/>
+        <result column="isManualFee" property="isManualFee"/>
+        <result column="matchDateTime" property="matchDateTime"/>
+        <result column="matchNo" property="matchNo"/>
+        <result column="matchPrice" property="matchPrice"/>
+        <result column="matchQty" property="matchQty"/>
+        <result column="matchSide" property="matchSide"/>
+        <result column="matchSource" property="matchSource"/>
+        <result column="orderNo" property="orderNo"/>
+        <result column="orderSystemNo" property="orderSystemNo"/>
+        <result column="positionEffect" property="positionEffect"/>
+        <result column="serverFlag" property="serverFlag"/>
+        <result column="strikePrice" property="strikePrice"/>
+        <result column="upperMatchDateTime" property="upperMatchDateTime"/>
+        <result column="upperMatchNo" property="upperMatchNo"/>
+        <result column="upperNo" property="upperNo"/>
+        <result column="remark" property="remark"/>
+        <result column="createDate" property="createDate"/>
+        <result column="updateDate" property="updateDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.uams.rpc.api.model.SysFillModel">
+        insert into SysFill(
+            id ,
+            accountNo ,
+            callOrPutFlag ,
+            closePrositionPrice ,
+            commodityNo ,
+            commodityType ,
+            contractNo ,
+            exchangeNo ,
+            feeCurrency ,
+            feeCurrencyGroup ,
+            feeValue ,
+            isAddOne ,
+            isDeleted ,
+            isManualFee ,
+            matchDateTime ,
+            matchNo ,
+            matchPrice ,
+            matchQty ,
+            matchSide ,
+            matchSource ,
+            orderNo ,
+            orderSystemNo ,
+            positionEffect ,
+            serverFlag ,
+            strikePrice ,
+            upperMatchDateTime ,
+            upperMatchNo ,
+            upperNo ,
+            remark ,
+            createDate ,
+            updateDate 
+        ) VALUES (
+            #{id} ,
+            #{accountNo} ,
+            #{callOrPutFlag} ,
+            #{closePrositionPrice} ,
+            #{commodityNo} ,
+            #{commodityType} ,
+            #{contractNo} ,
+            #{exchangeNo} ,
+            #{feeCurrency} ,
+            #{feeCurrencyGroup} ,
+            #{feeValue} ,
+            #{isAddOne} ,
+            #{isDeleted} ,
+            #{isManualFee} ,
+            #{matchDateTime} ,
+            #{matchNo} ,
+            #{matchPrice} ,
+            #{matchQty} ,
+            #{matchSide} ,
+            #{matchSource} ,
+            #{orderNo} ,
+            #{orderSystemNo} ,
+            #{positionEffect} ,
+            #{serverFlag} ,
+            #{strikePrice} ,
+            #{upperMatchDateTime} ,
+            #{upperMatchNo} ,
+            #{upperNo} ,
+            #{remark} ,
+            #{createDate} ,
+            #{updateDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from SysFill where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update SysFill set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.uams.rpc.api.model.SysFillModel">
+        insert into SysFill
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="accountNo != null">
+                accountNo ,
+        </if>
+        <if test="callOrPutFlag != null">
+                callOrPutFlag ,
+        </if>
+        <if test="closePrositionPrice != null">
+                closePrositionPrice ,
+        </if>
+        <if test="commodityNo != null">
+                commodityNo ,
+        </if>
+        <if test="commodityType != null">
+                commodityType ,
+        </if>
+        <if test="contractNo != null">
+                contractNo ,
+        </if>
+        <if test="exchangeNo != null">
+                exchangeNo ,
+        </if>
+        <if test="feeCurrency != null">
+                feeCurrency ,
+        </if>
+        <if test="feeCurrencyGroup != null">
+                feeCurrencyGroup ,
+        </if>
+        <if test="feeValue != null">
+                feeValue ,
+        </if>
+        <if test="isAddOne != null">
+                isAddOne ,
+        </if>
+        <if test="isDeleted != null">
+                isDeleted ,
+        </if>
+        <if test="isManualFee != null">
+                isManualFee ,
+        </if>
+        <if test="matchDateTime != null">
+                matchDateTime ,
+        </if>
+        <if test="matchNo != null">
+                matchNo ,
+        </if>
+        <if test="matchPrice != null">
+                matchPrice ,
+        </if>
+        <if test="matchQty != null">
+                matchQty ,
+        </if>
+        <if test="matchSide != null">
+                matchSide ,
+        </if>
+        <if test="matchSource != null">
+                matchSource ,
+        </if>
+        <if test="orderNo != null">
+                orderNo ,
+        </if>
+        <if test="orderSystemNo != null">
+                orderSystemNo ,
+        </if>
+        <if test="positionEffect != null">
+                positionEffect ,
+        </if>
+        <if test="serverFlag != null">
+                serverFlag ,
+        </if>
+        <if test="strikePrice != null">
+                strikePrice ,
+        </if>
+        <if test="upperMatchDateTime != null">
+                upperMatchDateTime ,
+        </if>
+        <if test="upperMatchNo != null">
+                upperMatchNo ,
+        </if>
+        <if test="upperNo != null">
+                upperNo ,
+        </if>
+        <if test="remark != null">
+                remark ,
+        </if>
+        <if test="createDate != null">
+                createDate ,
+        </if>
+        <if test="updateDate != null">
+                updateDate 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="accountNo != null">
+                #{accountNo} ,
+        </if>
+        <if test="callOrPutFlag != null">
+                #{callOrPutFlag} ,
+        </if>
+        <if test="closePrositionPrice != null">
+                #{closePrositionPrice} ,
+        </if>
+        <if test="commodityNo != null">
+                #{commodityNo} ,
+        </if>
+        <if test="commodityType != null">
+                #{commodityType} ,
+        </if>
+        <if test="contractNo != null">
+                #{contractNo} ,
+        </if>
+        <if test="exchangeNo != null">
+                #{exchangeNo} ,
+        </if>
+        <if test="feeCurrency != null">
+                #{feeCurrency} ,
+        </if>
+        <if test="feeCurrencyGroup != null">
+                #{feeCurrencyGroup} ,
+        </if>
+        <if test="feeValue != null">
+                #{feeValue} ,
+        </if>
+        <if test="isAddOne != null">
+                #{isAddOne} ,
+        </if>
+        <if test="isDeleted != null">
+                #{isDeleted} ,
+        </if>
+        <if test="isManualFee != null">
+                #{isManualFee} ,
+        </if>
+        <if test="matchDateTime != null">
+                #{matchDateTime} ,
+        </if>
+        <if test="matchNo != null">
+                #{matchNo} ,
+        </if>
+        <if test="matchPrice != null">
+                #{matchPrice} ,
+        </if>
+        <if test="matchQty != null">
+                #{matchQty} ,
+        </if>
+        <if test="matchSide != null">
+                #{matchSide} ,
+        </if>
+        <if test="matchSource != null">
+                #{matchSource} ,
+        </if>
+        <if test="orderNo != null">
+                #{orderNo} ,
+        </if>
+        <if test="orderSystemNo != null">
+                #{orderSystemNo} ,
+        </if>
+        <if test="positionEffect != null">
+                #{positionEffect} ,
+        </if>
+        <if test="serverFlag != null">
+                #{serverFlag} ,
+        </if>
+        <if test="strikePrice != null">
+                #{strikePrice} ,
+        </if>
+        <if test="upperMatchDateTime != null">
+                #{upperMatchDateTime} ,
+        </if>
+        <if test="upperMatchNo != null">
+                #{upperMatchNo} ,
+        </if>
+        <if test="upperNo != null">
+                #{upperNo} ,
+        </if>
+        <if test="remark != null">
+                #{remark} ,
+        </if>
+        <if test="createDate != null">
+                #{createDate} ,
+        </if>
+        <if test="updateDate != null">
+                #{updateDate} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.uams.rpc.api.model.SysFillModel">
+        update SysFill
+           <set>
+            <if test="accountNo != null">
+                accountNo = #{accountNo} ,
+            </if>
+            <if test="callOrPutFlag != null">
+                callOrPutFlag = #{callOrPutFlag} ,
+            </if>
+            <if test="closePrositionPrice != null">
+                closePrositionPrice = #{closePrositionPrice} ,
+            </if>
+            <if test="commodityNo != null">
+                commodityNo = #{commodityNo} ,
+            </if>
+            <if test="commodityType != null">
+                commodityType = #{commodityType} ,
+            </if>
+            <if test="contractNo != null">
+                contractNo = #{contractNo} ,
+            </if>
+            <if test="exchangeNo != null">
+                exchangeNo = #{exchangeNo} ,
+            </if>
+            <if test="feeCurrency != null">
+                feeCurrency = #{feeCurrency} ,
+            </if>
+            <if test="feeCurrencyGroup != null">
+                feeCurrencyGroup = #{feeCurrencyGroup} ,
+            </if>
+            <if test="feeValue != null">
+                feeValue = #{feeValue} ,
+            </if>
+            <if test="isAddOne != null">
+                isAddOne = #{isAddOne} ,
+            </if>
+            <if test="isDeleted != null">
+                isDeleted = #{isDeleted} ,
+            </if>
+            <if test="isManualFee != null">
+                isManualFee = #{isManualFee} ,
+            </if>
+            <if test="matchDateTime != null">
+                matchDateTime = #{matchDateTime} ,
+            </if>
+            <if test="matchNo != null">
+                matchNo = #{matchNo} ,
+            </if>
+            <if test="matchPrice != null">
+                matchPrice = #{matchPrice} ,
+            </if>
+            <if test="matchQty != null">
+                matchQty = #{matchQty} ,
+            </if>
+            <if test="matchSide != null">
+                matchSide = #{matchSide} ,
+            </if>
+            <if test="matchSource != null">
+                matchSource = #{matchSource} ,
+            </if>
+            <if test="orderNo != null">
+                orderNo = #{orderNo} ,
+            </if>
+            <if test="orderSystemNo != null">
+                orderSystemNo = #{orderSystemNo} ,
+            </if>
+            <if test="positionEffect != null">
+                positionEffect = #{positionEffect} ,
+            </if>
+            <if test="serverFlag != null">
+                serverFlag = #{serverFlag} ,
+            </if>
+            <if test="strikePrice != null">
+                strikePrice = #{strikePrice} ,
+            </if>
+            <if test="upperMatchDateTime != null">
+                upperMatchDateTime = #{upperMatchDateTime} ,
+            </if>
+            <if test="upperMatchNo != null">
+                upperMatchNo = #{upperMatchNo} ,
+            </if>
+            <if test="upperNo != null">
+                upperNo = #{upperNo} ,
+            </if>
+            <if test="remark != null">
+                remark = #{remark} ,
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate} ,
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into SysFill(
+            id ,
+            accountNo ,
+            callOrPutFlag ,
+            closePrositionPrice ,
+            commodityNo ,
+            commodityType ,
+            contractNo ,
+            exchangeNo ,
+            feeCurrency ,
+            feeCurrencyGroup ,
+            feeValue ,
+            isAddOne ,
+            isDeleted ,
+            isManualFee ,
+            matchDateTime ,
+            matchNo ,
+            matchPrice ,
+            matchQty ,
+            matchSide ,
+            matchSource ,
+            orderNo ,
+            orderSystemNo ,
+            positionEffect ,
+            serverFlag ,
+            strikePrice ,
+            upperMatchDateTime ,
+            upperMatchNo ,
+            upperNo ,
+            remark ,
+            createDate ,
+            updateDate 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.accountNo} ,
+            #{item.callOrPutFlag} ,
+            #{item.closePrositionPrice} ,
+            #{item.commodityNo} ,
+            #{item.commodityType} ,
+            #{item.contractNo} ,
+            #{item.exchangeNo} ,
+            #{item.feeCurrency} ,
+            #{item.feeCurrencyGroup} ,
+            #{item.feeValue} ,
+            #{item.isAddOne} ,
+            #{item.isDeleted} ,
+            #{item.isManualFee} ,
+            #{item.matchDateTime} ,
+            #{item.matchNo} ,
+            #{item.matchPrice} ,
+            #{item.matchQty} ,
+            #{item.matchSide} ,
+            #{item.matchSource} ,
+            #{item.orderNo} ,
+            #{item.orderSystemNo} ,
+            #{item.positionEffect} ,
+            #{item.serverFlag} ,
+            #{item.strikePrice} ,
+            #{item.upperMatchDateTime} ,
+            #{item.upperMatchNo} ,
+            #{item.upperNo} ,
+            #{item.remark} ,
+            #{item.createDate} ,
+            #{item.updateDate} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update SysFill set
+            accountNo = #{item.accountNo} ,
+            callOrPutFlag = #{item.callOrPutFlag} ,
+            closePrositionPrice = #{item.closePrositionPrice} ,
+            commodityNo = #{item.commodityNo} ,
+            commodityType = #{item.commodityType} ,
+            contractNo = #{item.contractNo} ,
+            exchangeNo = #{item.exchangeNo} ,
+            feeCurrency = #{item.feeCurrency} ,
+            feeCurrencyGroup = #{item.feeCurrencyGroup} ,
+            feeValue = #{item.feeValue} ,
+            isAddOne = #{item.isAddOne} ,
+            isDeleted = #{item.isDeleted} ,
+            isManualFee = #{item.isManualFee} ,
+            matchDateTime = #{item.matchDateTime} ,
+            matchNo = #{item.matchNo} ,
+            matchPrice = #{item.matchPrice} ,
+            matchQty = #{item.matchQty} ,
+            matchSide = #{item.matchSide} ,
+            matchSource = #{item.matchSource} ,
+            orderNo = #{item.orderNo} ,
+            orderSystemNo = #{item.orderSystemNo} ,
+            positionEffect = #{item.positionEffect} ,
+            serverFlag = #{item.serverFlag} ,
+            strikePrice = #{item.strikePrice} ,
+            upperMatchDateTime = #{item.upperMatchDateTime} ,
+            upperMatchNo = #{item.upperMatchNo} ,
+            upperNo = #{item.upperNo} ,
+            remark = #{item.remark} ,
+            createDate = #{item.createDate} ,
+            updateDate = #{item.updateDate} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.uams.rpc.api.model.SysFillModel">
+        update SysFill set
+            accountNo = #{accountNo} ,
+            callOrPutFlag = #{callOrPutFlag} ,
+            closePrositionPrice = #{closePrositionPrice} ,
+            commodityNo = #{commodityNo} ,
+            commodityType = #{commodityType} ,
+            contractNo = #{contractNo} ,
+            exchangeNo = #{exchangeNo} ,
+            feeCurrency = #{feeCurrency} ,
+            feeCurrencyGroup = #{feeCurrencyGroup} ,
+            feeValue = #{feeValue} ,
+            isAddOne = #{isAddOne} ,
+            isDeleted = #{isDeleted} ,
+            isManualFee = #{isManualFee} ,
+            matchDateTime = #{matchDateTime} ,
+            matchNo = #{matchNo} ,
+            matchPrice = #{matchPrice} ,
+            matchQty = #{matchQty} ,
+            matchSide = #{matchSide} ,
+            matchSource = #{matchSource} ,
+            orderNo = #{orderNo} ,
+            orderSystemNo = #{orderSystemNo} ,
+            positionEffect = #{positionEffect} ,
+            serverFlag = #{serverFlag} ,
+            strikePrice = #{strikePrice} ,
+            upperMatchDateTime = #{upperMatchDateTime} ,
+            upperMatchNo = #{upperMatchNo} ,
+            upperNo = #{upperNo} ,
+            remark = #{remark} ,
+            createDate = #{createDate} ,
+            updateDate = #{updateDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.uams.rpc.api.model.SysFillModel">
+        select <include refid="sysFillColumns"/> from SysFill a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.uams.rpc.api.model.SysFillModel">
+        SELECT
+        <include refid="sysFillColumns"/>
+        FROM SysFill a WHERE 1=1
+        <if test="accountNo != null">
+            and a.accountNo like '%'||#{accountNo}||'%'
+        </if>
+        <if test="callOrPutFlag != null">
+            and a.callOrPutFlag like '%'||#{callOrPutFlag}||'%'
+        </if>
+        <if test="closePrositionPrice != null">
+            and a.closePrositionPrice = #{closePrositionPrice}
+        </if>
+        <if test="commodityNo != null">
+            and a.commodityNo like '%'||#{commodityNo}||'%'
+        </if>
+        <if test="commodityType != null">
+            and a.commodityType like '%'||#{commodityType}||'%'
+        </if>
+        <if test="contractNo != null">
+            and a.contractNo like '%'||#{contractNo}||'%'
+        </if>
+        <if test="exchangeNo != null">
+            and a.exchangeNo like '%'||#{exchangeNo}||'%'
+        </if>
+        <if test="feeCurrency != null">
+            and a.feeCurrency like '%'||#{feeCurrency}||'%'
+        </if>
+        <if test="feeCurrencyGroup != null">
+            and a.feeCurrencyGroup like '%'||#{feeCurrencyGroup}||'%'
+        </if>
+        <if test="feeValue != null">
+            and a.feeValue = #{feeValue}
+        </if>
+        <if test="isAddOne != null">
+            and a.isAddOne like '%'||#{isAddOne}||'%'
+        </if>
+        <if test="isDeleted != null">
+            and a.isDeleted like '%'||#{isDeleted}||'%'
+        </if>
+        <if test="isManualFee != null">
+            and a.isManualFee like '%'||#{isManualFee}||'%'
+        </if>
+        <if test="matchDateTime != null">
+            and a.matchDateTime = #{matchDateTime}
+        </if>
+        <if test="matchNo != null">
+            and a.matchNo like '%'||#{matchNo}||'%'
+        </if>
+        <if test="matchPrice != null">
+            and a.matchPrice = #{matchPrice}
+        </if>
+        <if test="matchQty != null">
+            and a.matchQty = #{matchQty}
+        </if>
+        <if test="matchSide != null">
+            and a.matchSide like '%'||#{matchSide}||'%'
+        </if>
+        <if test="matchSource != null">
+            and a.matchSource like '%'||#{matchSource}||'%'
+        </if>
+        <if test="orderNo != null">
+            and a.orderNo like '%'||#{orderNo}||'%'
+        </if>
+        <if test="orderSystemNo != null">
+            and a.orderSystemNo like '%'||#{orderSystemNo}||'%'
+        </if>
+        <if test="positionEffect != null">
+            and a.positionEffect like '%'||#{positionEffect}||'%'
+        </if>
+        <if test="serverFlag != null">
+            and a.serverFlag like '%'||#{serverFlag}||'%'
+        </if>
+        <if test="strikePrice != null">
+            and a.strikePrice like '%'||#{strikePrice}||'%'
+        </if>
+        <if test="upperMatchDateTime != null">
+            and a.upperMatchDateTime = #{upperMatchDateTime}
+        </if>
+        <if test="upperMatchNo != null">
+            and a.upperMatchNo like '%'||#{upperMatchNo}||'%'
+        </if>
+        <if test="upperNo != null">
+            and a.upperNo like '%'||#{upperNo}||'%'
+        </if>
+        <if test="remark != null">
+            and a.remark like '%'||#{remark}||'%'
+        </if>
+        <if test="createDate != null">
+            and a.createDate = #{createDate}
+        </if>
+        <if test="updateDate != null">
+            and a.updateDate = #{updateDate}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.uams.rpc.api.model.SysFillModel">
+        SELECT``
+        <include refid="sysFillColumns"/>``
+        FROM SysFill a WHERE 1=1
+    </select>
+
+
+</mapper>
+

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!--system-->
+    <bean name="userInfoService" class="com.uams.rpc.system.service.UserInfoServiceImpl"/>
+    <bean name="roleInfoService" class="com.uams.rpc.system.service.RoleInfoServiceImpl"/>
+    <bean name="resourcesService" class="com.uams.rpc.system.service.ResourcesServiceImpl"/>
+    <bean name="userDataService" class="com.uams.rpc.system.service.UserDataServiceImpl"/>
+    <bean name="organizationService" class="com.uams.rpc.system.service.OrganizationServiceImpl"/>
+    <bean name="sysParameterService" class="com.uams.rpc.system.service.SysParameterServiceImpl"/>
+
+    <!--common-->
+    <bean name="regionService" class="com.uams.rpc.common.service.RegionServiceImpl"/>
+    <bean name="dictionaryService" class="com.uams.rpc.common.service.DictionaryServiceImpl"/>
+    <bean name="msgRecordService" class="com.uams.rpc.common.service.MsgRecordServiceImpl"/>
+    <bean name="msgTemplateService" class="com.uams.rpc.common.service.MsgTemplateServiceImpl"/>
+
+    <!--account-->
+    <bean name="accountService" class="com.uams.rpc.account.service.AccountServiceImpl"/>
+    <bean name="accountBankService" class="com.uams.rpc.account.service.AccountBankServiceImpl"/>
+
+    <!-- fund -->
+    <bean name="accountAssetService" class="com.uams.rpc.fund.service.AccountAssetServiceImpl"/>
+    <bean name="accountFundAdjustService" class="com.uams.rpc.fund.service.AccountFundAdjustServiceImpl"/>
+    <bean name="accountFundService" class="com.uams.rpc.fund.service.AccountFundServiceImpl"/>
+    <bean name="accountFundCurrentService" class="com.uams.rpc.fund.service.AccountFundCurrentServiceImpl"/>
+
+    <!-- api  -->
+    <bean name="sysAccountService" class="com.uams.rpc.api.service.SysAccountServiceImpl"/>
+    <bean name="sysAccountFundService" class="com.uams.rpc.api.service.SysAccountFundServiceImpl"/>
+    <bean name="sysAccountFundChangeService" class="com.uams.rpc.api.service.SysAccountFundChangeServiceImpl"/>
+    <bean name="sysAccountFeeRentService" class="com.uams.rpc.api.service.SysAccountFeeRentServiceImpl"/>
+    <bean name="sysAccountMarginRentService" class="com.uams.rpc.api.service.SysAccountMarginRentServiceImpl"/>
+    <bean name="sysPositionService" class="com.uams.rpc.api.service.SysPositionServiceImpl"/>
+    <bean name="sysPositionChangeService" class="com.uams.rpc.api.service.SysPositionChangeServiceImpl"/>
+    <bean name="sysPositionProfitService" class="com.uams.rpc.api.service.SysPositionProfitServiceImpl"/>
+    <bean name="sysHisMatchService" class="com.uams.rpc.api.service.SysHisMatchServiceImpl"/>
+    <bean name="sysPositionHisOrderService" class="com.uams.rpc.api.service.SysHisOrderServiceImpl"/>
+
+
+    <bean name="sysFillService" class="com.uams.rpc.api.service.SysFillServiceImpl"/>
+    <bean name="sysOrderActionService" class="com.uams.rpc.api.service.SysOrderActionServiceImpl"/>
+    <bean name="sysOrderChangeService" class="com.uams.rpc.api.service.SysOrderChangeServiceImpl"/>
+    <bean name="sysOrderProcessService" class="com.uams.rpc.api.service.SysOrderProcessServiceImpl"/>
+    <bean name="sysOrderService" class="com.uams.rpc.api.service.SysOrderServiceImpl"/>
+
+    <!--base-->
+    <!-- 交易市场信息表-->
+    <bean name="marketInfoService" class="com.uams.rpc.base.service.MarketInfoServiceImpl"/>
+    <!--汇率表-->
+    <bean name="exchangeRateService" class="com.uams.rpc.base.service.ExchangeRateServiceImpl"/>
+    <!--期货品种表-->
+    <bean name="futureKindService" class="com.uams.rpc.base.service.FutureKindServiceImpl"/>
+    <!--市场交易日表-->
+    <bean name="marketTradeDayService" class="com.uams.rpc.base.service.MarketTradeDayServiceImpl"/>
+    <!--期货信息表-->
+    <bean name="futureInfoService" class="com.uams.rpc.base.service.FutureInfoServiceImpl"/>
+    <!--证券信息表-->
+    <bean name="stockInfoService" class="com.uams.rpc.base.service.StockInfoServiceImpl"/>
+    <!--券商期货公司信息表-->
+    <bean name="brokerInfoService" class="com.uams.rpc.base.service.BrokerInfoServiceImpl"/>
+    <!--期货保证金比例设置表-->
+    <bean name="futureMarginRatioService" class="com.uams.rpc.base.service.FutureMarginRatioServiceImpl"/>
+    <!--代理公司在期货公司开设的交易帐号信息等设置表(证券股东信息表)-->
+    <bean name="stockHolderService" class="com.uams.rpc.base.service.StockHolderServiceImpl"/>
+    <!--各分支机构期货交易所走期货公司通道配置表-->
+    <bean name="orgTradeChannelCfgService" class="com.uams.rpc.base.service.OrgTradeChannelCfgServiceImpl"/>
+    <!--各分支机构可交易各大交易所期货品种配置表-->
+    <bean name="orgTradeStockKindCfgService" class="com.uams.rpc.base.service.OrgTradeStockKindCfgServiceImpl"/>
+    <!-- 各分支机构品种交易费率配置表 -->
+    <bean name="orgTradeFeeCfgService" class="com.uams.rpc.base.service.OrgTradeFeeCfgServiceImpl"/>
+
+    <!-- 行情 -->
+    <bean name="quotationService" class="com.uams.rpc.quotation.service.QuotationServiceImpl"/>
+
+    <!-- 交易 -->
+    <bean name="entrustService" class="com.uams.rpc.trade.service.EntrustServiceImpl"/>
+    <bean name="realDealService" class="com.uams.rpc.trade.service.RealDealServiceImpl"/>
+
+
+    <dubbo:service interface="com.uams.rpc.system.service.UserInfoService" ref="userInfoService" version="1.0.0" retries="0" timeout="18000000" />
+    <dubbo:service interface="com.uams.rpc.system.service.RoleInfoService" ref="roleInfoService" version="1.0.0" retries="0" timeout="18000000" />
+    <dubbo:service interface="com.uams.rpc.system.service.ResourcesService" ref="resourcesService" version="1.0.0" retries="0" timeout="18000000" />
+    <dubbo:service interface="com.uams.rpc.system.service.UserDataService" ref="userDataService" version="1.0.0" retries="0" timeout="18000000" />
+    <dubbo:service interface="com.uams.rpc.system.service.OrganizationService" ref="organizationService" version="1.0.0" retries="0" timeout="18000000" />
+    <dubbo:service interface="com.uams.rpc.system.service.SysParameterService" ref="sysParameterService" version="1.0.0" retries="0" timeout="18000000" />
+
+    <dubbo:service interface="com.uams.rpc.common.service.RegionService" ref="regionService" version="1.0.0" retries="0" timeout="18000000" />
+    <dubbo:service interface="com.uams.rpc.common.service.DictionaryService" ref="dictionaryService" version="1.0.0" retries="0" timeout="18000000" />
+    <dubbo:service interface="com.uams.rpc.common.service.MsgRecordService" ref="msgRecordService" version="1.0.0" retries="0" timeout="18000000" />
+    <dubbo:service interface="com.uams.rpc.common.service.MsgTemplateService" ref="msgTemplateService" version="1.0.0" retries="0" timeout="18000000" />
+
+    <!--base-->
+    <!-- 交易市场信息表-->
+    <dubbo:service interface="com.uams.rpc.base.service.MarketInfoService" ref="marketInfoService" version="1.0.0" retries="0" timeout="18000000" />
+    <!--汇率表-->
+    <dubbo:service interface="com.uams.rpc.base.service.ExchangeRateService" ref="exchangeRateService" version="1.0.0" retries="0" timeout="18000000" />
+    <!--期货品种表-->
+    <dubbo:service interface="com.uams.rpc.base.service.FutureKindService" ref="futureKindService" version="1.0.0" retries="0" timeout="18000000" />
+    <!--市场交易日表-->
+    <dubbo:service interface="com.uams.rpc.base.service.MarketTradeDayService" ref="marketTradeDayService" version="1.0.0" retries="0" timeout="18000000" />
+    <!--期货信息表-->
+    <dubbo:service interface="com.uams.rpc.base.service.FutureInfoService" ref="futureInfoService" version="1.0.0" retries="0" timeout="18000000" />
+    <!--证券信息表-->
+    <dubbo:service interface="com.uams.rpc.base.service.StockInfoService" ref="stockInfoService" version="1.0.0" retries="0" timeout="18000000" />
+    <!--券商期货公司信息表-->
+    <dubbo:service interface="com.uams.rpc.base.service.BrokerInfoService" ref="brokerInfoService" version="1.0.0" retries="0" timeout="18000000" />
+    <!--期货保证金比例设置表-->
+    <dubbo:service interface="com.uams.rpc.base.service.FutureMarginRatioService" ref="futureMarginRatioService" version="1.0.0" retries="0" timeout="18000000" />
+    <!--代理公司在期货公司开设的交易帐号信息等设置表(证券股东信息表)-->
+    <dubbo:service interface="com.uams.rpc.base.service.StockHolderService" ref="stockHolderService" version="1.0.0" retries="0" timeout="18000000" />
+    <!--各分支机构期货交易所走期货公司通道配置表-->
+    <dubbo:service interface="com.uams.rpc.base.service.OrgTradeChannelCfgService" ref="orgTradeChannelCfgService" version="1.0.0" retries="0" timeout="18000000" />
+    <!--各分支机构可交易各大交易所期货品种配置表-->
+    <dubbo:service interface="com.uams.rpc.base.service.OrgTradeStockKindCfgService" ref="orgTradeStockKindCfgService" version="1.0.0" retries="0" timeout="18000000" />
+    <!-- 各分支机构品种交易费率配置表 -->
+    <dubbo:service interface="com.uams.rpc.base.service.OrgTradeFeeCfgService" ref="orgTradeFeeCfgService" version="1.0.0" retries="0" timeout="18000000" />
+
+    <!--account-->
+    <!-- 账户表-->
+    <dubbo:service interface="com.uams.rpc.account.service.AccountService" ref="accountService" version="1.0.0" retries="0" timeout="18000000" />
+    <!-- 账户银行表-->
+    <dubbo:service interface="com.uams.rpc.account.service.AccountBankService" ref="accountBankService" version="1.0.0" retries="0" timeout="18000000" />
+
+    <!-- fund -->
+    <!-- accountAsset-->
+    <dubbo:service interface="com.uams.rpc.fund.service.AccountAssetService" ref="accountAssetService" version="1.0.0" retries="0" timeout="18000000" />
+    <!-- 账户资金调整记录表-->
+    <dubbo:service interface="com.uams.rpc.fund.service.AccountFundAdjustService" ref="accountFundAdjustService" version="1.0.0" retries="0" timeout="18000000" />
+    <!-- 账户资金表-->
+    <dubbo:service interface="com.uams.rpc.fund.service.AccountFundService" ref="accountFundService" version="1.0.0" retries="0" timeout="18000000" />
+    <!-- 账户资产流水表-->
+    <dubbo:service interface="com.uams.rpc.fund.service.AccountFundCurrentService" ref="accountFundCurrentService" version="1.0.0" retries="0" timeout="18000000" />
+
+    <!-- 行情-->
+    <dubbo:service interface="com.uams.rpc.quotation.service.QuotationService" ref="quotationService" version="1.0.0" retries="0" timeout="18000000" />
+
+    <!-- api-->
+    <dubbo:service interface="com.uams.rpc.api.service.SysAccountService" ref="sysAccountService" version="1.0.0" retries="0" timeout="18000000" />
+
+    <dubbo:service interface="com.uams.rpc.api.service.SysAccountFundService" ref="sysAccountFundService" version="1.0.0" retries="0" timeout="18000000" />
+    <dubbo:service interface="com.uams.rpc.api.service.SysAccountFundChangeService" ref="sysAccountFundChangeService" version="1.0.0" retries="0" timeout="18000000" />
+    <dubbo:service interface="com.uams.rpc.api.service.SysAccountFeeRentService" ref="sysAccountFeeRentService" version="1.0.0" retries="0" timeout="18000000" />
+    <dubbo:service interface="com.uams.rpc.api.service.SysAccountMarginRentService" ref="sysAccountMarginRentService" version="1.0.0" retries="0" timeout="18000000" />
+
+    <dubbo:service interface="com.uams.rpc.api.service.SysFillService" ref="sysFillService" version="1.0.0" retries="0" timeout="18000000" />
+    <dubbo:service interface="com.uams.rpc.api.service.SysOrderActionService" ref="sysOrderActionService" version="1.0.0" retries="0" timeout="18000000" />
+    <dubbo:service interface="com.uams.rpc.api.service.SysOrderChangeService" ref="sysOrderChangeService" version="1.0.0" retries="0" timeout="18000000" />
+    <dubbo:service interface="com.uams.rpc.api.service.SysOrderProcessService" ref="sysOrderProcessService" version="1.0.0" retries="0" timeout="18000000" />
+    <dubbo:service interface="com.uams.rpc.api.service.SysOrderService" ref="sysOrderService" version="1.0.0" retries="0" timeout="18000000" />
+
+    <dubbo:service interface="com.uams.rpc.api.service.SysPositionService" ref="sysPositionService" version="1.0.0" retries="0" timeout="18000000" />
+    <dubbo:service interface="com.uams.rpc.api.service.SysPositionChangeService" ref="sysPositionChangeService" version="1.0.0" retries="0" timeout="18000000" />
+    <dubbo:service interface="com.uams.rpc.api.service.SysPositionProfitService" ref="sysPositionProfitService" version="1.0.0" retries="0" timeout="18000000" />
+
+    <dubbo:service interface="com.uams.rpc.api.service.SysHisMatchService" ref="sysHisMatchService" version="1.0.0" retries="0" timeout="18000000" />
+    <dubbo:service interface="com.uams.rpc.api.service.SysHisOrderService" ref="sysPositionHisOrderService" version="1.0.0" retries="0" timeout="18000000" />
+
+    <!-- 交易 -->
+    <dubbo:service interface="com.uams.rpc.trade.service.EntrustService" ref="entrustService" version="1.0.0" retries="0" timeout="18000000" />
+    <dubbo:service interface="com.uams.rpc.trade.service.RealDealService" ref="realDealService" version="1.0.0" retries="0" timeout="18000000" />
+
+</beans>

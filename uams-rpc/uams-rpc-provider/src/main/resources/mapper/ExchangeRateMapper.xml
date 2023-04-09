@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uams.rpc.base.mapper.ExchangeRateMapper">
+    <!-- 基础列 -->
+    <sql id="exchangeRateColumns">
+        a.id as id,
+        a.exchangDate as exchangDate,
+        a.currencySource as currencySource,
+        a.currencyTarget as currencyTarget,
+        a.buyPrice as buyPrice,
+        a.sellPrice as sellPrice,
+        a.midPrice as midPrice,
+        a.unitAmount as unitAmount,
+        a.updateDate as updateDate
+    </sql>
+
+    <resultMap id="exchangeRateResultMap" type="com.uams.rpc.base.model.ExchangeRateModel">
+        <id column="id" property="id" />
+        <result column="exchangDate" property="exchangDate"/>
+        <result column="currencySource" property="currencySource"/>
+        <result column="currencyTarget" property="currencyTarget"/>
+        <result column="buyPrice" property="buyPrice"/>
+        <result column="sellPrice" property="sellPrice"/>
+        <result column="midPrice" property="midPrice"/>
+        <result column="unitAmount" property="unitAmount"/>
+        <result column="updateDate" property="updateDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.uams.rpc.base.model.ExchangeRateModel">
+        insert into ExchangeRate(
+            id ,
+            exchangDate ,
+            currencySource ,
+            currencyTarget ,
+            buyPrice ,
+            sellPrice ,
+            midPrice ,
+            unitAmount ,
+            updateDate 
+        ) VALUES (
+            #{id} ,
+            #{exchangDate} ,
+            #{currencySource} ,
+            #{currencyTarget} ,
+            #{buyPrice} ,
+            #{sellPrice} ,
+            #{midPrice} ,
+            #{unitAmount} ,
+            #{updateDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from ExchangeRate where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update ExchangeRate set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.uams.rpc.base.model.ExchangeRateModel">
+        insert into ExchangeRate
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="exchangDate != null">
+                exchangDate ,
+        </if>
+        <if test="currencySource != null">
+                currencySource ,
+        </if>
+        <if test="currencyTarget != null">
+                currencyTarget ,
+        </if>
+        <if test="buyPrice != null">
+                buyPrice ,
+        </if>
+        <if test="sellPrice != null">
+                sellPrice ,
+        </if>
+        <if test="midPrice != null">
+                midPrice ,
+        </if>
+        <if test="unitAmount != null">
+                unitAmount ,
+        </if>
+        <if test="updateDate != null">
+                updateDate 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="exchangDate != null">
+                #{exchangDate} ,
+        </if>
+        <if test="currencySource != null">
+                #{currencySource} ,
+        </if>
+        <if test="currencyTarget != null">
+                #{currencyTarget} ,
+        </if>
+        <if test="buyPrice != null">
+                #{buyPrice} ,
+        </if>
+        <if test="sellPrice != null">
+                #{sellPrice} ,
+        </if>
+        <if test="midPrice != null">
+                #{midPrice} ,
+        </if>
+        <if test="unitAmount != null">
+                #{unitAmount} ,
+        </if>
+        <if test="updateDate != null">
+                #{updateDate} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.uams.rpc.base.model.ExchangeRateModel">
+        update ExchangeRate
+           <set>
+            <if test="exchangDate != null">
+                exchangDate = #{exchangDate} ,
+            </if>
+            <if test="currencySource != null">
+                currencySource = #{currencySource} ,
+            </if>
+            <if test="currencyTarget != null">
+                currencyTarget = #{currencyTarget} ,
+            </if>
+            <if test="buyPrice != null">
+                buyPrice = #{buyPrice} ,
+            </if>
+            <if test="sellPrice != null">
+                sellPrice = #{sellPrice} ,
+            </if>
+            <if test="midPrice != null">
+                midPrice = #{midPrice} ,
+            </if>
+            <if test="unitAmount != null">
+                unitAmount = #{unitAmount} ,
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into ExchangeRate(
+            id ,
+            exchangDate ,
+            currencySource ,
+            currencyTarget ,
+            buyPrice ,
+            sellPrice ,
+            midPrice ,
+            unitAmount ,
+            updateDate 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.exchangDate} ,
+            #{item.currencySource} ,
+            #{item.currencyTarget} ,
+            #{item.buyPrice} ,
+            #{item.sellPrice} ,
+            #{item.midPrice} ,
+            #{item.unitAmount} ,
+            #{item.updateDate} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update ExchangeRate set
+            exchangDate = #{item.exchangDate} ,
+            currencySource = #{item.currencySource} ,
+            currencyTarget = #{item.currencyTarget} ,
+            buyPrice = #{item.buyPrice} ,
+            sellPrice = #{item.sellPrice} ,
+            midPrice = #{item.midPrice} ,
+            unitAmount = #{item.unitAmount} ,
+            updateDate = #{item.updateDate} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.uams.rpc.base.model.ExchangeRateModel">
+        update ExchangeRate set
+            exchangDate = #{exchangDate} ,
+            currencySource = #{currencySource} ,
+            currencyTarget = #{currencyTarget} ,
+            buyPrice = #{buyPrice} ,
+            sellPrice = #{sellPrice} ,
+            midPrice = #{midPrice} ,
+            unitAmount = #{unitAmount} ,
+            updateDate = #{updateDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.uams.rpc.base.model.ExchangeRateModel">
+        select <include refid="exchangeRateColumns"/> from ExchangeRate a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.uams.rpc.base.model.ExchangeRateModel">
+        SELECT
+        <include refid="exchangeRateColumns"/>
+        FROM ExchangeRate a WHERE 1=1
+        <if test="exchangDate != null">
+            and a.exchangDate = #{exchangDate}
+        </if>
+        <if test="currencySource != null">
+            and a.currencySource like '%'||#{currencySource}||'%'
+        </if>
+        <if test="currencyTarget != null">
+            and a.currencyTarget like '%'||#{currencyTarget}||'%'
+        </if>
+        <if test="buyPrice != null">
+            and a.buyPrice = #{buyPrice}
+        </if>
+        <if test="sellPrice != null">
+            and a.sellPrice = #{sellPrice}
+        </if>
+        <if test="midPrice != null">
+            and a.midPrice = #{midPrice}
+        </if>
+        <if test="unitAmount != null">
+            and a.unitAmount = #{unitAmount}
+        </if>
+        <if test="updateDate != null">
+            and a.updateDate = #{updateDate}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.uams.rpc.base.model.ExchangeRateModel">
+        SELECT
+        <include refid="exchangeRateColumns"/>
+        FROM ExchangeRate a WHERE 1=1
+    </select>
+
+
+</mapper>
+

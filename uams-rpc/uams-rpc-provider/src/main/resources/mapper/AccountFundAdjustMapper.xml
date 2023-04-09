@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uams.rpc.fund.mapper.AccountFundAdjustMapper">
+    <!-- 基础列 -->
+    <sql id="accountFundAdjustColumns">
+        a.id as id,
+        a.accountId as accountId,
+        a.currency as currency,
+        a.adjustType as adjustType,
+        a.adjustAmt as adjustAmt,
+        a.remark as remark,
+        a.createBy as createBy,
+        a.createDate as createDate
+    </sql>
+
+    <sql id="accountFundAdjustJoinColumns">
+        a.id as id,
+        a.accountId as accountId,
+        a.currency as currency,
+        a.adjustType as adjustType,
+        a.adjustAmt as adjustAmt,
+        a.remark as remark,
+        a.createBy as createBy,
+        a.createDate as createDate,
+        b.accountName as accountName
+    </sql>
+
+    <resultMap id="accountFundAdjustResultMap" type="com.uams.rpc.fund.model.AccountFundAdjustModel">
+        <id column="id" property="id" />
+        <result column="accountId" property="accountId"/>
+        <result column="currency" property="currency"/>
+        <result column="adjustType" property="adjustType"/>
+        <result column="adjustAmt" property="adjustAmt"/>
+        <result column="remark" property="remark"/>
+        <result column="createBy" property="createBy"/>
+        <result column="createDate" property="createDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.uams.rpc.fund.model.AccountFundAdjustModel">
+        insert into AccountFundAdjust(
+            id ,
+            accountId ,
+            currency ,
+            adjustType ,
+            adjustAmt ,
+            remark ,
+            createBy ,
+            createDate 
+        ) VALUES (
+            #{id} ,
+            #{accountId} ,
+            #{currency} ,
+            #{adjustType} ,
+            #{adjustAmt} ,
+            #{remark} ,
+            #{createBy} ,
+            #{createDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from AccountFundAdjust where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update AccountFundAdjust set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.uams.rpc.fund.model.AccountFundAdjustModel">
+        insert into AccountFundAdjust
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="accountId != null">
+                accountId ,
+        </if>
+        <if test="currency != null">
+                currency ,
+        </if>
+        <if test="adjustType != null">
+                adjustType ,
+        </if>
+        <if test="adjustAmt != null">
+                adjustAmt ,
+        </if>
+        <if test="remark != null">
+                remark ,
+        </if>
+        <if test="createBy != null">
+                createBy ,
+        </if>
+        <if test="createDate != null">
+                createDate 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="accountId != null">
+                #{accountId} ,
+        </if>
+        <if test="currency != null">
+                #{currency} ,
+        </if>
+        <if test="adjustType != null">
+                #{adjustType} ,
+        </if>
+        <if test="adjustAmt != null">
+                #{adjustAmt} ,
+        </if>
+        <if test="remark != null">
+                #{remark} ,
+        </if>
+        <if test="createBy != null">
+                #{createBy} ,
+        </if>
+        <if test="createDate != null">
+                #{createDate} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.uams.rpc.fund.model.AccountFundAdjustModel">
+        update AccountFundAdjust
+           <set>
+            <if test="accountId != null">
+                accountId = #{accountId} ,
+            </if>
+            <if test="currency != null">
+                currency = #{currency} ,
+            </if>
+            <if test="adjustType != null">
+                adjustType = #{adjustType} ,
+            </if>
+            <if test="adjustAmt != null">
+                adjustAmt = #{adjustAmt} ,
+            </if>
+            <if test="remark != null">
+                remark = #{remark} ,
+            </if>
+            <if test="createBy != null">
+                createBy = #{createBy} ,
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into AccountFundAdjust(
+            id ,
+            accountId ,
+            currency ,
+            adjustType ,
+            adjustAmt ,
+            remark ,
+            createBy ,
+            createDate 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.accountId} ,
+            #{item.currency} ,
+            #{item.adjustType} ,
+            #{item.adjustAmt} ,
+            #{item.remark} ,
+            #{item.createBy} ,
+            #{item.createDate} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update AccountFundAdjust set
+            accountId = #{item.accountId} ,
+            currency = #{item.currency} ,
+            adjustType = #{item.adjustType} ,
+            adjustAmt = #{item.adjustAmt} ,
+            remark = #{item.remark} ,
+            createBy = #{item.createBy} ,
+            createDate = #{item.createDate} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.uams.rpc.fund.model.AccountFundAdjustModel">
+        update AccountFundAdjust set
+            accountId = #{accountId} ,
+            currency = #{currency} ,
+            adjustType = #{adjustType} ,
+            adjustAmt = #{adjustAmt} ,
+            remark = #{remark} ,
+            createBy = #{createBy} ,
+            createDate = #{createDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.uams.rpc.fund.model.AccountFundAdjustModel">
+        select <include refid="accountFundAdjustColumns"/> from AccountFundAdjust a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.uams.rpc.fund.model.AccountFundAdjustModel">
+        SELECT
+        <include refid="accountFundAdjustJoinColumns"/>
+        FROM AccountFundAdjust a
+        left join account b on b.id=a.accountId
+        WHERE 1=1
+        <if test="accountId != null">
+            and a.accountId = #{accountId}
+        </if>
+        <if test="accountName != null and accountName!=''">
+            and b.accountName like '%'||#{accountName}||'%'
+        </if>
+        <if test="currency != null">
+            and a.currency like '%'||#{currency}||'%'
+        </if>
+        <if test="adjustType != null">
+            and a.adjustType like '%'||#{adjustType}||'%'
+        </if>
+        <if test="adjustAmt != null">
+            and a.adjustAmt = #{adjustAmt}
+        </if>
+        <if test="remark != null">
+            and a.remark like '%'||#{remark}||'%'
+        </if>
+        <if test="createBy != null">
+            and a.createBy = #{createBy}
+        </if>
+        <if test="createDate != null">
+            and a.createDate = #{createDate}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.uams.rpc.fund.model.AccountFundAdjustModel">
+        SELECT
+        <include refid="accountFundAdjustColumns"/>
+        FROM AccountFundAdjust a WHERE 1=1
+    </select>
+
+
+</mapper>
+

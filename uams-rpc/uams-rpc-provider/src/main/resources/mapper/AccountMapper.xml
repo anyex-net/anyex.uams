@@ -1,0 +1,940 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uams.rpc.account.mapper.AccountMapper">
+    <!-- 基础列 -->
+    <sql id="accountColumns">
+        a.id as id,
+        a.unid as unid,
+        a.accountType as accountType,
+        a.accountName as accountName,
+        a.certificateType as certificateType,
+        a.certificateNumber as certificateNumber,
+        a.dateBirth as dateBirth,
+        a.contactNumber as contactNumber,
+        a.mobilePhone as mobilePhone,
+        a.email as email,
+        a.postCode as postCode,
+        a.contactAddress as contactAddress,
+        a.frontSideIDPhoto as frontSideIDPhoto,
+        a.backSideIDPhoto as backSideIDPhoto,
+        a.handWithIDPhoto as handWithIDPhoto,
+        a.riskLevel as riskLevel,
+        a.lang as lang,
+        a.country as country,
+        a.province as province,
+        a.city as city,
+        a.district as district,
+        a.openAccountTime as openAccountTime,
+        a.closeAccountTime as closeAccountTime,
+        a.loginPwd as loginPwd,
+        a.fundPwd as fundPwd,
+        a.companyLicenseCode as companyLicenseCode,
+        a.companyLicensePhoto as companyLicensePhoto,
+        a.operatorName as operatorName,
+        a.operatorCertificateType as operatorCertificateType,
+        a.operatorCertificateNumber as operatorCertificateNumber,
+        a.operatorFrontSideIDPhoto as operatorFrontSideIDPhoto,
+        a.operatorBackSideIDPhoto as operatorBackSideIDPhoto,
+        a.operatorContactNumber as operatorContactNumber,
+        a.operatorMobilePhone as operatorMobilePhone,
+        a.salesBrokerId as salesBrokerId,
+        a.belongOrgId as belongOrgId,
+        a.accountStatus as accountStatus,
+        a.remark as remark,
+        a.createDate as createDate,
+        a.updateDate as updateDate
+    </sql>
+
+    <sql id="accountJoinColumns">
+        a.id as id,
+        a.unid as unid,
+        a.accountType as accountType,
+        a.accountName as accountName,
+        a.certificateType as certificateType,
+        a.certificateNumber as certificateNumber,
+        a.dateBirth as dateBirth,
+        a.contactNumber as contactNumber,
+        a.mobilePhone as mobilePhone,
+        a.email as email,
+        a.postCode as postCode,
+        a.contactAddress as contactAddress,
+        a.frontSideIDPhoto as frontSideIDPhoto,
+        a.backSideIDPhoto as backSideIDPhoto,
+        a.handWithIDPhoto as handWithIDPhoto,
+        a.riskLevel as riskLevel,
+        a.lang as lang,
+        a.country as country,
+        a.province as province,
+        a.city as city,
+        a.district as district,
+        a.openAccountTime as openAccountTime,
+        a.closeAccountTime as closeAccountTime,
+        a.loginPwd as loginPwd,
+        a.fundPwd as fundPwd,
+        a.companyLicenseCode as companyLicenseCode,
+        a.companyLicensePhoto as companyLicensePhoto,
+        a.operatorName as operatorName,
+        a.operatorCertificateType as operatorCertificateType,
+        a.operatorCertificateNumber as operatorCertificateNumber,
+        a.operatorFrontSideIDPhoto as operatorFrontSideIDPhoto,
+        a.operatorBackSideIDPhoto as operatorBackSideIDPhoto,
+        a.operatorContactNumber as operatorContactNumber,
+        a.operatorMobilePhone as operatorMobilePhone,
+        a.salesBrokerId as salesBrokerId,
+        a.belongOrgId as belongOrgId,
+        a.accountStatus as accountStatus,
+        a.remark as remark,
+        a.createDate as createDate,
+        a.updateDate as updateDate,
+        b.trueName as salesBrokerName,
+        c.orgName as belongOrgName
+    </sql>
+
+    <resultMap id="accountResultMap" type="com.uams.rpc.account.model.AccountModel">
+        <id column="id" property="id" />
+        <result column="unid" property="unid"/>
+        <result column="accountType" property="accountType"/>
+        <result column="accountName" property="accountName"/>
+        <result column="certificateType" property="certificateType"/>
+        <result column="certificateNumber" property="certificateNumber"/>
+        <result column="dateBirth" property="dateBirth"/>
+        <result column="contactNumber" property="contactNumber"/>
+        <result column="mobilePhone" property="mobilePhone"/>
+        <result column="email" property="email"/>
+        <result column="postCode" property="postCode"/>
+        <result column="contactAddress" property="contactAddress"/>
+        <result column="frontSideIDPhoto" property="frontSideIDPhoto"/>
+        <result column="backSideIDPhoto" property="backSideIDPhoto"/>
+        <result column="handWithIDPhoto" property="handWithIDPhoto"/>
+        <result column="riskLevel" property="riskLevel"/>
+        <result column="lang" property="lang"/>
+        <result column="country" property="country"/>
+        <result column="province" property="province"/>
+        <result column="city" property="city"/>
+        <result column="district" property="district"/>
+        <result column="openAccountTime" property="openAccountTime"/>
+        <result column="closeAccountTime" property="closeAccountTime"/>
+        <result column="loginPwd" property="loginPwd"/>
+        <result column="fundPwd" property="fundPwd"/>
+        <result column="companyLicenseCode" property="companyLicenseCode"/>
+        <result column="companyLicensePhoto" property="companyLicensePhoto"/>
+        <result column="operatorName" property="operatorName"/>
+        <result column="operatorCertificateType" property="operatorCertificateType"/>
+        <result column="operatorCertificateNumber" property="operatorCertificateNumber"/>
+        <result column="operatorFrontSideIDPhoto" property="operatorFrontSideIDPhoto"/>
+        <result column="operatorBackSideIDPhoto" property="operatorBackSideIDPhoto"/>
+        <result column="operatorContactNumber" property="operatorContactNumber"/>
+        <result column="operatorMobilePhone" property="operatorMobilePhone"/>
+        <result column="salesBrokerId" property="salesBrokerId"/>
+        <result column="belongOrgId" property="belongOrgId"/>
+        <result column="accountStatus" property="accountStatus"/>
+        <result column="remark" property="remark"/>
+        <result column="createDate" property="createDate"/>
+        <result column="updateDate" property="updateDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.uams.rpc.account.model.AccountModel">
+        insert into Account(
+            id ,
+            unid ,
+            accountType ,
+            accountName ,
+            certificateType ,
+            certificateNumber ,
+            dateBirth ,
+            contactNumber ,
+            mobilePhone ,
+            email ,
+            postCode ,
+            contactAddress ,
+            frontSideIDPhoto ,
+            backSideIDPhoto ,
+            handWithIDPhoto ,
+            riskLevel ,
+            lang ,
+            country ,
+            province ,
+            city ,
+            district ,
+            openAccountTime ,
+            closeAccountTime ,
+            loginPwd ,
+            fundPwd ,
+            companyLicenseCode ,
+            companyLicensePhoto ,
+            operatorName ,
+            operatorCertificateType ,
+            operatorCertificateNumber ,
+            operatorFrontSideIDPhoto ,
+            operatorBackSideIDPhoto ,
+            operatorContactNumber ,
+            operatorMobilePhone ,
+            salesBrokerId ,
+            belongOrgId ,
+            accountStatus ,
+            remark ,
+            createDate ,
+            updateDate 
+        ) VALUES (
+            #{id} ,
+            #{unid} ,
+            #{accountType} ,
+            #{accountName} ,
+            #{certificateType} ,
+            #{certificateNumber} ,
+            #{dateBirth} ,
+            #{contactNumber} ,
+            #{mobilePhone} ,
+            #{email} ,
+            #{postCode} ,
+            #{contactAddress} ,
+            #{frontSideIDPhoto} ,
+            #{backSideIDPhoto} ,
+            #{handWithIDPhoto} ,
+            #{riskLevel} ,
+            #{lang} ,
+            #{country} ,
+            #{province} ,
+            #{city} ,
+            #{district} ,
+            #{openAccountTime} ,
+            #{closeAccountTime} ,
+            #{loginPwd} ,
+            #{fundPwd} ,
+            #{companyLicenseCode} ,
+            #{companyLicensePhoto} ,
+            #{operatorName} ,
+            #{operatorCertificateType} ,
+            #{operatorCertificateNumber} ,
+            #{operatorFrontSideIDPhoto} ,
+            #{operatorBackSideIDPhoto} ,
+            #{operatorContactNumber} ,
+            #{operatorMobilePhone} ,
+            #{salesBrokerId} ,
+            #{belongOrgId} ,
+            #{accountStatus} ,
+            #{remark} ,
+            #{createDate} ,
+            #{updateDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from Account where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update Account set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.uams.rpc.account.model.AccountModel">
+        insert into Account
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="unid != null">
+                unid ,
+        </if>
+        <if test="accountType != null">
+                accountType ,
+        </if>
+        <if test="accountName != null">
+                accountName ,
+        </if>
+        <if test="certificateType != null">
+                certificateType ,
+        </if>
+        <if test="certificateNumber != null">
+                certificateNumber ,
+        </if>
+        <if test="dateBirth != null">
+                dateBirth ,
+        </if>
+        <if test="contactNumber != null">
+                contactNumber ,
+        </if>
+        <if test="mobilePhone != null">
+                mobilePhone ,
+        </if>
+        <if test="email != null">
+                email ,
+        </if>
+        <if test="postCode != null">
+                postCode ,
+        </if>
+        <if test="contactAddress != null">
+                contactAddress ,
+        </if>
+        <if test="frontSideIDPhoto != null">
+                frontSideIDPhoto ,
+        </if>
+        <if test="backSideIDPhoto != null">
+                backSideIDPhoto ,
+        </if>
+        <if test="handWithIDPhoto != null">
+                handWithIDPhoto ,
+        </if>
+        <if test="riskLevel != null">
+                riskLevel ,
+        </if>
+        <if test="lang != null">
+                lang ,
+        </if>
+        <if test="country != null">
+                country ,
+        </if>
+        <if test="province != null">
+                province ,
+        </if>
+        <if test="city != null">
+                city ,
+        </if>
+        <if test="district != null">
+                district ,
+        </if>
+        <if test="openAccountTime != null">
+                openAccountTime ,
+        </if>
+        <if test="closeAccountTime != null">
+                closeAccountTime ,
+        </if>
+        <if test="loginPwd != null">
+                loginPwd ,
+        </if>
+        <if test="fundPwd != null">
+                fundPwd ,
+        </if>
+        <if test="companyLicenseCode != null">
+                companyLicenseCode ,
+        </if>
+        <if test="companyLicensePhoto != null">
+                companyLicensePhoto ,
+        </if>
+        <if test="operatorName != null">
+                operatorName ,
+        </if>
+        <if test="operatorCertificateType != null">
+                operatorCertificateType ,
+        </if>
+        <if test="operatorCertificateNumber != null">
+                operatorCertificateNumber ,
+        </if>
+        <if test="operatorFrontSideIDPhoto != null">
+                operatorFrontSideIDPhoto ,
+        </if>
+        <if test="operatorBackSideIDPhoto != null">
+                operatorBackSideIDPhoto ,
+        </if>
+        <if test="operatorContactNumber != null">
+                operatorContactNumber ,
+        </if>
+        <if test="operatorMobilePhone != null">
+                operatorMobilePhone ,
+        </if>
+        <if test="salesBrokerId != null">
+                salesBrokerId ,
+        </if>
+        <if test="belongOrgId != null">
+                belongOrgId ,
+        </if>
+        <if test="accountStatus != null">
+                accountStatus ,
+        </if>
+        <if test="remark != null">
+                remark ,
+        </if>
+        <if test="createDate != null">
+                createDate ,
+        </if>
+        <if test="updateDate != null">
+                updateDate 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="unid != null">
+                #{unid} ,
+        </if>
+        <if test="accountType != null">
+                #{accountType} ,
+        </if>
+        <if test="accountName != null">
+                #{accountName} ,
+        </if>
+        <if test="certificateType != null">
+                #{certificateType} ,
+        </if>
+        <if test="certificateNumber != null">
+                #{certificateNumber} ,
+        </if>
+        <if test="dateBirth != null">
+                #{dateBirth} ,
+        </if>
+        <if test="contactNumber != null">
+                #{contactNumber} ,
+        </if>
+        <if test="mobilePhone != null">
+                #{mobilePhone} ,
+        </if>
+        <if test="email != null">
+                #{email} ,
+        </if>
+        <if test="postCode != null">
+                #{postCode} ,
+        </if>
+        <if test="contactAddress != null">
+                #{contactAddress} ,
+        </if>
+        <if test="frontSideIDPhoto != null">
+                #{frontSideIDPhoto} ,
+        </if>
+        <if test="backSideIDPhoto != null">
+                #{backSideIDPhoto} ,
+        </if>
+        <if test="handWithIDPhoto != null">
+                #{handWithIDPhoto} ,
+        </if>
+        <if test="riskLevel != null">
+                #{riskLevel} ,
+        </if>
+        <if test="lang != null">
+                #{lang} ,
+        </if>
+        <if test="country != null">
+                #{country} ,
+        </if>
+        <if test="province != null">
+                #{province} ,
+        </if>
+        <if test="city != null">
+                #{city} ,
+        </if>
+        <if test="district != null">
+                #{district} ,
+        </if>
+        <if test="openAccountTime != null">
+                #{openAccountTime} ,
+        </if>
+        <if test="closeAccountTime != null">
+                #{closeAccountTime} ,
+        </if>
+        <if test="loginPwd != null">
+                #{loginPwd} ,
+        </if>
+        <if test="fundPwd != null">
+                #{fundPwd} ,
+        </if>
+        <if test="companyLicenseCode != null">
+                #{companyLicenseCode} ,
+        </if>
+        <if test="companyLicensePhoto != null">
+                #{companyLicensePhoto} ,
+        </if>
+        <if test="operatorName != null">
+                #{operatorName} ,
+        </if>
+        <if test="operatorCertificateType != null">
+                #{operatorCertificateType} ,
+        </if>
+        <if test="operatorCertificateNumber != null">
+                #{operatorCertificateNumber} ,
+        </if>
+        <if test="operatorFrontSideIDPhoto != null">
+                #{operatorFrontSideIDPhoto} ,
+        </if>
+        <if test="operatorBackSideIDPhoto != null">
+                #{operatorBackSideIDPhoto} ,
+        </if>
+        <if test="operatorContactNumber != null">
+                #{operatorContactNumber} ,
+        </if>
+        <if test="operatorMobilePhone != null">
+                #{operatorMobilePhone} ,
+        </if>
+        <if test="salesBrokerId != null">
+                #{salesBrokerId} ,
+        </if>
+        <if test="belongOrgId != null">
+                #{belongOrgId} ,
+        </if>
+        <if test="accountStatus != null">
+                #{accountStatus} ,
+        </if>
+        <if test="remark != null">
+                #{remark} ,
+        </if>
+        <if test="createDate != null">
+                #{createDate} ,
+        </if>
+        <if test="updateDate != null">
+                #{updateDate} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.uams.rpc.account.model.AccountModel">
+        update Account
+           <set>
+            <if test="unid != null">
+                unid = #{unid} ,
+            </if>
+            <if test="accountType != null">
+                accountType = #{accountType} ,
+            </if>
+            <if test="accountName != null">
+                accountName = #{accountName} ,
+            </if>
+            <if test="certificateType != null">
+                certificateType = #{certificateType} ,
+            </if>
+            <if test="certificateNumber != null">
+                certificateNumber = #{certificateNumber} ,
+            </if>
+            <if test="dateBirth != null">
+                dateBirth = #{dateBirth} ,
+            </if>
+            <if test="contactNumber != null">
+                contactNumber = #{contactNumber} ,
+            </if>
+            <if test="mobilePhone != null">
+                mobilePhone = #{mobilePhone} ,
+            </if>
+            <if test="email != null">
+                email = #{email} ,
+            </if>
+            <if test="postCode != null">
+                postCode = #{postCode} ,
+            </if>
+            <if test="contactAddress != null">
+                contactAddress = #{contactAddress} ,
+            </if>
+            <if test="frontSideIDPhoto != null">
+                frontSideIDPhoto = #{frontSideIDPhoto} ,
+            </if>
+            <if test="backSideIDPhoto != null">
+                backSideIDPhoto = #{backSideIDPhoto} ,
+            </if>
+            <if test="handWithIDPhoto != null">
+                handWithIDPhoto = #{handWithIDPhoto} ,
+            </if>
+            <if test="riskLevel != null">
+                riskLevel = #{riskLevel} ,
+            </if>
+            <if test="lang != null">
+                lang = #{lang} ,
+            </if>
+            <if test="country != null">
+                country = #{country} ,
+            </if>
+            <if test="province != null">
+                province = #{province} ,
+            </if>
+            <if test="city != null">
+                city = #{city} ,
+            </if>
+            <if test="district != null">
+                district = #{district} ,
+            </if>
+            <if test="openAccountTime != null">
+                openAccountTime = #{openAccountTime} ,
+            </if>
+            <if test="closeAccountTime != null">
+                closeAccountTime = #{closeAccountTime} ,
+            </if>
+            <if test="loginPwd != null">
+                loginPwd = #{loginPwd} ,
+            </if>
+            <if test="fundPwd != null">
+                fundPwd = #{fundPwd} ,
+            </if>
+            <if test="companyLicenseCode != null">
+                companyLicenseCode = #{companyLicenseCode} ,
+            </if>
+            <if test="companyLicensePhoto != null">
+                companyLicensePhoto = #{companyLicensePhoto} ,
+            </if>
+            <if test="operatorName != null">
+                operatorName = #{operatorName} ,
+            </if>
+            <if test="operatorCertificateType != null">
+                operatorCertificateType = #{operatorCertificateType} ,
+            </if>
+            <if test="operatorCertificateNumber != null">
+                operatorCertificateNumber = #{operatorCertificateNumber} ,
+            </if>
+            <if test="operatorFrontSideIDPhoto != null">
+                operatorFrontSideIDPhoto = #{operatorFrontSideIDPhoto} ,
+            </if>
+            <if test="operatorBackSideIDPhoto != null">
+                operatorBackSideIDPhoto = #{operatorBackSideIDPhoto} ,
+            </if>
+            <if test="operatorContactNumber != null">
+                operatorContactNumber = #{operatorContactNumber} ,
+            </if>
+            <if test="operatorMobilePhone != null">
+                operatorMobilePhone = #{operatorMobilePhone} ,
+            </if>
+            <if test="salesBrokerId != null">
+                salesBrokerId = #{salesBrokerId} ,
+            </if>
+            <if test="belongOrgId != null">
+                belongOrgId = #{belongOrgId} ,
+            </if>
+            <if test="accountStatus != null">
+                accountStatus = #{accountStatus} ,
+            </if>
+            <if test="remark != null">
+                remark = #{remark} ,
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate} ,
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into Account(
+            id ,
+            unid ,
+            accountType ,
+            accountName ,
+            certificateType ,
+            certificateNumber ,
+            dateBirth ,
+            contactNumber ,
+            mobilePhone ,
+            email ,
+            postCode ,
+            contactAddress ,
+            frontSideIDPhoto ,
+            backSideIDPhoto ,
+            handWithIDPhoto ,
+            riskLevel ,
+            lang ,
+            country ,
+            province ,
+            city ,
+            district ,
+            openAccountTime ,
+            closeAccountTime ,
+            loginPwd ,
+            fundPwd ,
+            companyLicenseCode ,
+            companyLicensePhoto ,
+            operatorName ,
+            operatorCertificateType ,
+            operatorCertificateNumber ,
+            operatorFrontSideIDPhoto ,
+            operatorBackSideIDPhoto ,
+            operatorContactNumber ,
+            operatorMobilePhone ,
+            salesBrokerId ,
+            belongOrgId ,
+            accountStatus ,
+            remark ,
+            createDate ,
+            updateDate 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.unid} ,
+            #{item.accountType} ,
+            #{item.accountName} ,
+            #{item.certificateType} ,
+            #{item.certificateNumber} ,
+            #{item.dateBirth} ,
+            #{item.contactNumber} ,
+            #{item.mobilePhone} ,
+            #{item.email} ,
+            #{item.postCode} ,
+            #{item.contactAddress} ,
+            #{item.frontSideIDPhoto} ,
+            #{item.backSideIDPhoto} ,
+            #{item.handWithIDPhoto} ,
+            #{item.riskLevel} ,
+            #{item.lang} ,
+            #{item.country} ,
+            #{item.province} ,
+            #{item.city} ,
+            #{item.district} ,
+            #{item.openAccountTime} ,
+            #{item.closeAccountTime} ,
+            #{item.loginPwd} ,
+            #{item.fundPwd} ,
+            #{item.companyLicenseCode} ,
+            #{item.companyLicensePhoto} ,
+            #{item.operatorName} ,
+            #{item.operatorCertificateType} ,
+            #{item.operatorCertificateNumber} ,
+            #{item.operatorFrontSideIDPhoto} ,
+            #{item.operatorBackSideIDPhoto} ,
+            #{item.operatorContactNumber} ,
+            #{item.operatorMobilePhone} ,
+            #{item.salesBrokerId} ,
+            #{item.belongOrgId} ,
+            #{item.accountStatus} ,
+            #{item.remark} ,
+            #{item.createDate} ,
+            #{item.updateDate} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update Account set
+            unid = #{item.unid} ,
+            accountType = #{item.accountType} ,
+            accountName = #{item.accountName} ,
+            certificateType = #{item.certificateType} ,
+            certificateNumber = #{item.certificateNumber} ,
+            dateBirth = #{item.dateBirth} ,
+            contactNumber = #{item.contactNumber} ,
+            mobilePhone = #{item.mobilePhone} ,
+            email = #{item.email} ,
+            postCode = #{item.postCode} ,
+            contactAddress = #{item.contactAddress} ,
+            frontSideIDPhoto = #{item.frontSideIDPhoto} ,
+            backSideIDPhoto = #{item.backSideIDPhoto} ,
+            handWithIDPhoto = #{item.handWithIDPhoto} ,
+            riskLevel = #{item.riskLevel} ,
+            lang = #{item.lang} ,
+            country = #{item.country} ,
+            province = #{item.province} ,
+            city = #{item.city} ,
+            district = #{item.district} ,
+            openAccountTime = #{item.openAccountTime} ,
+            closeAccountTime = #{item.closeAccountTime} ,
+            loginPwd = #{item.loginPwd} ,
+            fundPwd = #{item.fundPwd} ,
+            companyLicenseCode = #{item.companyLicenseCode} ,
+            companyLicensePhoto = #{item.companyLicensePhoto} ,
+            operatorName = #{item.operatorName} ,
+            operatorCertificateType = #{item.operatorCertificateType} ,
+            operatorCertificateNumber = #{item.operatorCertificateNumber} ,
+            operatorFrontSideIDPhoto = #{item.operatorFrontSideIDPhoto} ,
+            operatorBackSideIDPhoto = #{item.operatorBackSideIDPhoto} ,
+            operatorContactNumber = #{item.operatorContactNumber} ,
+            operatorMobilePhone = #{item.operatorMobilePhone} ,
+            salesBrokerId = #{item.salesBrokerId} ,
+            belongOrgId = #{item.belongOrgId} ,
+            accountStatus = #{item.accountStatus} ,
+            remark = #{item.remark} ,
+            createDate = #{item.createDate} ,
+            updateDate = #{item.updateDate} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.uams.rpc.account.model.AccountModel">
+        update Account set
+            unid = #{unid} ,
+            accountType = #{accountType} ,
+            accountName = #{accountName} ,
+            certificateType = #{certificateType} ,
+            certificateNumber = #{certificateNumber} ,
+            dateBirth = #{dateBirth} ,
+            contactNumber = #{contactNumber} ,
+            mobilePhone = #{mobilePhone} ,
+            email = #{email} ,
+            postCode = #{postCode} ,
+            contactAddress = #{contactAddress} ,
+            frontSideIDPhoto = #{frontSideIDPhoto} ,
+            backSideIDPhoto = #{backSideIDPhoto} ,
+            handWithIDPhoto = #{handWithIDPhoto} ,
+            riskLevel = #{riskLevel} ,
+            lang = #{lang} ,
+            country = #{country} ,
+            province = #{province} ,
+            city = #{city} ,
+            district = #{district} ,
+            openAccountTime = #{openAccountTime} ,
+            closeAccountTime = #{closeAccountTime} ,
+            loginPwd = #{loginPwd} ,
+            fundPwd = #{fundPwd} ,
+            companyLicenseCode = #{companyLicenseCode} ,
+            companyLicensePhoto = #{companyLicensePhoto} ,
+            operatorName = #{operatorName} ,
+            operatorCertificateType = #{operatorCertificateType} ,
+            operatorCertificateNumber = #{operatorCertificateNumber} ,
+            operatorFrontSideIDPhoto = #{operatorFrontSideIDPhoto} ,
+            operatorBackSideIDPhoto = #{operatorBackSideIDPhoto} ,
+            operatorContactNumber = #{operatorContactNumber} ,
+            operatorMobilePhone = #{operatorMobilePhone} ,
+            salesBrokerId = #{salesBrokerId} ,
+            belongOrgId = #{belongOrgId} ,
+            accountStatus = #{accountStatus} ,
+            remark = #{remark} ,
+            createDate = #{createDate} ,
+            updateDate = #{updateDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.uams.rpc.account.model.AccountModel">
+        select <include refid="accountColumns"/> from Account a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.uams.rpc.account.model.AccountModel">
+        SELECT
+        <include refid="accountJoinColumns"/>
+        FROM Account a
+        left join UserInfo b on b.id=a.salesBrokerId
+        left join Organization c on c.id=a.belongOrgId
+        WHERE 1=1
+        <if test="unid != null">
+            and a.unid = #{unid}
+        </if>
+        <if test="accountType != null">
+            and a.accountType like '%'||#{accountType}||'%'
+        </if>
+        <if test="accountName != null">
+            and a.accountName like '%'||#{accountName}||'%'
+        </if>
+        <if test="certificateType != null">
+            and a.certificateType like '%'||#{certificateType}||'%'
+        </if>
+        <if test="certificateNumber != null">
+            and a.certificateNumber like '%'||#{certificateNumber}||'%'
+        </if>
+        <if test="dateBirth != null">
+            and a.dateBirth = #{dateBirth}
+        </if>
+        <if test="contactNumber != null">
+            and a.contactNumber like '%'||#{contactNumber}||'%'
+        </if>
+        <if test="mobilePhone != null">
+            and a.mobilePhone like '%'||#{mobilePhone}||'%'
+        </if>
+        <if test="email != null">
+            and a.email like '%'||#{email}||'%'
+        </if>
+        <if test="postCode != null">
+            and a.postCode like '%'||#{postCode}||'%'
+        </if>
+        <if test="contactAddress != null">
+            and a.contactAddress like '%'||#{contactAddress}||'%'
+        </if>
+        <if test="frontSideIDPhoto != null">
+            and a.frontSideIDPhoto like '%'||#{frontSideIDPhoto}||'%'
+        </if>
+        <if test="backSideIDPhoto != null">
+            and a.backSideIDPhoto like '%'||#{backSideIDPhoto}||'%'
+        </if>
+        <if test="handWithIDPhoto != null">
+            and a.handWithIDPhoto like '%'||#{handWithIDPhoto}||'%'
+        </if>
+        <if test="riskLevel != null">
+            and a.riskLevel like '%'||#{riskLevel}||'%'
+        </if>
+        <if test="lang != null">
+            and a.lang like '%'||#{lang}||'%'
+        </if>
+        <if test="country != null">
+            and a.country like '%'||#{country}||'%'
+        </if>
+        <if test="province != null">
+            and a.province like '%'||#{province}||'%'
+        </if>
+        <if test="city != null">
+            and a.city like '%'||#{city}||'%'
+        </if>
+        <if test="district != null">
+            and a.district like '%'||#{district}||'%'
+        </if>
+        <if test="openAccountTime != null">
+            and a.openAccountTime = #{openAccountTime}
+        </if>
+        <if test="closeAccountTime != null">
+            and a.closeAccountTime = #{closeAccountTime}
+        </if>
+        <if test="loginPwd != null">
+            and a.loginPwd like '%'||#{loginPwd}||'%'
+        </if>
+        <if test="fundPwd != null">
+            and a.fundPwd like '%'||#{fundPwd}||'%'
+        </if>
+        <if test="companyLicenseCode != null">
+            and a.companyLicenseCode like '%'||#{companyLicenseCode}||'%'
+        </if>
+        <if test="companyLicensePhoto != null">
+            and a.companyLicensePhoto like '%'||#{companyLicensePhoto}||'%'
+        </if>
+        <if test="operatorName != null">
+            and a.operatorName like '%'||#{operatorName}||'%'
+        </if>
+        <if test="operatorCertificateType != null">
+            and a.operatorCertificateType like '%'||#{operatorCertificateType}||'%'
+        </if>
+        <if test="operatorCertificateNumber != null">
+            and a.operatorCertificateNumber like '%'||#{operatorCertificateNumber}||'%'
+        </if>
+        <if test="operatorFrontSideIDPhoto != null">
+            and a.operatorFrontSideIDPhoto like '%'||#{operatorFrontSideIDPhoto}||'%'
+        </if>
+        <if test="operatorBackSideIDPhoto != null">
+            and a.operatorBackSideIDPhoto like '%'||#{operatorBackSideIDPhoto}||'%'
+        </if>
+        <if test="operatorContactNumber != null">
+            and a.operatorContactNumber like '%'||#{operatorContactNumber}||'%'
+        </if>
+        <if test="operatorMobilePhone != null">
+            and a.operatorMobilePhone like '%'||#{operatorMobilePhone}||'%'
+        </if>
+        <if test="salesBrokerId != null">
+            and a.salesBrokerId = #{salesBrokerId}
+        </if>
+        <if test="belongOrgId != null">
+            and a.belongOrgId = #{belongOrgId}
+        </if>
+        <if test="accountStatus != null">
+            and a.accountStatus like '%'||#{accountStatus}||'%'
+        </if>
+        <if test="remark != null">
+            and a.remark like '%'||#{remark}||'%'
+        </if>
+        <if test="createDate != null">
+            and a.createDate = #{createDate}
+        </if>
+        <if test="updateDate != null">
+            and a.updateDate = #{updateDate}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.uams.rpc.account.model.AccountModel">
+        SELECT
+        <include refid="accountColumns"/>
+        FROM Account a WHERE 1=1
+    </select>
+
+    <!-- 根据帐户名称取数据 -->
+    <select id="findByNameAndNormal" resultType="com.uams.rpc.account.model.AccountModel">
+        SELECT
+        <include refid="accountColumns"/>
+        FROM Account a WHERE 1=1
+        AND (a.accountName = #{accountName} OR a.email = #{accountName})
+        AND a.accountStatus = 'accountNormal'
+    </select>
+
+    <select id="getMaxUNID" resultType="java.lang.Long">
+        SELECT MAX(a.unid) FROM Account a WHERE 1=1
+    </select>
+</mapper>
+

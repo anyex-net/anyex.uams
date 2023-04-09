@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uams.rpc.api.mapper.SysPositionProfitMapper">
+    <!-- 基础列 -->
+    <sql id="sysPositionProfitColumns">
+        a.id as id,
+        a.calculatePrice as calculatePrice,
+        a.lMEPositionProfit as lMEPositionProfit,
+        a.optionMarketValue as optionMarketValue,
+        a.positionNo as positionNo,
+        a.positionProfit as positionProfit,
+        a.positionStreamId as positionStreamId,
+        a.remark as remark,
+        a.createDate as createDate,
+        a.updateDate as updateDate
+    </sql>
+
+    <resultMap id="sysPositionProfitResultMap" type="com.uams.rpc.api.model.SysPositionProfitModel">
+        <id column="id" property="id" />
+        <result column="calculatePrice" property="calculatePrice"/>
+        <result column="lMEPositionProfit" property="lMEPositionProfit"/>
+        <result column="optionMarketValue" property="optionMarketValue"/>
+        <result column="positionNo" property="positionNo"/>
+        <result column="positionProfit" property="positionProfit"/>
+        <result column="positionStreamId" property="positionStreamId"/>
+        <result column="remark" property="remark"/>
+        <result column="createDate" property="createDate"/>
+        <result column="updateDate" property="updateDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.uams.rpc.api.model.SysPositionProfitModel">
+        insert into SysPositionProfit(
+            id ,
+            calculatePrice ,
+            lMEPositionProfit ,
+            optionMarketValue ,
+            positionNo ,
+            positionProfit ,
+            positionStreamId ,
+            remark ,
+            createDate ,
+            updateDate 
+        ) VALUES (
+            #{id} ,
+            #{calculatePrice} ,
+            #{lMEPositionProfit} ,
+            #{optionMarketValue} ,
+            #{positionNo} ,
+            #{positionProfit} ,
+            #{positionStreamId} ,
+            #{remark} ,
+            #{createDate} ,
+            #{updateDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from SysPositionProfit where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update SysPositionProfit set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.uams.rpc.api.model.SysPositionProfitModel">
+        insert into SysPositionProfit
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="calculatePrice != null">
+                calculatePrice ,
+        </if>
+        <if test="lMEPositionProfit != null">
+                lMEPositionProfit ,
+        </if>
+        <if test="optionMarketValue != null">
+                optionMarketValue ,
+        </if>
+        <if test="positionNo != null">
+                positionNo ,
+        </if>
+        <if test="positionProfit != null">
+                positionProfit ,
+        </if>
+        <if test="positionStreamId != null">
+                positionStreamId ,
+        </if>
+        <if test="remark != null">
+                remark ,
+        </if>
+        <if test="createDate != null">
+                createDate ,
+        </if>
+        <if test="updateDate != null">
+                updateDate 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="calculatePrice != null">
+                #{calculatePrice} ,
+        </if>
+        <if test="lMEPositionProfit != null">
+                #{lMEPositionProfit} ,
+        </if>
+        <if test="optionMarketValue != null">
+                #{optionMarketValue} ,
+        </if>
+        <if test="positionNo != null">
+                #{positionNo} ,
+        </if>
+        <if test="positionProfit != null">
+                #{positionProfit} ,
+        </if>
+        <if test="positionStreamId != null">
+                #{positionStreamId} ,
+        </if>
+        <if test="remark != null">
+                #{remark} ,
+        </if>
+        <if test="createDate != null">
+                #{createDate} ,
+        </if>
+        <if test="updateDate != null">
+                #{updateDate} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.uams.rpc.api.model.SysPositionProfitModel">
+        update SysPositionProfit
+           <set>
+            <if test="calculatePrice != null">
+                calculatePrice = #{calculatePrice} ,
+            </if>
+            <if test="lMEPositionProfit != null">
+                lMEPositionProfit = #{lMEPositionProfit} ,
+            </if>
+            <if test="optionMarketValue != null">
+                optionMarketValue = #{optionMarketValue} ,
+            </if>
+            <if test="positionNo != null">
+                positionNo = #{positionNo} ,
+            </if>
+            <if test="positionProfit != null">
+                positionProfit = #{positionProfit} ,
+            </if>
+            <if test="positionStreamId != null">
+                positionStreamId = #{positionStreamId} ,
+            </if>
+            <if test="remark != null">
+                remark = #{remark} ,
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate} ,
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into SysPositionProfit(
+            id ,
+            calculatePrice ,
+            lMEPositionProfit ,
+            optionMarketValue ,
+            positionNo ,
+            positionProfit ,
+            positionStreamId ,
+            remark ,
+            createDate ,
+            updateDate 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.calculatePrice} ,
+            #{item.lMEPositionProfit} ,
+            #{item.optionMarketValue} ,
+            #{item.positionNo} ,
+            #{item.positionProfit} ,
+            #{item.positionStreamId} ,
+            #{item.remark} ,
+            #{item.createDate} ,
+            #{item.updateDate} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update SysPositionProfit set
+            calculatePrice = #{item.calculatePrice} ,
+            lMEPositionProfit = #{item.lMEPositionProfit} ,
+            optionMarketValue = #{item.optionMarketValue} ,
+            positionNo = #{item.positionNo} ,
+            positionProfit = #{item.positionProfit} ,
+            positionStreamId = #{item.positionStreamId} ,
+            remark = #{item.remark} ,
+            createDate = #{item.createDate} ,
+            updateDate = #{item.updateDate} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.uams.rpc.api.model.SysPositionProfitModel">
+        update SysPositionProfit set
+            calculatePrice = #{calculatePrice} ,
+            lMEPositionProfit = #{lMEPositionProfit} ,
+            optionMarketValue = #{optionMarketValue} ,
+            positionNo = #{positionNo} ,
+            positionProfit = #{positionProfit} ,
+            positionStreamId = #{positionStreamId} ,
+            remark = #{remark} ,
+            createDate = #{createDate} ,
+            updateDate = #{updateDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.uams.rpc.api.model.SysPositionProfitModel">
+        select <include refid="sysPositionProfitColumns"/> from SysPositionProfit a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.uams.rpc.api.model.SysPositionProfitModel">
+        SELECT
+        <include refid="sysPositionProfitColumns"/>
+        FROM SysPositionProfit a WHERE 1=1
+        <if test="calculatePrice != null">
+            and a.calculatePrice = #{calculatePrice}
+        </if>
+        <if test="lMEPositionProfit != null">
+            and a.lMEPositionProfit = #{lMEPositionProfit}
+        </if>
+        <if test="optionMarketValue != null">
+            and a.optionMarketValue = #{optionMarketValue}
+        </if>
+        <if test="positionNo != null">
+            and a.positionNo like '%'||#{positionNo}||'%'
+        </if>
+        <if test="positionProfit != null">
+            and a.positionProfit = #{positionProfit}
+        </if>
+        <if test="positionStreamId != null">
+            and a.positionStreamId = #{positionStreamId}
+        </if>
+        <if test="remark != null">
+            and a.remark like '%'||#{remark}||'%'
+        </if>
+        <if test="createDate != null">
+            and a.createDate = #{createDate}
+        </if>
+        <if test="updateDate != null">
+            and a.updateDate = #{updateDate}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.uams.rpc.api.model.SysPositionProfitModel">
+        SELECT
+        <include refid="sysPositionProfitColumns"/>
+        FROM SysPositionProfit a WHERE 1=1
+    </select>
+
+
+</mapper>
+

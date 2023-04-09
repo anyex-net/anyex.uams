@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uams.rpc.base.mapper.BrokerInfoMapper">
+    <!-- 基础列 -->
+    <sql id="brokerInfoColumns">
+        a.id as id,
+        a.brokerCode as brokerCode,
+        a.brokerName as brokerName,
+        a.updateDate as updateDate
+    </sql>
+
+    <resultMap id="brokerInfoResultMap" type="com.uams.rpc.base.model.BrokerInfoModel">
+        <id column="id" property="id" />
+        <result column="brokerCode" property="brokerCode"/>
+        <result column="brokerName" property="brokerName"/>
+        <result column="updateDate" property="updateDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.uams.rpc.base.model.BrokerInfoModel">
+        insert into BrokerInfo(
+            id ,
+            brokerCode ,
+            brokerName ,
+            updateDate 
+        ) VALUES (
+            #{id} ,
+            #{brokerCode} ,
+            #{brokerName} ,
+            #{updateDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from BrokerInfo where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update BrokerInfo set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.uams.rpc.base.model.BrokerInfoModel">
+        insert into BrokerInfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="brokerCode != null">
+                brokerCode ,
+        </if>
+        <if test="brokerName != null">
+                brokerName ,
+        </if>
+        <if test="updateDate != null">
+                updateDate 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="brokerCode != null">
+                #{brokerCode} ,
+        </if>
+        <if test="brokerName != null">
+                #{brokerName} ,
+        </if>
+        <if test="updateDate != null">
+                #{updateDate} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.uams.rpc.base.model.BrokerInfoModel">
+        update BrokerInfo
+           <set>
+            <if test="brokerCode != null">
+                brokerCode = #{brokerCode} ,
+            </if>
+            <if test="brokerName != null">
+                brokerName = #{brokerName} ,
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into BrokerInfo(
+            id ,
+            brokerCode ,
+            brokerName ,
+            updateDate 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.brokerCode} ,
+            #{item.brokerName} ,
+            #{item.updateDate} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update BrokerInfo set
+            brokerCode = #{item.brokerCode} ,
+            brokerName = #{item.brokerName} ,
+            updateDate = #{item.updateDate} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.uams.rpc.base.model.BrokerInfoModel">
+        update BrokerInfo set
+            brokerCode = #{brokerCode} ,
+            brokerName = #{brokerName} ,
+            updateDate = #{updateDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.uams.rpc.base.model.BrokerInfoModel">
+        select <include refid="brokerInfoColumns"/> from BrokerInfo a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.uams.rpc.base.model.BrokerInfoModel">
+        SELECT
+        <include refid="brokerInfoColumns"/>
+        FROM BrokerInfo a WHERE 1=1
+        <if test="brokerCode != null">
+            and a.brokerCode like '%'||#{brokerCode}||'%'
+        </if>
+        <if test="brokerName != null">
+            and a.brokerName like '%'||#{brokerName}||'%'
+        </if>
+        <if test="updateDate != null">
+            and a.updateDate = #{updateDate}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.uams.rpc.base.model.BrokerInfoModel">
+        SELECT
+        <include refid="brokerInfoColumns"/>
+        FROM BrokerInfo a WHERE 1=1
+    </select>
+
+
+</mapper>
+

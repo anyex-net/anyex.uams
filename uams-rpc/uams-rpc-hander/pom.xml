@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>uams-rpc</artifactId>
+        <groupId>com.uams</groupId>
+        <version>1.0.1-RELEASE</version>
+    </parent>
+
+    <groupId>com.uams</groupId>
+    <version>1.0.1-RELEASE</version>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>uams-rpc-hander</artifactId>
+
+    <properties>
+        <uams-orm.version>1.0.1-RELEASE</uams-orm.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.uams</groupId>
+            <artifactId>uams-orm</artifactId>
+            <version>${uams-orm.version}</version>
+        </dependency>
+        <!-- swagger2 -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-models</artifactId>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

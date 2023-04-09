@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uams.rpc.system.mapper.UserDataMapper">
+    <!-- 基础列 -->
+    <sql id="userDataColumns">
+        a.id as id,
+        a.userId as userId,
+        a.orgId as orgId
+    </sql>
+
+    <resultMap id="userDataResultMap" type="com.uams.rpc.system.entity.UserData">
+        <id column="id" property="id" />
+        <result column="userId" property="userId"/>
+        <result column="orgId" property="orgId"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.uams.rpc.system.entity.UserData">
+        insert into UserData(
+        id ,
+        userId ,
+        orgId
+        ) VALUES (
+        #{id} ,
+        #{userId} ,
+        #{orgId}
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from UserData where id = #{id}
+    </delete>
+
+    <!--根据用户ID删除-->
+    <delete id="removeByUser" parameterType="java.lang.Long">
+        delete from UserData where userId = #{userId}
+    </delete>
+
+    <!--根据机构ID删除-->
+    <delete id="removeByOrg" parameterType="java.lang.Long">
+        delete from UserData where orgId = #{orgId}
+    </delete>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.uams.rpc.system.entity.UserData">
+        insert into UserData
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id ,
+            </if>
+            <if test="userId != null">
+                userId ,
+            </if>
+            <if test="orgId != null">
+                orgId
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id} ,
+            </if>
+            <if test="userId != null">
+                #{userId} ,
+            </if>
+            <if test="orgId != null">
+                #{orgId}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.uams.rpc.system.entity.UserData">
+        update UserData
+        <set>
+            <if test="userId != null">
+                userId = #{userId} ,
+            </if>
+            <if test="orgId != null">
+                orgId = #{orgId}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into UserData(
+        id ,
+        userId ,
+        orgId
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.userId} ,
+            #{item.orgId}
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update UserData set
+            userId = #{item.userId} ,
+            orgId = #{item.orgId}
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.uams.rpc.system.entity.UserData">
+        update UserData set
+        userId = #{userId} ,
+        orgId = #{orgId}
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.uams.rpc.system.entity.UserData">
+        select <include refid="userDataColumns"/> from UserData a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.uams.rpc.system.entity.UserData">
+        SELECT
+        <include refid="userDataColumns"/>
+        FROM UserData a WHERE 1 = 1
+        <if test="userId != null">
+            and a.userId = #{userId}
+        </if>
+        <if test="orgId != null">
+            and a.orgId = #{orgId}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.uams.rpc.system.entity.UserData">
+        SELECT
+        <include refid="userDataColumns"/>
+        FROM UserData a
+    </select>
+
+    <!--根据机构编号取数据权限-->
+    <select id="findByOrgId" resultType="com.uams.rpc.system.entity.UserData">
+        SELECT
+        <include refid="userDataColumns"/>
+        FROM UserData a WHERE orgId = #{orgId}
+    </select>
+
+
+</mapper>
+

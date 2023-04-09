@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uams.rpc.api.mapper.SysAccountMapper">
+    <!-- 基础列 -->
+    <sql id="sysAccountColumns">
+        a.id as id,
+        a.accountNo as accountNo,
+        a.accountShortName as accountShortName,
+        a.accountEnShortName as accountEnShortName,
+        a.accountType as accountType,
+        a.accountState as accountState,
+        a.accountTradeRight as accountTradeRight,
+        a.commodityGroupNo as commodityGroupNo,
+        a.remark as remark,
+        a.createDate as createDate,
+        a.updateDate as updateDate
+    </sql>
+
+    <resultMap id="sysAccountResultMap" type="com.uams.rpc.api.model.SysAccountModel">
+        <id column="id" property="id" />
+        <result column="accountNo" property="accountNo"/>
+        <result column="accountShortName" property="accountShortName"/>
+        <result column="accountEnShortName" property="accountEnShortName"/>
+        <result column="accountType" property="accountType"/>
+        <result column="accountState" property="accountState"/>
+        <result column="accountTradeRight" property="accountTradeRight"/>
+        <result column="commodityGroupNo" property="commodityGroupNo"/>
+        <result column="remark" property="remark"/>
+        <result column="createDate" property="createDate"/>
+        <result column="updateDate" property="updateDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.uams.rpc.api.model.SysAccountModel">
+        insert into SysAccount(
+            id ,
+            accountNo ,
+            accountShortName ,
+            accountEnShortName ,
+            accountType ,
+            accountState ,
+            accountTradeRight ,
+            commodityGroupNo ,
+            remark ,
+            createDate ,
+            updateDate 
+        ) VALUES (
+            #{id} ,
+            #{accountNo} ,
+            #{accountShortName} ,
+            #{accountEnShortName} ,
+            #{accountType} ,
+            #{accountState} ,
+            #{accountTradeRight} ,
+            #{commodityGroupNo} ,
+            #{remark} ,
+            #{createDate} ,
+            #{updateDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from SysAccount where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update SysAccount set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.uams.rpc.api.model.SysAccountModel">
+        insert into SysAccount
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="accountNo != null">
+                accountNo ,
+        </if>
+        <if test="accountShortName != null">
+                accountShortName ,
+        </if>
+        <if test="accountEnShortName != null">
+                accountEnShortName ,
+        </if>
+        <if test="accountType != null">
+                accountType ,
+        </if>
+        <if test="accountState != null">
+                accountState ,
+        </if>
+        <if test="accountTradeRight != null">
+                accountTradeRight ,
+        </if>
+        <if test="commodityGroupNo != null">
+                commodityGroupNo ,
+        </if>
+        <if test="remark != null">
+                remark ,
+        </if>
+        <if test="createDate != null">
+                createDate ,
+        </if>
+        <if test="updateDate != null">
+                updateDate 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="accountNo != null">
+                #{accountNo} ,
+        </if>
+        <if test="accountShortName != null">
+                #{accountShortName} ,
+        </if>
+        <if test="accountEnShortName != null">
+                #{accountEnShortName} ,
+        </if>
+        <if test="accountType != null">
+                #{accountType} ,
+        </if>
+        <if test="accountState != null">
+                #{accountState} ,
+        </if>
+        <if test="accountTradeRight != null">
+                #{accountTradeRight} ,
+        </if>
+        <if test="commodityGroupNo != null">
+                #{commodityGroupNo} ,
+        </if>
+        <if test="remark != null">
+                #{remark} ,
+        </if>
+        <if test="createDate != null">
+                #{createDate} ,
+        </if>
+        <if test="updateDate != null">
+                #{updateDate} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.uams.rpc.api.model.SysAccountModel">
+        update SysAccount
+           <set>
+            <if test="accountNo != null">
+                accountNo = #{accountNo} ,
+            </if>
+            <if test="accountShortName != null">
+                accountShortName = #{accountShortName} ,
+            </if>
+            <if test="accountEnShortName != null">
+                accountEnShortName = #{accountEnShortName} ,
+            </if>
+            <if test="accountType != null">
+                accountType = #{accountType} ,
+            </if>
+            <if test="accountState != null">
+                accountState = #{accountState} ,
+            </if>
+            <if test="accountTradeRight != null">
+                accountTradeRight = #{accountTradeRight} ,
+            </if>
+            <if test="commodityGroupNo != null">
+                commodityGroupNo = #{commodityGroupNo} ,
+            </if>
+            <if test="remark != null">
+                remark = #{remark} ,
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate} ,
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into SysAccount(
+            id ,
+            accountNo ,
+            accountShortName ,
+            accountEnShortName ,
+            accountType ,
+            accountState ,
+            accountTradeRight ,
+            commodityGroupNo ,
+            remark ,
+            createDate ,
+            updateDate 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.accountNo} ,
+            #{item.accountShortName} ,
+            #{item.accountEnShortName} ,
+            #{item.accountType} ,
+            #{item.accountState} ,
+            #{item.accountTradeRight} ,
+            #{item.commodityGroupNo} ,
+            #{item.remark} ,
+            #{item.createDate} ,
+            #{item.updateDate} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update SysAccount set
+            accountNo = #{item.accountNo} ,
+            accountShortName = #{item.accountShortName} ,
+            accountEnShortName = #{item.accountEnShortName} ,
+            accountType = #{item.accountType} ,
+            accountState = #{item.accountState} ,
+            accountTradeRight = #{item.accountTradeRight} ,
+            commodityGroupNo = #{item.commodityGroupNo} ,
+            remark = #{item.remark} ,
+            createDate = #{item.createDate} ,
+            updateDate = #{item.updateDate} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.uams.rpc.api.model.SysAccountModel">
+        update SysAccount set
+            accountNo = #{accountNo} ,
+            accountShortName = #{accountShortName} ,
+            accountEnShortName = #{accountEnShortName} ,
+            accountType = #{accountType} ,
+            accountState = #{accountState} ,
+            accountTradeRight = #{accountTradeRight} ,
+            commodityGroupNo = #{commodityGroupNo} ,
+            remark = #{remark} ,
+            createDate = #{createDate} ,
+            updateDate = #{updateDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.uams.rpc.api.model.SysAccountModel">
+        select <include refid="sysAccountColumns"/> from SysAccount a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.uams.rpc.api.model.SysAccountModel">
+        SELECT
+        <include refid="sysAccountColumns"/>
+        FROM SysAccount a WHERE 1=1
+        <if test="accountNo != null">
+            and a.accountNo like '%'||#{accountNo}||'%'
+        </if>
+        <if test="accountShortName != null">
+            and a.accountShortName like '%'||#{accountShortName}||'%'
+        </if>
+        <if test="accountEnShortName != null">
+            and a.accountEnShortName like '%'||#{accountEnShortName}||'%'
+        </if>
+        <if test="accountType != null">
+            and a.accountType like '%'||#{accountType}||'%'
+        </if>
+        <if test="accountState != null">
+            and a.accountState like '%'||#{accountState}||'%'
+        </if>
+        <if test="accountTradeRight != null">
+            and a.accountTradeRight like '%'||#{accountTradeRight}||'%'
+        </if>
+        <if test="commodityGroupNo != null">
+            and a.commodityGroupNo like '%'||#{commodityGroupNo}||'%'
+        </if>
+        <if test="remark != null">
+            and a.remark like '%'||#{remark}||'%'
+        </if>
+        <if test="createDate != null">
+            and a.createDate = #{createDate}
+        </if>
+        <if test="updateDate != null">
+            and a.updateDate = #{updateDate}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.uams.rpc.api.model.SysAccountModel">
+        SELECT
+        <include refid="sysAccountColumns"/>
+        FROM SysAccount a WHERE 1=1
+    </select>
+
+
+</mapper>
+

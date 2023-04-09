@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uams.rpc.fund.mapper.AccountFundMapper">
+    <!-- 基础列 -->
+    <sql id="accountFundColumns">
+        a.id as id,
+        a.accountId as accountId,
+        a.currency as currency,
+        a.currentAmount as currentAmount,
+        a.frozenAmt as frozenAmt,
+        a.creditAmt as creditAmt,
+        a.initAmt as initAmt,
+        a.updateDate as updateDate
+    </sql>
+
+    <sql id="accountFundJoinColumns">
+        a.id as id,
+        a.accountId as accountId,
+        a.currency as currency,
+        a.currentAmount as currentAmount,
+        a.frozenAmt as frozenAmt,
+        a.creditAmt as creditAmt,
+        a.initAmt as initAmt,
+        a.updateDate as updateDate,
+        b.accountName as accountName
+    </sql>
+
+    <resultMap id="accountFundResultMap" type="com.uams.rpc.fund.model.AccountFundModel">
+        <id column="id" property="id"/>
+        <result column="accountId" property="accountId"/>
+        <result column="currency" property="currency"/>
+        <result column="currentAmount" property="currentAmount"/>
+        <result column="frozenAmt" property="frozenAmt"/>
+        <result column="creditAmt" property="creditAmt"/>
+        <result column="initAmt" property="initAmt"/>
+        <result column="updateDate" property="updateDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.uams.rpc.fund.model.AccountFundModel">
+        insert into AccountFund(
+            id ,
+            accountId ,
+            currency ,
+            currentAmount ,
+            frozenAmt ,
+            creditAmt ,
+            initAmt ,
+            updateDate 
+        ) VALUES (
+            #{id} ,
+            #{accountId} ,
+            #{currency} ,
+            #{currentAmount} ,
+            #{frozenAmt} ,
+            #{creditAmt} ,
+            #{initAmt} ,
+            #{updateDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from AccountFund where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update AccountFund set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.uams.rpc.fund.model.AccountFundModel">
+        insert into AccountFund
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id ,
+            </if>
+            <if test="accountId != null">
+                accountId ,
+            </if>
+            <if test="currency != null">
+                currency ,
+            </if>
+            <if test="currentAmount != null">
+                currentAmount ,
+            </if>
+            <if test="frozenAmt != null">
+                frozenAmt ,
+            </if>
+            <if test="creditAmt != null">
+                creditAmt ,
+            </if>
+            <if test="initAmt != null">
+                initAmt ,
+            </if>
+            <if test="updateDate != null">
+                updateDate
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id} ,
+            </if>
+            <if test="accountId != null">
+                #{accountId} ,
+            </if>
+            <if test="currency != null">
+                #{currency} ,
+            </if>
+            <if test="currentAmount != null">
+                #{currentAmount} ,
+            </if>
+            <if test="frozenAmt != null">
+                #{frozenAmt} ,
+            </if>
+            <if test="creditAmt != null">
+                #{creditAmt} ,
+            </if>
+            <if test="initAmt != null">
+                #{initAmt} ,
+            </if>
+            <if test="updateDate != null">
+                #{updateDate}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.uams.rpc.fund.model.AccountFundModel">
+        update AccountFund
+        <set>
+            <if test="accountId != null">
+                accountId = #{accountId} ,
+            </if>
+            <if test="currency != null">
+                currency = #{currency} ,
+            </if>
+            <if test="currentAmount != null">
+                currentAmount = #{currentAmount} ,
+            </if>
+            <if test="frozenAmt != null">
+                frozenAmt = #{frozenAmt} ,
+            </if>
+            <if test="creditAmt != null">
+                creditAmt = #{creditAmt} ,
+            </if>
+
+            <if test="initAmt != null">
+                initAmt = #{initAmt} ,
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into AccountFund(
+        id ,
+        accountId ,
+        currency ,
+        currentAmount ,
+        frozenAmt ,
+        creditAmt ,
+        initAmt ,
+        updateDate
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.accountId} ,
+            #{item.currency} ,
+            #{item.currentAmount} ,
+            #{item.frozenAmt} ,
+            #{item.creditAmt},
+            #{item.initAmt} ,
+            #{item.updateDate}
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update AccountFund set
+            accountId = #{item.accountId} ,
+            currency = #{item.currency} ,
+            currentAmount = #{item.currentAmount} ,
+            frozenAmt = #{item.frozenAmt} ,
+            creditAmt = #{item.creditAmt} ,
+            initAmt = #{item.initAmt} ,
+            updateDate = #{item.updateDate}
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.uams.rpc.fund.model.AccountFundModel">
+        update AccountFund set
+            accountId = #{accountId} ,
+            currency = #{currency} ,
+            currentAmount = #{currentAmount} ,
+            frozenAmt = #{frozenAmt} ,
+            creditAmt = #{creditAmt} ,
+            initAmt = #{initAmt} ,
+            updateDate = #{updateDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultType="com.uams.rpc.fund.model.AccountFundModel">
+        select
+        <include refid="accountFundColumns"/>
+        from AccountFund a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.uams.rpc.fund.model.AccountFundModel">
+        SELECT
+        <include refid="accountFundJoinColumns"/>
+        FROM AccountFund a
+        left join account b on b.id=a.accountId
+        WHERE 1=1
+        <if test="accountId != null">
+            and a.accountId = #{accountId}
+        </if>
+        <if test="accountName != null and accountName!=''">
+            and b.accountName like '%'||#{accountName}||'%'
+        </if>
+        <if test="currency != null">
+            and a.currency like '%'||#{currency}||'%'
+        </if>
+        <if test="currentAmount != null">
+            and a.currentAmount = #{currentAmount}
+        </if>
+        <if test="frozenAmt != null">
+            and a.frozenAmt = #{frozenAmt}
+        </if>
+        <if test="creditAmt != null">
+            and a.creditAmt = #{creditAmt}
+        </if>
+        <if test="initAmt != null">
+            and a.initAmt = #{initAmt}
+        </if>
+        <if test="updateDate != null">
+            and a.updateDate = #{updateDate}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.uams.rpc.fund.model.AccountFundModel">
+        SELECT
+        <include refid="accountFundColumns"/>
+        FROM AccountFund a WHERE 1=1
+    </select>
+
+
+</mapper>
+

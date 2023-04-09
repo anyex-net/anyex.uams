@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uams.rpc.api.mapper.SysAccountMarginRentMapper">
+    <!-- 基础列 -->
+    <sql id="sysAccountMarginRentColumns">
+        a.id as id,
+        a.accountNo as accountNo,
+        a.calculateMode as calculateMode,
+        a.callOrPutFlag as callOrPutFlag,
+        a.commodityNo as commodityNo,
+        a.commodityType as commodityType,
+        a.contractNo as contractNo,
+        a.currencyGroupNo as currencyGroupNo,
+        a.currencyNo as currencyNo,
+        a.exchangeNo as exchangeNo,
+        a.initialMargin as initialMargin,
+        a.lockMargin as lockMargin,
+        a.maintenanceMargin as maintenanceMargin,
+        a.sellInitialMargin as sellInitialMargin,
+        a.sellMaintenanceMargin as sellMaintenanceMargin,
+        a.strikePrice as strikePrice,
+        a.remark as remark,
+        a.createDate as createDate,
+        a.updateDate as updateDate
+    </sql>
+
+    <resultMap id="sysAccountMarginRentResultMap" type="com.uams.rpc.api.model.SysAccountMarginRentModel">
+        <id column="id" property="id" />
+        <result column="accountNo" property="accountNo"/>
+        <result column="calculateMode" property="calculateMode"/>
+        <result column="callOrPutFlag" property="callOrPutFlag"/>
+        <result column="commodityNo" property="commodityNo"/>
+        <result column="commodityType" property="commodityType"/>
+        <result column="contractNo" property="contractNo"/>
+        <result column="currencyGroupNo" property="currencyGroupNo"/>
+        <result column="currencyNo" property="currencyNo"/>
+        <result column="exchangeNo" property="exchangeNo"/>
+        <result column="initialMargin" property="initialMargin"/>
+        <result column="lockMargin" property="lockMargin"/>
+        <result column="maintenanceMargin" property="maintenanceMargin"/>
+        <result column="sellInitialMargin" property="sellInitialMargin"/>
+        <result column="sellMaintenanceMargin" property="sellMaintenanceMargin"/>
+        <result column="strikePrice" property="strikePrice"/>
+        <result column="remark" property="remark"/>
+        <result column="createDate" property="createDate"/>
+        <result column="updateDate" property="updateDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.uams.rpc.api.model.SysAccountMarginRentModel">
+        insert into SysAccountMarginRent(
+            id ,
+            accountNo ,
+            calculateMode ,
+            callOrPutFlag ,
+            commodityNo ,
+            commodityType ,
+            contractNo ,
+            currencyGroupNo ,
+            currencyNo ,
+            exchangeNo ,
+            initialMargin ,
+            lockMargin ,
+            maintenanceMargin ,
+            sellInitialMargin ,
+            sellMaintenanceMargin ,
+            strikePrice ,
+            remark ,
+            createDate ,
+            updateDate 
+        ) VALUES (
+            #{id} ,
+            #{accountNo} ,
+            #{calculateMode} ,
+            #{callOrPutFlag} ,
+            #{commodityNo} ,
+            #{commodityType} ,
+            #{contractNo} ,
+            #{currencyGroupNo} ,
+            #{currencyNo} ,
+            #{exchangeNo} ,
+            #{initialMargin} ,
+            #{lockMargin} ,
+            #{maintenanceMargin} ,
+            #{sellInitialMargin} ,
+            #{sellMaintenanceMargin} ,
+            #{strikePrice} ,
+            #{remark} ,
+            #{createDate} ,
+            #{updateDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from SysAccountMarginRent where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update SysAccountMarginRent set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.uams.rpc.api.model.SysAccountMarginRentModel">
+        insert into SysAccountMarginRent
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="accountNo != null">
+                accountNo ,
+        </if>
+        <if test="calculateMode != null">
+                calculateMode ,
+        </if>
+        <if test="callOrPutFlag != null">
+                callOrPutFlag ,
+        </if>
+        <if test="commodityNo != null">
+                commodityNo ,
+        </if>
+        <if test="commodityType != null">
+                commodityType ,
+        </if>
+        <if test="contractNo != null">
+                contractNo ,
+        </if>
+        <if test="currencyGroupNo != null">
+                currencyGroupNo ,
+        </if>
+        <if test="currencyNo != null">
+                currencyNo ,
+        </if>
+        <if test="exchangeNo != null">
+                exchangeNo ,
+        </if>
+        <if test="initialMargin != null">
+                initialMargin ,
+        </if>
+        <if test="lockMargin != null">
+                lockMargin ,
+        </if>
+        <if test="maintenanceMargin != null">
+                maintenanceMargin ,
+        </if>
+        <if test="sellInitialMargin != null">
+                sellInitialMargin ,
+        </if>
+        <if test="sellMaintenanceMargin != null">
+                sellMaintenanceMargin ,
+        </if>
+        <if test="strikePrice != null">
+                strikePrice ,
+        </if>
+        <if test="remark != null">
+                remark ,
+        </if>
+        <if test="createDate != null">
+                createDate ,
+        </if>
+        <if test="updateDate != null">
+                updateDate 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="accountNo != null">
+                #{accountNo} ,
+        </if>
+        <if test="calculateMode != null">
+                #{calculateMode} ,
+        </if>
+        <if test="callOrPutFlag != null">
+                #{callOrPutFlag} ,
+        </if>
+        <if test="commodityNo != null">
+                #{commodityNo} ,
+        </if>
+        <if test="commodityType != null">
+                #{commodityType} ,
+        </if>
+        <if test="contractNo != null">
+                #{contractNo} ,
+        </if>
+        <if test="currencyGroupNo != null">
+                #{currencyGroupNo} ,
+        </if>
+        <if test="currencyNo != null">
+                #{currencyNo} ,
+        </if>
+        <if test="exchangeNo != null">
+                #{exchangeNo} ,
+        </if>
+        <if test="initialMargin != null">
+                #{initialMargin} ,
+        </if>
+        <if test="lockMargin != null">
+                #{lockMargin} ,
+        </if>
+        <if test="maintenanceMargin != null">
+                #{maintenanceMargin} ,
+        </if>
+        <if test="sellInitialMargin != null">
+                #{sellInitialMargin} ,
+        </if>
+        <if test="sellMaintenanceMargin != null">
+                #{sellMaintenanceMargin} ,
+        </if>
+        <if test="strikePrice != null">
+                #{strikePrice} ,
+        </if>
+        <if test="remark != null">
+                #{remark} ,
+        </if>
+        <if test="createDate != null">
+                #{createDate} ,
+        </if>
+        <if test="updateDate != null">
+                #{updateDate} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.uams.rpc.api.model.SysAccountMarginRentModel">
+        update SysAccountMarginRent
+           <set>
+            <if test="accountNo != null">
+                accountNo = #{accountNo} ,
+            </if>
+            <if test="calculateMode != null">
+                calculateMode = #{calculateMode} ,
+            </if>
+            <if test="callOrPutFlag != null">
+                callOrPutFlag = #{callOrPutFlag} ,
+            </if>
+            <if test="commodityNo != null">
+                commodityNo = #{commodityNo} ,
+            </if>
+            <if test="commodityType != null">
+                commodityType = #{commodityType} ,
+            </if>
+            <if test="contractNo != null">
+                contractNo = #{contractNo} ,
+            </if>
+            <if test="currencyGroupNo != null">
+                currencyGroupNo = #{currencyGroupNo} ,
+            </if>
+            <if test="currencyNo != null">
+                currencyNo = #{currencyNo} ,
+            </if>
+            <if test="exchangeNo != null">
+                exchangeNo = #{exchangeNo} ,
+            </if>
+            <if test="initialMargin != null">
+                initialMargin = #{initialMargin} ,
+            </if>
+            <if test="lockMargin != null">
+                lockMargin = #{lockMargin} ,
+            </if>
+            <if test="maintenanceMargin != null">
+                maintenanceMargin = #{maintenanceMargin} ,
+            </if>
+            <if test="sellInitialMargin != null">
+                sellInitialMargin = #{sellInitialMargin} ,
+            </if>
+            <if test="sellMaintenanceMargin != null">
+                sellMaintenanceMargin = #{sellMaintenanceMargin} ,
+            </if>
+            <if test="strikePrice != null">
+                strikePrice = #{strikePrice} ,
+            </if>
+            <if test="remark != null">
+                remark = #{remark} ,
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate} ,
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into SysAccountMarginRent(
+            id ,
+            accountNo ,
+            calculateMode ,
+            callOrPutFlag ,
+            commodityNo ,
+            commodityType ,
+            contractNo ,
+            currencyGroupNo ,
+            currencyNo ,
+            exchangeNo ,
+            initialMargin ,
+            lockMargin ,
+            maintenanceMargin ,
+            sellInitialMargin ,
+            sellMaintenanceMargin ,
+            strikePrice ,
+            remark ,
+            createDate ,
+            updateDate 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.accountNo} ,
+            #{item.calculateMode} ,
+            #{item.callOrPutFlag} ,
+            #{item.commodityNo} ,
+            #{item.commodityType} ,
+            #{item.contractNo} ,
+            #{item.currencyGroupNo} ,
+            #{item.currencyNo} ,
+            #{item.exchangeNo} ,
+            #{item.initialMargin} ,
+            #{item.lockMargin} ,
+            #{item.maintenanceMargin} ,
+            #{item.sellInitialMargin} ,
+            #{item.sellMaintenanceMargin} ,
+            #{item.strikePrice} ,
+            #{item.remark} ,
+            #{item.createDate} ,
+            #{item.updateDate} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update SysAccountMarginRent set
+            accountNo = #{item.accountNo} ,
+            calculateMode = #{item.calculateMode} ,
+            callOrPutFlag = #{item.callOrPutFlag} ,
+            commodityNo = #{item.commodityNo} ,
+            commodityType = #{item.commodityType} ,
+            contractNo = #{item.contractNo} ,
+            currencyGroupNo = #{item.currencyGroupNo} ,
+            currencyNo = #{item.currencyNo} ,
+            exchangeNo = #{item.exchangeNo} ,
+            initialMargin = #{item.initialMargin} ,
+            lockMargin = #{item.lockMargin} ,
+            maintenanceMargin = #{item.maintenanceMargin} ,
+            sellInitialMargin = #{item.sellInitialMargin} ,
+            sellMaintenanceMargin = #{item.sellMaintenanceMargin} ,
+            strikePrice = #{item.strikePrice} ,
+            remark = #{item.remark} ,
+            createDate = #{item.createDate} ,
+            updateDate = #{item.updateDate} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.uams.rpc.api.model.SysAccountMarginRentModel">
+        update SysAccountMarginRent set
+            accountNo = #{accountNo} ,
+            calculateMode = #{calculateMode} ,
+            callOrPutFlag = #{callOrPutFlag} ,
+            commodityNo = #{commodityNo} ,
+            commodityType = #{commodityType} ,
+            contractNo = #{contractNo} ,
+            currencyGroupNo = #{currencyGroupNo} ,
+            currencyNo = #{currencyNo} ,
+            exchangeNo = #{exchangeNo} ,
+            initialMargin = #{initialMargin} ,
+            lockMargin = #{lockMargin} ,
+            maintenanceMargin = #{maintenanceMargin} ,
+            sellInitialMargin = #{sellInitialMargin} ,
+            sellMaintenanceMargin = #{sellMaintenanceMargin} ,
+            strikePrice = #{strikePrice} ,
+            remark = #{remark} ,
+            createDate = #{createDate} ,
+            updateDate = #{updateDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.uams.rpc.api.model.SysAccountMarginRentModel">
+        select <include refid="sysAccountMarginRentColumns"/> from SysAccountMarginRent a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.uams.rpc.api.model.SysAccountMarginRentModel">
+        SELECT
+        <include refid="sysAccountMarginRentColumns"/>
+        FROM SysAccountMarginRent a WHERE 1=1
+        <if test="accountNo != null">
+            and a.accountNo like '%'||#{accountNo}||'%'
+        </if>
+        <if test="calculateMode != null">
+            and a.calculateMode like '%'||#{calculateMode}||'%'
+        </if>
+        <if test="callOrPutFlag != null">
+            and a.callOrPutFlag like '%'||#{callOrPutFlag}||'%'
+        </if>
+        <if test="commodityNo != null">
+            and a.commodityNo like '%'||#{commodityNo}||'%'
+        </if>
+        <if test="commodityType != null">
+            and a.commodityType like '%'||#{commodityType}||'%'
+        </if>
+        <if test="contractNo != null">
+            and a.contractNo like '%'||#{contractNo}||'%'
+        </if>
+        <if test="currencyGroupNo != null">
+            and a.currencyGroupNo like '%'||#{currencyGroupNo}||'%'
+        </if>
+        <if test="currencyNo != null">
+            and a.currencyNo like '%'||#{currencyNo}||'%'
+        </if>
+        <if test="exchangeNo != null">
+            and a.exchangeNo like '%'||#{exchangeNo}||'%'
+        </if>
+        <if test="initialMargin != null">
+            and a.initialMargin = #{initialMargin}
+        </if>
+        <if test="lockMargin != null">
+            and a.lockMargin = #{lockMargin}
+        </if>
+        <if test="maintenanceMargin != null">
+            and a.maintenanceMargin = #{maintenanceMargin}
+        </if>
+        <if test="sellInitialMargin != null">
+            and a.sellInitialMargin = #{sellInitialMargin}
+        </if>
+        <if test="sellMaintenanceMargin != null">
+            and a.sellMaintenanceMargin = #{sellMaintenanceMargin}
+        </if>
+        <if test="strikePrice != null">
+            and a.strikePrice like '%'||#{strikePrice}||'%'
+        </if>
+        <if test="remark != null">
+            and a.remark like '%'||#{remark}||'%'
+        </if>
+        <if test="createDate != null">
+            and a.createDate = #{createDate}
+        </if>
+        <if test="updateDate != null">
+            and a.updateDate = #{updateDate}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.uams.rpc.api.model.SysAccountMarginRentModel">
+        SELECT
+        <include refid="sysAccountMarginRentColumns"/>
+        FROM SysAccountMarginRent a WHERE a.delFlag = 0
+    </select>
+
+
+</mapper>
+

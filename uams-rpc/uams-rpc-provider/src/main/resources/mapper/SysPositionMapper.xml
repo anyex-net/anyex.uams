@@ -1,0 +1,701 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uams.rpc.api.mapper.SysPositionMapper">
+    <!-- 基础列 -->
+    <sql id="sysPositionColumns">
+        a.id as id,
+        a.accountInitialMargin as accountInitialMargin,
+        a.accountMaintenanceMargin as accountMaintenanceMargin,
+        a.accountNo as accountNo,
+        a.calculatePrice as calculatePrice,
+        a.callOrPutFlag as callOrPutFlag,
+        a.commodityCurrency as commodityCurrency,
+        a.commodityCurrencyGroup as commodityCurrencyGroup,
+        a.commodityNo as commodityNo,
+        a.commodityType as commodityType,
+        a.contractNo as contractNo,
+        a.exchangeNo as exchangeNo,
+        a.hedgeFlag as hedgeFlag,
+        a.lMEPositionProfit as lMEPositionProfit,
+        a.matchNo as matchNo,
+        a.matchSide as matchSide,
+        a.optionMarketValue as optionMarketValue,
+        a.orderNo as orderNo,
+        a.positionNo as positionNo,
+        a.positionPrice as positionPrice,
+        a.positionProfit as positionProfit,
+        a.positionQty as positionQty,
+        a.positionStreamId as positionStreamId,
+        a.serverFlag as serverFlag,
+        a.strikePrice as strikePrice,
+        a.upperInitialMargin as upperInitialMargin,
+        a.upperMaintenanceMargin as upperMaintenanceMargin,
+        a.upperNo as upperNo,
+        a.remark as remark,
+        a.createDate as createDate,
+        a.updateDate as updateDate
+    </sql>
+
+    <resultMap id="sysPositionResultMap" type="com.uams.rpc.api.model.SysPositionModel">
+        <id column="id" property="id" />
+        <result column="accountInitialMargin" property="accountInitialMargin"/>
+        <result column="accountMaintenanceMargin" property="accountMaintenanceMargin"/>
+        <result column="accountNo" property="accountNo"/>
+        <result column="calculatePrice" property="calculatePrice"/>
+        <result column="callOrPutFlag" property="callOrPutFlag"/>
+        <result column="commodityCurrency" property="commodityCurrency"/>
+        <result column="commodityCurrencyGroup" property="commodityCurrencyGroup"/>
+        <result column="commodityNo" property="commodityNo"/>
+        <result column="commodityType" property="commodityType"/>
+        <result column="contractNo" property="contractNo"/>
+        <result column="exchangeNo" property="exchangeNo"/>
+        <result column="hedgeFlag" property="hedgeFlag"/>
+        <result column="lMEPositionProfit" property="lMEPositionProfit"/>
+        <result column="matchNo" property="matchNo"/>
+        <result column="matchSide" property="matchSide"/>
+        <result column="optionMarketValue" property="optionMarketValue"/>
+        <result column="orderNo" property="orderNo"/>
+        <result column="positionNo" property="positionNo"/>
+        <result column="positionPrice" property="positionPrice"/>
+        <result column="positionProfit" property="positionProfit"/>
+        <result column="positionQty" property="positionQty"/>
+        <result column="positionStreamId" property="positionStreamId"/>
+        <result column="serverFlag" property="serverFlag"/>
+        <result column="strikePrice" property="strikePrice"/>
+        <result column="upperInitialMargin" property="upperInitialMargin"/>
+        <result column="upperMaintenanceMargin" property="upperMaintenanceMargin"/>
+        <result column="upperNo" property="upperNo"/>
+        <result column="remark" property="remark"/>
+        <result column="createDate" property="createDate"/>
+        <result column="updateDate" property="updateDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.uams.rpc.api.model.SysPositionModel">
+        insert into SysPosition(
+            id ,
+            accountInitialMargin ,
+            accountMaintenanceMargin ,
+            accountNo ,
+            calculatePrice ,
+            callOrPutFlag ,
+            commodityCurrency ,
+            commodityCurrencyGroup ,
+            commodityNo ,
+            commodityType ,
+            contractNo ,
+            exchangeNo ,
+            hedgeFlag ,
+            lMEPositionProfit ,
+            matchNo ,
+            matchSide ,
+            optionMarketValue ,
+            orderNo ,
+            positionNo ,
+            positionPrice ,
+            positionProfit ,
+            positionQty ,
+            positionStreamId ,
+            serverFlag ,
+            strikePrice ,
+            upperInitialMargin ,
+            upperMaintenanceMargin ,
+            upperNo ,
+            remark ,
+            createDate ,
+            updateDate 
+        ) VALUES (
+            #{id} ,
+            #{accountInitialMargin} ,
+            #{accountMaintenanceMargin} ,
+            #{accountNo} ,
+            #{calculatePrice} ,
+            #{callOrPutFlag} ,
+            #{commodityCurrency} ,
+            #{commodityCurrencyGroup} ,
+            #{commodityNo} ,
+            #{commodityType} ,
+            #{contractNo} ,
+            #{exchangeNo} ,
+            #{hedgeFlag} ,
+            #{lMEPositionProfit} ,
+            #{matchNo} ,
+            #{matchSide} ,
+            #{optionMarketValue} ,
+            #{orderNo} ,
+            #{positionNo} ,
+            #{positionPrice} ,
+            #{positionProfit} ,
+            #{positionQty} ,
+            #{positionStreamId} ,
+            #{serverFlag} ,
+            #{strikePrice} ,
+            #{upperInitialMargin} ,
+            #{upperMaintenanceMargin} ,
+            #{upperNo} ,
+            #{remark} ,
+            #{createDate} ,
+            #{updateDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from SysPosition where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update SysPosition set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.uams.rpc.api.model.SysPositionModel">
+        insert into SysPosition
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="accountInitialMargin != null">
+                accountInitialMargin ,
+        </if>
+        <if test="accountMaintenanceMargin != null">
+                accountMaintenanceMargin ,
+        </if>
+        <if test="accountNo != null">
+                accountNo ,
+        </if>
+        <if test="calculatePrice != null">
+                calculatePrice ,
+        </if>
+        <if test="callOrPutFlag != null">
+                callOrPutFlag ,
+        </if>
+        <if test="commodityCurrency != null">
+                commodityCurrency ,
+        </if>
+        <if test="commodityCurrencyGroup != null">
+                commodityCurrencyGroup ,
+        </if>
+        <if test="commodityNo != null">
+                commodityNo ,
+        </if>
+        <if test="commodityType != null">
+                commodityType ,
+        </if>
+        <if test="contractNo != null">
+                contractNo ,
+        </if>
+        <if test="exchangeNo != null">
+                exchangeNo ,
+        </if>
+        <if test="hedgeFlag != null">
+                hedgeFlag ,
+        </if>
+        <if test="lMEPositionProfit != null">
+                lMEPositionProfit ,
+        </if>
+        <if test="matchNo != null">
+                matchNo ,
+        </if>
+        <if test="matchSide != null">
+                matchSide ,
+        </if>
+        <if test="optionMarketValue != null">
+                optionMarketValue ,
+        </if>
+        <if test="orderNo != null">
+                orderNo ,
+        </if>
+        <if test="positionNo != null">
+                positionNo ,
+        </if>
+        <if test="positionPrice != null">
+                positionPrice ,
+        </if>
+        <if test="positionProfit != null">
+                positionProfit ,
+        </if>
+        <if test="positionQty != null">
+                positionQty ,
+        </if>
+        <if test="positionStreamId != null">
+                positionStreamId ,
+        </if>
+        <if test="serverFlag != null">
+                serverFlag ,
+        </if>
+        <if test="strikePrice != null">
+                strikePrice ,
+        </if>
+        <if test="upperInitialMargin != null">
+                upperInitialMargin ,
+        </if>
+        <if test="upperMaintenanceMargin != null">
+                upperMaintenanceMargin ,
+        </if>
+        <if test="upperNo != null">
+                upperNo ,
+        </if>
+        <if test="remark != null">
+                remark ,
+        </if>
+        <if test="createDate != null">
+                createDate ,
+        </if>
+        <if test="updateDate != null">
+                updateDate 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="accountInitialMargin != null">
+                #{accountInitialMargin} ,
+        </if>
+        <if test="accountMaintenanceMargin != null">
+                #{accountMaintenanceMargin} ,
+        </if>
+        <if test="accountNo != null">
+                #{accountNo} ,
+        </if>
+        <if test="calculatePrice != null">
+                #{calculatePrice} ,
+        </if>
+        <if test="callOrPutFlag != null">
+                #{callOrPutFlag} ,
+        </if>
+        <if test="commodityCurrency != null">
+                #{commodityCurrency} ,
+        </if>
+        <if test="commodityCurrencyGroup != null">
+                #{commodityCurrencyGroup} ,
+        </if>
+        <if test="commodityNo != null">
+                #{commodityNo} ,
+        </if>
+        <if test="commodityType != null">
+                #{commodityType} ,
+        </if>
+        <if test="contractNo != null">
+                #{contractNo} ,
+        </if>
+        <if test="exchangeNo != null">
+                #{exchangeNo} ,
+        </if>
+        <if test="hedgeFlag != null">
+                #{hedgeFlag} ,
+        </if>
+        <if test="lMEPositionProfit != null">
+                #{lMEPositionProfit} ,
+        </if>
+        <if test="matchNo != null">
+                #{matchNo} ,
+        </if>
+        <if test="matchSide != null">
+                #{matchSide} ,
+        </if>
+        <if test="optionMarketValue != null">
+                #{optionMarketValue} ,
+        </if>
+        <if test="orderNo != null">
+                #{orderNo} ,
+        </if>
+        <if test="positionNo != null">
+                #{positionNo} ,
+        </if>
+        <if test="positionPrice != null">
+                #{positionPrice} ,
+        </if>
+        <if test="positionProfit != null">
+                #{positionProfit} ,
+        </if>
+        <if test="positionQty != null">
+                #{positionQty} ,
+        </if>
+        <if test="positionStreamId != null">
+                #{positionStreamId} ,
+        </if>
+        <if test="serverFlag != null">
+                #{serverFlag} ,
+        </if>
+        <if test="strikePrice != null">
+                #{strikePrice} ,
+        </if>
+        <if test="upperInitialMargin != null">
+                #{upperInitialMargin} ,
+        </if>
+        <if test="upperMaintenanceMargin != null">
+                #{upperMaintenanceMargin} ,
+        </if>
+        <if test="upperNo != null">
+                #{upperNo} ,
+        </if>
+        <if test="remark != null">
+                #{remark} ,
+        </if>
+        <if test="createDate != null">
+                #{createDate} ,
+        </if>
+        <if test="updateDate != null">
+                #{updateDate} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.uams.rpc.api.model.SysPositionModel">
+        update SysPosition
+           <set>
+            <if test="accountInitialMargin != null">
+                accountInitialMargin = #{accountInitialMargin} ,
+            </if>
+            <if test="accountMaintenanceMargin != null">
+                accountMaintenanceMargin = #{accountMaintenanceMargin} ,
+            </if>
+            <if test="accountNo != null">
+                accountNo = #{accountNo} ,
+            </if>
+            <if test="calculatePrice != null">
+                calculatePrice = #{calculatePrice} ,
+            </if>
+            <if test="callOrPutFlag != null">
+                callOrPutFlag = #{callOrPutFlag} ,
+            </if>
+            <if test="commodityCurrency != null">
+                commodityCurrency = #{commodityCurrency} ,
+            </if>
+            <if test="commodityCurrencyGroup != null">
+                commodityCurrencyGroup = #{commodityCurrencyGroup} ,
+            </if>
+            <if test="commodityNo != null">
+                commodityNo = #{commodityNo} ,
+            </if>
+            <if test="commodityType != null">
+                commodityType = #{commodityType} ,
+            </if>
+            <if test="contractNo != null">
+                contractNo = #{contractNo} ,
+            </if>
+            <if test="exchangeNo != null">
+                exchangeNo = #{exchangeNo} ,
+            </if>
+            <if test="hedgeFlag != null">
+                hedgeFlag = #{hedgeFlag} ,
+            </if>
+            <if test="lMEPositionProfit != null">
+                lMEPositionProfit = #{lMEPositionProfit} ,
+            </if>
+            <if test="matchNo != null">
+                matchNo = #{matchNo} ,
+            </if>
+            <if test="matchSide != null">
+                matchSide = #{matchSide} ,
+            </if>
+            <if test="optionMarketValue != null">
+                optionMarketValue = #{optionMarketValue} ,
+            </if>
+            <if test="orderNo != null">
+                orderNo = #{orderNo} ,
+            </if>
+            <if test="positionNo != null">
+                positionNo = #{positionNo} ,
+            </if>
+            <if test="positionPrice != null">
+                positionPrice = #{positionPrice} ,
+            </if>
+            <if test="positionProfit != null">
+                positionProfit = #{positionProfit} ,
+            </if>
+            <if test="positionQty != null">
+                positionQty = #{positionQty} ,
+            </if>
+            <if test="positionStreamId != null">
+                positionStreamId = #{positionStreamId} ,
+            </if>
+            <if test="serverFlag != null">
+                serverFlag = #{serverFlag} ,
+            </if>
+            <if test="strikePrice != null">
+                strikePrice = #{strikePrice} ,
+            </if>
+            <if test="upperInitialMargin != null">
+                upperInitialMargin = #{upperInitialMargin} ,
+            </if>
+            <if test="upperMaintenanceMargin != null">
+                upperMaintenanceMargin = #{upperMaintenanceMargin} ,
+            </if>
+            <if test="upperNo != null">
+                upperNo = #{upperNo} ,
+            </if>
+            <if test="remark != null">
+                remark = #{remark} ,
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate} ,
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into SysPosition(
+            id ,
+            accountInitialMargin ,
+            accountMaintenanceMargin ,
+            accountNo ,
+            calculatePrice ,
+            callOrPutFlag ,
+            commodityCurrency ,
+            commodityCurrencyGroup ,
+            commodityNo ,
+            commodityType ,
+            contractNo ,
+            exchangeNo ,
+            hedgeFlag ,
+            lMEPositionProfit ,
+            matchNo ,
+            matchSide ,
+            optionMarketValue ,
+            orderNo ,
+            positionNo ,
+            positionPrice ,
+            positionProfit ,
+            positionQty ,
+            positionStreamId ,
+            serverFlag ,
+            strikePrice ,
+            upperInitialMargin ,
+            upperMaintenanceMargin ,
+            upperNo ,
+            remark ,
+            createDate ,
+            updateDate 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.accountInitialMargin} ,
+            #{item.accountMaintenanceMargin} ,
+            #{item.accountNo} ,
+            #{item.calculatePrice} ,
+            #{item.callOrPutFlag} ,
+            #{item.commodityCurrency} ,
+            #{item.commodityCurrencyGroup} ,
+            #{item.commodityNo} ,
+            #{item.commodityType} ,
+            #{item.contractNo} ,
+            #{item.exchangeNo} ,
+            #{item.hedgeFlag} ,
+            #{item.lMEPositionProfit} ,
+            #{item.matchNo} ,
+            #{item.matchSide} ,
+            #{item.optionMarketValue} ,
+            #{item.orderNo} ,
+            #{item.positionNo} ,
+            #{item.positionPrice} ,
+            #{item.positionProfit} ,
+            #{item.positionQty} ,
+            #{item.positionStreamId} ,
+            #{item.serverFlag} ,
+            #{item.strikePrice} ,
+            #{item.upperInitialMargin} ,
+            #{item.upperMaintenanceMargin} ,
+            #{item.upperNo} ,
+            #{item.remark} ,
+            #{item.createDate} ,
+            #{item.updateDate} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update SysPosition set
+            accountInitialMargin = #{item.accountInitialMargin} ,
+            accountMaintenanceMargin = #{item.accountMaintenanceMargin} ,
+            accountNo = #{item.accountNo} ,
+            calculatePrice = #{item.calculatePrice} ,
+            callOrPutFlag = #{item.callOrPutFlag} ,
+            commodityCurrency = #{item.commodityCurrency} ,
+            commodityCurrencyGroup = #{item.commodityCurrencyGroup} ,
+            commodityNo = #{item.commodityNo} ,
+            commodityType = #{item.commodityType} ,
+            contractNo = #{item.contractNo} ,
+            exchangeNo = #{item.exchangeNo} ,
+            hedgeFlag = #{item.hedgeFlag} ,
+            lMEPositionProfit = #{item.lMEPositionProfit} ,
+            matchNo = #{item.matchNo} ,
+            matchSide = #{item.matchSide} ,
+            optionMarketValue = #{item.optionMarketValue} ,
+            orderNo = #{item.orderNo} ,
+            positionNo = #{item.positionNo} ,
+            positionPrice = #{item.positionPrice} ,
+            positionProfit = #{item.positionProfit} ,
+            positionQty = #{item.positionQty} ,
+            positionStreamId = #{item.positionStreamId} ,
+            serverFlag = #{item.serverFlag} ,
+            strikePrice = #{item.strikePrice} ,
+            upperInitialMargin = #{item.upperInitialMargin} ,
+            upperMaintenanceMargin = #{item.upperMaintenanceMargin} ,
+            upperNo = #{item.upperNo} ,
+            remark = #{item.remark} ,
+            createDate = #{item.createDate} ,
+            updateDate = #{item.updateDate} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.uams.rpc.api.model.SysPositionModel">
+        update SysPosition set
+            accountInitialMargin = #{accountInitialMargin} ,
+            accountMaintenanceMargin = #{accountMaintenanceMargin} ,
+            accountNo = #{accountNo} ,
+            calculatePrice = #{calculatePrice} ,
+            callOrPutFlag = #{callOrPutFlag} ,
+            commodityCurrency = #{commodityCurrency} ,
+            commodityCurrencyGroup = #{commodityCurrencyGroup} ,
+            commodityNo = #{commodityNo} ,
+            commodityType = #{commodityType} ,
+            contractNo = #{contractNo} ,
+            exchangeNo = #{exchangeNo} ,
+            hedgeFlag = #{hedgeFlag} ,
+            lMEPositionProfit = #{lMEPositionProfit} ,
+            matchNo = #{matchNo} ,
+            matchSide = #{matchSide} ,
+            optionMarketValue = #{optionMarketValue} ,
+            orderNo = #{orderNo} ,
+            positionNo = #{positionNo} ,
+            positionPrice = #{positionPrice} ,
+            positionProfit = #{positionProfit} ,
+            positionQty = #{positionQty} ,
+            positionStreamId = #{positionStreamId} ,
+            serverFlag = #{serverFlag} ,
+            strikePrice = #{strikePrice} ,
+            upperInitialMargin = #{upperInitialMargin} ,
+            upperMaintenanceMargin = #{upperMaintenanceMargin} ,
+            upperNo = #{upperNo} ,
+            remark = #{remark} ,
+            createDate = #{createDate} ,
+            updateDate = #{updateDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.uams.rpc.api.model.SysPositionModel">
+        select <include refid="sysPositionColumns"/> from SysPosition a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.uams.rpc.api.model.SysPositionModel">
+        SELECT
+        <include refid="sysPositionColumns"/>
+        FROM SysPosition a WHERE 1=1
+        <if test="accountInitialMargin != null">
+            and a.accountInitialMargin = #{accountInitialMargin}
+        </if>
+        <if test="accountMaintenanceMargin != null">
+            and a.accountMaintenanceMargin = #{accountMaintenanceMargin}
+        </if>
+        <if test="accountNo != null">
+            and a.accountNo like '%'||#{accountNo}||'%'
+        </if>
+        <if test="calculatePrice != null">
+            and a.calculatePrice = #{calculatePrice}
+        </if>
+        <if test="callOrPutFlag != null">
+            and a.callOrPutFlag like '%'||#{callOrPutFlag}||'%'
+        </if>
+        <if test="commodityCurrency != null">
+            and a.commodityCurrency like '%'||#{commodityCurrency}||'%'
+        </if>
+        <if test="commodityCurrencyGroup != null">
+            and a.commodityCurrencyGroup like '%'||#{commodityCurrencyGroup}||'%'
+        </if>
+        <if test="commodityNo != null">
+            and a.commodityNo like '%'||#{commodityNo}||'%'
+        </if>
+        <if test="commodityType != null">
+            and a.commodityType like '%'||#{commodityType}||'%'
+        </if>
+        <if test="contractNo != null">
+            and a.contractNo like '%'||#{contractNo}||'%'
+        </if>
+        <if test="exchangeNo != null">
+            and a.exchangeNo like '%'||#{exchangeNo}||'%'
+        </if>
+        <if test="hedgeFlag != null">
+            and a.hedgeFlag like '%'||#{hedgeFlag}||'%'
+        </if>
+        <if test="lMEPositionProfit != null">
+            and a.lMEPositionProfit = #{lMEPositionProfit}
+        </if>
+        <if test="matchNo != null">
+            and a.matchNo like '%'||#{matchNo}||'%'
+        </if>
+        <if test="matchSide != null">
+            and a.matchSide like '%'||#{matchSide}||'%'
+        </if>
+        <if test="optionMarketValue != null">
+            and a.optionMarketValue = #{optionMarketValue}
+        </if>
+        <if test="orderNo != null">
+            and a.orderNo like '%'||#{orderNo}||'%'
+        </if>
+        <if test="positionNo != null">
+            and a.positionNo like '%'||#{positionNo}||'%'
+        </if>
+        <if test="positionPrice != null">
+            and a.positionPrice = #{positionPrice}
+        </if>
+        <if test="positionProfit != null">
+            and a.positionProfit = #{positionProfit}
+        </if>
+        <if test="positionQty != null">
+            and a.positionQty = #{positionQty}
+        </if>
+        <if test="positionStreamId != null">
+            and a.positionStreamId = #{positionStreamId}
+        </if>
+        <if test="serverFlag != null">
+            and a.serverFlag like '%'||#{serverFlag}||'%'
+        </if>
+        <if test="strikePrice != null">
+            and a.strikePrice like '%'||#{strikePrice}||'%'
+        </if>
+        <if test="upperInitialMargin != null">
+            and a.upperInitialMargin = #{upperInitialMargin}
+        </if>
+        <if test="upperMaintenanceMargin != null">
+            and a.upperMaintenanceMargin = #{upperMaintenanceMargin}
+        </if>
+        <if test="upperNo != null">
+            and a.upperNo like '%'||#{upperNo}||'%'
+        </if>
+        <if test="remark != null">
+            and a.remark like '%'||#{remark}||'%'
+        </if>
+        <if test="createDate != null">
+            and a.createDate = #{createDate}
+        </if>
+        <if test="updateDate != null">
+            and a.updateDate = #{updateDate}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.uams.rpc.api.model.SysPositionModel">
+        SELECT
+        <include refid="sysPositionColumns"/>
+        FROM SysPosition a WHERE a.delFlag = 0
+    </select>
+
+
+</mapper>
+

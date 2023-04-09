@@ -1,0 +1,981 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uams.rpc.api.mapper.SysAccountFundMapper">
+    <!-- 基础列 -->
+    <sql id="sysAccountFundColumns">
+        a.id as id,
+        a.accountDeliveryFee as accountDeliveryFee,
+        a.accountFee as accountFee,
+        a.accountIntialMargin as accountIntialMargin,
+        a.accountMaintenanceMargin as accountMaintenanceMargin,
+        a.accountNo as accountNo,
+        a.authMoney as authMoney,
+        a.available as available,
+        a.balance as balance,
+        a.canDraw as canDraw,
+        a.cashAdjustValue as cashAdjustValue,
+        a.cashInValue as cashInValue,
+        a.cashOutValue as cashOutValue,
+        a.cashPledged as cashPledged,
+        a.closeProfit as closeProfit,
+        a.currencyGroupNo as currencyGroupNo,
+        a.currencyNo as currencyNo,
+        a.deliveryProfit as deliveryProfit,
+        a.discount as discount,
+        a.equity as equity,
+        a.exchangeFee as exchangeFee,
+        a.expProfit as expProfit,
+        a.frozenDeposit as frozenDeposit,
+        a.frozenFee as frozenFee,
+        a.futureAlg as futureAlg,
+        a.lmePositionProfit as lmePositionProfit,
+        a.marketEquity as marketEquity,
+        a.optionAlg as optionAlg,
+        a.optionMarketValue as optionMarketValue,
+        a.positionProfit as positionProfit,
+        a.preAvailable1 as preAvailable1,
+        a.preBalance as preBalance,
+        a.preEquity as preEquity,
+        a.preLMEPositionProfit as preLMEPositionProfit,
+        a.preMarketEquity as preMarketEquity,
+        a.premiumIncome as premiumIncome,
+        a.premiumPay as premiumPay,
+        a.preUnExpProfit as preUnExpProfit,
+        a.tradeRate as tradeRate,
+        a.unExpProfit as unExpProfit,
+        a.upperInitalMargin as upperInitalMargin,
+        a.upperMaintenanceMargin as upperMaintenanceMargin,
+        a.remark as remark,
+        a.createDate as createDate,
+        a.updateDate as updateDate
+    </sql>
+
+    <resultMap id="sysAccountFundResultMap" type="com.uams.rpc.api.model.SysAccountFundModel">
+        <id column="id" property="id" />
+        <result column="accountDeliveryFee" property="accountDeliveryFee"/>
+        <result column="accountFee" property="accountFee"/>
+        <result column="accountIntialMargin" property="accountIntialMargin"/>
+        <result column="accountMaintenanceMargin" property="accountMaintenanceMargin"/>
+        <result column="accountNo" property="accountNo"/>
+        <result column="authMoney" property="authMoney"/>
+        <result column="available" property="available"/>
+        <result column="balance" property="balance"/>
+        <result column="canDraw" property="canDraw"/>
+        <result column="cashAdjustValue" property="cashAdjustValue"/>
+        <result column="cashInValue" property="cashInValue"/>
+        <result column="cashOutValue" property="cashOutValue"/>
+        <result column="cashPledged" property="cashPledged"/>
+        <result column="closeProfit" property="closeProfit"/>
+        <result column="currencyGroupNo" property="currencyGroupNo"/>
+        <result column="currencyNo" property="currencyNo"/>
+        <result column="deliveryProfit" property="deliveryProfit"/>
+        <result column="discount" property="discount"/>
+        <result column="equity" property="equity"/>
+        <result column="exchangeFee" property="exchangeFee"/>
+        <result column="expProfit" property="expProfit"/>
+        <result column="frozenDeposit" property="frozenDeposit"/>
+        <result column="frozenFee" property="frozenFee"/>
+        <result column="futureAlg" property="futureAlg"/>
+        <result column="lmePositionProfit" property="lmePositionProfit"/>
+        <result column="marketEquity" property="marketEquity"/>
+        <result column="optionAlg" property="optionAlg"/>
+        <result column="optionMarketValue" property="optionMarketValue"/>
+        <result column="positionProfit" property="positionProfit"/>
+        <result column="preAvailable1" property="preAvailable1"/>
+        <result column="preBalance" property="preBalance"/>
+        <result column="preEquity" property="preEquity"/>
+        <result column="preLMEPositionProfit" property="preLMEPositionProfit"/>
+        <result column="preMarketEquity" property="preMarketEquity"/>
+        <result column="premiumIncome" property="premiumIncome"/>
+        <result column="premiumPay" property="premiumPay"/>
+        <result column="preUnExpProfit" property="preUnExpProfit"/>
+        <result column="tradeRate" property="tradeRate"/>
+        <result column="unExpProfit" property="unExpProfit"/>
+        <result column="upperInitalMargin" property="upperInitalMargin"/>
+        <result column="upperMaintenanceMargin" property="upperMaintenanceMargin"/>
+        <result column="remark" property="remark"/>
+        <result column="createDate" property="createDate"/>
+        <result column="updateDate" property="updateDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.uams.rpc.api.model.SysAccountFundModel">
+        insert into SysAccountFund(
+            id ,
+            accountDeliveryFee ,
+            accountFee ,
+            accountIntialMargin ,
+            accountMaintenanceMargin ,
+            accountNo ,
+            authMoney ,
+            available ,
+            balance ,
+            canDraw ,
+            cashAdjustValue ,
+            cashInValue ,
+            cashOutValue ,
+            cashPledged ,
+            closeProfit ,
+            currencyGroupNo ,
+            currencyNo ,
+            deliveryProfit ,
+            discount ,
+            equity ,
+            exchangeFee ,
+            expProfit ,
+            frozenDeposit ,
+            frozenFee ,
+            futureAlg ,
+            lmePositionProfit ,
+            marketEquity ,
+            optionAlg ,
+            optionMarketValue ,
+            positionProfit ,
+            preAvailable1 ,
+            preBalance ,
+            preEquity ,
+            preLMEPositionProfit ,
+            preMarketEquity ,
+            premiumIncome ,
+            premiumPay ,
+            preUnExpProfit ,
+            tradeRate ,
+            unExpProfit ,
+            upperInitalMargin ,
+            upperMaintenanceMargin ,
+            remark ,
+            createDate ,
+            updateDate 
+        ) VALUES (
+            #{id} ,
+            #{accountDeliveryFee} ,
+            #{accountFee} ,
+            #{accountIntialMargin} ,
+            #{accountMaintenanceMargin} ,
+            #{accountNo} ,
+            #{authMoney} ,
+            #{available} ,
+            #{balance} ,
+            #{canDraw} ,
+            #{cashAdjustValue} ,
+            #{cashInValue} ,
+            #{cashOutValue} ,
+            #{cashPledged} ,
+            #{closeProfit} ,
+            #{currencyGroupNo} ,
+            #{currencyNo} ,
+            #{deliveryProfit} ,
+            #{discount} ,
+            #{equity} ,
+            #{exchangeFee} ,
+            #{expProfit} ,
+            #{frozenDeposit} ,
+            #{frozenFee} ,
+            #{futureAlg} ,
+            #{lmePositionProfit} ,
+            #{marketEquity} ,
+            #{optionAlg} ,
+            #{optionMarketValue} ,
+            #{positionProfit} ,
+            #{preAvailable1} ,
+            #{preBalance} ,
+            #{preEquity} ,
+            #{preLMEPositionProfit} ,
+            #{preMarketEquity} ,
+            #{premiumIncome} ,
+            #{premiumPay} ,
+            #{preUnExpProfit} ,
+            #{tradeRate} ,
+            #{unExpProfit} ,
+            #{upperInitalMargin} ,
+            #{upperMaintenanceMargin} ,
+            #{remark} ,
+            #{createDate} ,
+            #{updateDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from SysAccountFund where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update SysAccountFund set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.uams.rpc.api.model.SysAccountFundModel">
+        insert into SysAccountFund
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="accountDeliveryFee != null">
+                accountDeliveryFee ,
+        </if>
+        <if test="accountFee != null">
+                accountFee ,
+        </if>
+        <if test="accountIntialMargin != null">
+                accountIntialMargin ,
+        </if>
+        <if test="accountMaintenanceMargin != null">
+                accountMaintenanceMargin ,
+        </if>
+        <if test="accountNo != null">
+                accountNo ,
+        </if>
+        <if test="authMoney != null">
+                authMoney ,
+        </if>
+        <if test="available != null">
+                available ,
+        </if>
+        <if test="balance != null">
+                balance ,
+        </if>
+        <if test="canDraw != null">
+                canDraw ,
+        </if>
+        <if test="cashAdjustValue != null">
+                cashAdjustValue ,
+        </if>
+        <if test="cashInValue != null">
+                cashInValue ,
+        </if>
+        <if test="cashOutValue != null">
+                cashOutValue ,
+        </if>
+        <if test="cashPledged != null">
+                cashPledged ,
+        </if>
+        <if test="closeProfit != null">
+                closeProfit ,
+        </if>
+        <if test="currencyGroupNo != null">
+                currencyGroupNo ,
+        </if>
+        <if test="currencyNo != null">
+                currencyNo ,
+        </if>
+        <if test="deliveryProfit != null">
+                deliveryProfit ,
+        </if>
+        <if test="discount != null">
+                discount ,
+        </if>
+        <if test="equity != null">
+                equity ,
+        </if>
+        <if test="exchangeFee != null">
+                exchangeFee ,
+        </if>
+        <if test="expProfit != null">
+                expProfit ,
+        </if>
+        <if test="frozenDeposit != null">
+                frozenDeposit ,
+        </if>
+        <if test="frozenFee != null">
+                frozenFee ,
+        </if>
+        <if test="futureAlg != null">
+                futureAlg ,
+        </if>
+        <if test="lmePositionProfit != null">
+                lmePositionProfit ,
+        </if>
+        <if test="marketEquity != null">
+                marketEquity ,
+        </if>
+        <if test="optionAlg != null">
+                optionAlg ,
+        </if>
+        <if test="optionMarketValue != null">
+                optionMarketValue ,
+        </if>
+        <if test="positionProfit != null">
+                positionProfit ,
+        </if>
+        <if test="preAvailable1 != null">
+                preAvailable1 ,
+        </if>
+        <if test="preBalance != null">
+                preBalance ,
+        </if>
+        <if test="preEquity != null">
+                preEquity ,
+        </if>
+        <if test="preLMEPositionProfit != null">
+                preLMEPositionProfit ,
+        </if>
+        <if test="preMarketEquity != null">
+                preMarketEquity ,
+        </if>
+        <if test="premiumIncome != null">
+                premiumIncome ,
+        </if>
+        <if test="premiumPay != null">
+                premiumPay ,
+        </if>
+        <if test="preUnExpProfit != null">
+                preUnExpProfit ,
+        </if>
+        <if test="tradeRate != null">
+                tradeRate ,
+        </if>
+        <if test="unExpProfit != null">
+                unExpProfit ,
+        </if>
+        <if test="upperInitalMargin != null">
+                upperInitalMargin ,
+        </if>
+        <if test="upperMaintenanceMargin != null">
+                upperMaintenanceMargin ,
+        </if>
+        <if test="remark != null">
+                remark ,
+        </if>
+        <if test="createDate != null">
+                createDate ,
+        </if>
+        <if test="updateDate != null">
+                updateDate 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="accountDeliveryFee != null">
+                #{accountDeliveryFee} ,
+        </if>
+        <if test="accountFee != null">
+                #{accountFee} ,
+        </if>
+        <if test="accountIntialMargin != null">
+                #{accountIntialMargin} ,
+        </if>
+        <if test="accountMaintenanceMargin != null">
+                #{accountMaintenanceMargin} ,
+        </if>
+        <if test="accountNo != null">
+                #{accountNo} ,
+        </if>
+        <if test="authMoney != null">
+                #{authMoney} ,
+        </if>
+        <if test="available != null">
+                #{available} ,
+        </if>
+        <if test="balance != null">
+                #{balance} ,
+        </if>
+        <if test="canDraw != null">
+                #{canDraw} ,
+        </if>
+        <if test="cashAdjustValue != null">
+                #{cashAdjustValue} ,
+        </if>
+        <if test="cashInValue != null">
+                #{cashInValue} ,
+        </if>
+        <if test="cashOutValue != null">
+                #{cashOutValue} ,
+        </if>
+        <if test="cashPledged != null">
+                #{cashPledged} ,
+        </if>
+        <if test="closeProfit != null">
+                #{closeProfit} ,
+        </if>
+        <if test="currencyGroupNo != null">
+                #{currencyGroupNo} ,
+        </if>
+        <if test="currencyNo != null">
+                #{currencyNo} ,
+        </if>
+        <if test="deliveryProfit != null">
+                #{deliveryProfit} ,
+        </if>
+        <if test="discount != null">
+                #{discount} ,
+        </if>
+        <if test="equity != null">
+                #{equity} ,
+        </if>
+        <if test="exchangeFee != null">
+                #{exchangeFee} ,
+        </if>
+        <if test="expProfit != null">
+                #{expProfit} ,
+        </if>
+        <if test="frozenDeposit != null">
+                #{frozenDeposit} ,
+        </if>
+        <if test="frozenFee != null">
+                #{frozenFee} ,
+        </if>
+        <if test="futureAlg != null">
+                #{futureAlg} ,
+        </if>
+        <if test="lmePositionProfit != null">
+                #{lmePositionProfit} ,
+        </if>
+        <if test="marketEquity != null">
+                #{marketEquity} ,
+        </if>
+        <if test="optionAlg != null">
+                #{optionAlg} ,
+        </if>
+        <if test="optionMarketValue != null">
+                #{optionMarketValue} ,
+        </if>
+        <if test="positionProfit != null">
+                #{positionProfit} ,
+        </if>
+        <if test="preAvailable1 != null">
+                #{preAvailable1} ,
+        </if>
+        <if test="preBalance != null">
+                #{preBalance} ,
+        </if>
+        <if test="preEquity != null">
+                #{preEquity} ,
+        </if>
+        <if test="preLMEPositionProfit != null">
+                #{preLMEPositionProfit} ,
+        </if>
+        <if test="preMarketEquity != null">
+                #{preMarketEquity} ,
+        </if>
+        <if test="premiumIncome != null">
+                #{premiumIncome} ,
+        </if>
+        <if test="premiumPay != null">
+                #{premiumPay} ,
+        </if>
+        <if test="preUnExpProfit != null">
+                #{preUnExpProfit} ,
+        </if>
+        <if test="tradeRate != null">
+                #{tradeRate} ,
+        </if>
+        <if test="unExpProfit != null">
+                #{unExpProfit} ,
+        </if>
+        <if test="upperInitalMargin != null">
+                #{upperInitalMargin} ,
+        </if>
+        <if test="upperMaintenanceMargin != null">
+                #{upperMaintenanceMargin} ,
+        </if>
+        <if test="remark != null">
+                #{remark} ,
+        </if>
+        <if test="createDate != null">
+                #{createDate} ,
+        </if>
+        <if test="updateDate != null">
+                #{updateDate} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.uams.rpc.api.model.SysAccountFundModel">
+        update SysAccountFund
+           <set>
+            <if test="accountDeliveryFee != null">
+                accountDeliveryFee = #{accountDeliveryFee} ,
+            </if>
+            <if test="accountFee != null">
+                accountFee = #{accountFee} ,
+            </if>
+            <if test="accountIntialMargin != null">
+                accountIntialMargin = #{accountIntialMargin} ,
+            </if>
+            <if test="accountMaintenanceMargin != null">
+                accountMaintenanceMargin = #{accountMaintenanceMargin} ,
+            </if>
+            <if test="accountNo != null">
+                accountNo = #{accountNo} ,
+            </if>
+            <if test="authMoney != null">
+                authMoney = #{authMoney} ,
+            </if>
+            <if test="available != null">
+                available = #{available} ,
+            </if>
+            <if test="balance != null">
+                balance = #{balance} ,
+            </if>
+            <if test="canDraw != null">
+                canDraw = #{canDraw} ,
+            </if>
+            <if test="cashAdjustValue != null">
+                cashAdjustValue = #{cashAdjustValue} ,
+            </if>
+            <if test="cashInValue != null">
+                cashInValue = #{cashInValue} ,
+            </if>
+            <if test="cashOutValue != null">
+                cashOutValue = #{cashOutValue} ,
+            </if>
+            <if test="cashPledged != null">
+                cashPledged = #{cashPledged} ,
+            </if>
+            <if test="closeProfit != null">
+                closeProfit = #{closeProfit} ,
+            </if>
+            <if test="currencyGroupNo != null">
+                currencyGroupNo = #{currencyGroupNo} ,
+            </if>
+            <if test="currencyNo != null">
+                currencyNo = #{currencyNo} ,
+            </if>
+            <if test="deliveryProfit != null">
+                deliveryProfit = #{deliveryProfit} ,
+            </if>
+            <if test="discount != null">
+                discount = #{discount} ,
+            </if>
+            <if test="equity != null">
+                equity = #{equity} ,
+            </if>
+            <if test="exchangeFee != null">
+                exchangeFee = #{exchangeFee} ,
+            </if>
+            <if test="expProfit != null">
+                expProfit = #{expProfit} ,
+            </if>
+            <if test="frozenDeposit != null">
+                frozenDeposit = #{frozenDeposit} ,
+            </if>
+            <if test="frozenFee != null">
+                frozenFee = #{frozenFee} ,
+            </if>
+            <if test="futureAlg != null">
+                futureAlg = #{futureAlg} ,
+            </if>
+            <if test="lmePositionProfit != null">
+                lmePositionProfit = #{lmePositionProfit} ,
+            </if>
+            <if test="marketEquity != null">
+                marketEquity = #{marketEquity} ,
+            </if>
+            <if test="optionAlg != null">
+                optionAlg = #{optionAlg} ,
+            </if>
+            <if test="optionMarketValue != null">
+                optionMarketValue = #{optionMarketValue} ,
+            </if>
+            <if test="positionProfit != null">
+                positionProfit = #{positionProfit} ,
+            </if>
+            <if test="preAvailable1 != null">
+                preAvailable1 = #{preAvailable1} ,
+            </if>
+            <if test="preBalance != null">
+                preBalance = #{preBalance} ,
+            </if>
+            <if test="preEquity != null">
+                preEquity = #{preEquity} ,
+            </if>
+            <if test="preLMEPositionProfit != null">
+                preLMEPositionProfit = #{preLMEPositionProfit} ,
+            </if>
+            <if test="preMarketEquity != null">
+                preMarketEquity = #{preMarketEquity} ,
+            </if>
+            <if test="premiumIncome != null">
+                premiumIncome = #{premiumIncome} ,
+            </if>
+            <if test="premiumPay != null">
+                premiumPay = #{premiumPay} ,
+            </if>
+            <if test="preUnExpProfit != null">
+                preUnExpProfit = #{preUnExpProfit} ,
+            </if>
+            <if test="tradeRate != null">
+                tradeRate = #{tradeRate} ,
+            </if>
+            <if test="unExpProfit != null">
+                unExpProfit = #{unExpProfit} ,
+            </if>
+            <if test="upperInitalMargin != null">
+                upperInitalMargin = #{upperInitalMargin} ,
+            </if>
+            <if test="upperMaintenanceMargin != null">
+                upperMaintenanceMargin = #{upperMaintenanceMargin} ,
+            </if>
+            <if test="remark != null">
+                remark = #{remark} ,
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate} ,
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into SysAccountFund(
+            id ,
+            accountDeliveryFee ,
+            accountFee ,
+            accountIntialMargin ,
+            accountMaintenanceMargin ,
+            accountNo ,
+            authMoney ,
+            available ,
+            balance ,
+            canDraw ,
+            cashAdjustValue ,
+            cashInValue ,
+            cashOutValue ,
+            cashPledged ,
+            closeProfit ,
+            currencyGroupNo ,
+            currencyNo ,
+            deliveryProfit ,
+            discount ,
+            equity ,
+            exchangeFee ,
+            expProfit ,
+            frozenDeposit ,
+            frozenFee ,
+            futureAlg ,
+            lmePositionProfit ,
+            marketEquity ,
+            optionAlg ,
+            optionMarketValue ,
+            positionProfit ,
+            preAvailable1 ,
+            preBalance ,
+            preEquity ,
+            preLMEPositionProfit ,
+            preMarketEquity ,
+            premiumIncome ,
+            premiumPay ,
+            preUnExpProfit ,
+            tradeRate ,
+            unExpProfit ,
+            upperInitalMargin ,
+            upperMaintenanceMargin ,
+            remark ,
+            createDate ,
+            updateDate 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.accountDeliveryFee} ,
+            #{item.accountFee} ,
+            #{item.accountIntialMargin} ,
+            #{item.accountMaintenanceMargin} ,
+            #{item.accountNo} ,
+            #{item.authMoney} ,
+            #{item.available} ,
+            #{item.balance} ,
+            #{item.canDraw} ,
+            #{item.cashAdjustValue} ,
+            #{item.cashInValue} ,
+            #{item.cashOutValue} ,
+            #{item.cashPledged} ,
+            #{item.closeProfit} ,
+            #{item.currencyGroupNo} ,
+            #{item.currencyNo} ,
+            #{item.deliveryProfit} ,
+            #{item.discount} ,
+            #{item.equity} ,
+            #{item.exchangeFee} ,
+            #{item.expProfit} ,
+            #{item.frozenDeposit} ,
+            #{item.frozenFee} ,
+            #{item.futureAlg} ,
+            #{item.lmePositionProfit} ,
+            #{item.marketEquity} ,
+            #{item.optionAlg} ,
+            #{item.optionMarketValue} ,
+            #{item.positionProfit} ,
+            #{item.preAvailable1} ,
+            #{item.preBalance} ,
+            #{item.preEquity} ,
+            #{item.preLMEPositionProfit} ,
+            #{item.preMarketEquity} ,
+            #{item.premiumIncome} ,
+            #{item.premiumPay} ,
+            #{item.preUnExpProfit} ,
+            #{item.tradeRate} ,
+            #{item.unExpProfit} ,
+            #{item.upperInitalMargin} ,
+            #{item.upperMaintenanceMargin} ,
+            #{item.remark} ,
+            #{item.createDate} ,
+            #{item.updateDate} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update SysAccountFund set
+            accountDeliveryFee = #{item.accountDeliveryFee} ,
+            accountFee = #{item.accountFee} ,
+            accountIntialMargin = #{item.accountIntialMargin} ,
+            accountMaintenanceMargin = #{item.accountMaintenanceMargin} ,
+            accountNo = #{item.accountNo} ,
+            authMoney = #{item.authMoney} ,
+            available = #{item.available} ,
+            balance = #{item.balance} ,
+            canDraw = #{item.canDraw} ,
+            cashAdjustValue = #{item.cashAdjustValue} ,
+            cashInValue = #{item.cashInValue} ,
+            cashOutValue = #{item.cashOutValue} ,
+            cashPledged = #{item.cashPledged} ,
+            closeProfit = #{item.closeProfit} ,
+            currencyGroupNo = #{item.currencyGroupNo} ,
+            currencyNo = #{item.currencyNo} ,
+            deliveryProfit = #{item.deliveryProfit} ,
+            discount = #{item.discount} ,
+            equity = #{item.equity} ,
+            exchangeFee = #{item.exchangeFee} ,
+            expProfit = #{item.expProfit} ,
+            frozenDeposit = #{item.frozenDeposit} ,
+            frozenFee = #{item.frozenFee} ,
+            futureAlg = #{item.futureAlg} ,
+            lmePositionProfit = #{item.lmePositionProfit} ,
+            marketEquity = #{item.marketEquity} ,
+            optionAlg = #{item.optionAlg} ,
+            optionMarketValue = #{item.optionMarketValue} ,
+            positionProfit = #{item.positionProfit} ,
+            preAvailable1 = #{item.preAvailable1} ,
+            preBalance = #{item.preBalance} ,
+            preEquity = #{item.preEquity} ,
+            preLMEPositionProfit = #{item.preLMEPositionProfit} ,
+            preMarketEquity = #{item.preMarketEquity} ,
+            premiumIncome = #{item.premiumIncome} ,
+            premiumPay = #{item.premiumPay} ,
+            preUnExpProfit = #{item.preUnExpProfit} ,
+            tradeRate = #{item.tradeRate} ,
+            unExpProfit = #{item.unExpProfit} ,
+            upperInitalMargin = #{item.upperInitalMargin} ,
+            upperMaintenanceMargin = #{item.upperMaintenanceMargin} ,
+            remark = #{item.remark} ,
+            createDate = #{item.createDate} ,
+            updateDate = #{item.updateDate} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.uams.rpc.api.model.SysAccountFundModel">
+        update SysAccountFund set
+            accountDeliveryFee = #{accountDeliveryFee} ,
+            accountFee = #{accountFee} ,
+            accountIntialMargin = #{accountIntialMargin} ,
+            accountMaintenanceMargin = #{accountMaintenanceMargin} ,
+            accountNo = #{accountNo} ,
+            authMoney = #{authMoney} ,
+            available = #{available} ,
+            balance = #{balance} ,
+            canDraw = #{canDraw} ,
+            cashAdjustValue = #{cashAdjustValue} ,
+            cashInValue = #{cashInValue} ,
+            cashOutValue = #{cashOutValue} ,
+            cashPledged = #{cashPledged} ,
+            closeProfit = #{closeProfit} ,
+            currencyGroupNo = #{currencyGroupNo} ,
+            currencyNo = #{currencyNo} ,
+            deliveryProfit = #{deliveryProfit} ,
+            discount = #{discount} ,
+            equity = #{equity} ,
+            exchangeFee = #{exchangeFee} ,
+            expProfit = #{expProfit} ,
+            frozenDeposit = #{frozenDeposit} ,
+            frozenFee = #{frozenFee} ,
+            futureAlg = #{futureAlg} ,
+            lmePositionProfit = #{lmePositionProfit} ,
+            marketEquity = #{marketEquity} ,
+            optionAlg = #{optionAlg} ,
+            optionMarketValue = #{optionMarketValue} ,
+            positionProfit = #{positionProfit} ,
+            preAvailable1 = #{preAvailable1} ,
+            preBalance = #{preBalance} ,
+            preEquity = #{preEquity} ,
+            preLMEPositionProfit = #{preLMEPositionProfit} ,
+            preMarketEquity = #{preMarketEquity} ,
+            premiumIncome = #{premiumIncome} ,
+            premiumPay = #{premiumPay} ,
+            preUnExpProfit = #{preUnExpProfit} ,
+            tradeRate = #{tradeRate} ,
+            unExpProfit = #{unExpProfit} ,
+            upperInitalMargin = #{upperInitalMargin} ,
+            upperMaintenanceMargin = #{upperMaintenanceMargin} ,
+            remark = #{remark} ,
+            createDate = #{createDate} ,
+            updateDate = #{updateDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.uams.rpc.api.model.SysAccountFundModel">
+        select <include refid="sysAccountFundColumns"/> from SysAccountFund a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.uams.rpc.api.model.SysAccountFundModel">
+        SELECT
+        <include refid="sysAccountFundColumns"/>
+        FROM SysAccountFund a WHERE 1=1
+        <if test="accountDeliveryFee != null">
+            and a.accountDeliveryFee = #{accountDeliveryFee}
+        </if>
+        <if test="accountFee != null">
+            and a.accountFee = #{accountFee}
+        </if>
+        <if test="accountIntialMargin != null">
+            and a.accountIntialMargin = #{accountIntialMargin}
+        </if>
+        <if test="accountMaintenanceMargin != null">
+            and a.accountMaintenanceMargin = #{accountMaintenanceMargin}
+        </if>
+        <if test="accountNo != null">
+            and a.accountNo like '%'||#{accountNo}||'%'
+        </if>
+        <if test="authMoney != null">
+            and a.authMoney = #{authMoney}
+        </if>
+        <if test="available != null">
+            and a.available = #{available}
+        </if>
+        <if test="balance != null">
+            and a.balance = #{balance}
+        </if>
+        <if test="canDraw != null">
+            and a.canDraw = #{canDraw}
+        </if>
+        <if test="cashAdjustValue != null">
+            and a.cashAdjustValue = #{cashAdjustValue}
+        </if>
+        <if test="cashInValue != null">
+            and a.cashInValue = #{cashInValue}
+        </if>
+        <if test="cashOutValue != null">
+            and a.cashOutValue = #{cashOutValue}
+        </if>
+        <if test="cashPledged != null">
+            and a.cashPledged = #{cashPledged}
+        </if>
+        <if test="closeProfit != null">
+            and a.closeProfit = #{closeProfit}
+        </if>
+        <if test="currencyGroupNo != null">
+            and a.currencyGroupNo like '%'||#{currencyGroupNo}||'%'
+        </if>
+        <if test="currencyNo != null">
+            and a.currencyNo like '%'||#{currencyNo}||'%'
+        </if>
+        <if test="deliveryProfit != null">
+            and a.deliveryProfit = #{deliveryProfit}
+        </if>
+        <if test="discount != null">
+            and a.discount = #{discount}
+        </if>
+        <if test="equity != null">
+            and a.equity = #{equity}
+        </if>
+        <if test="exchangeFee != null">
+            and a.exchangeFee = #{exchangeFee}
+        </if>
+        <if test="expProfit != null">
+            and a.expProfit = #{expProfit}
+        </if>
+        <if test="frozenDeposit != null">
+            and a.frozenDeposit = #{frozenDeposit}
+        </if>
+        <if test="frozenFee != null">
+            and a.frozenFee = #{frozenFee}
+        </if>
+        <if test="futureAlg != null">
+            and a.futureAlg like '%'||#{futureAlg}||'%'
+        </if>
+        <if test="lmePositionProfit != null">
+            and a.lmePositionProfit = #{lmePositionProfit}
+        </if>
+        <if test="marketEquity != null">
+            and a.marketEquity = #{marketEquity}
+        </if>
+        <if test="optionAlg != null">
+            and a.optionAlg like '%'||#{optionAlg}||'%'
+        </if>
+        <if test="optionMarketValue != null">
+            and a.optionMarketValue = #{optionMarketValue}
+        </if>
+        <if test="positionProfit != null">
+            and a.positionProfit = #{positionProfit}
+        </if>
+        <if test="preAvailable1 != null">
+            and a.preAvailable1 = #{preAvailable1}
+        </if>
+        <if test="preBalance != null">
+            and a.preBalance = #{preBalance}
+        </if>
+        <if test="preEquity != null">
+            and a.preEquity = #{preEquity}
+        </if>
+        <if test="preLMEPositionProfit != null">
+            and a.preLMEPositionProfit = #{preLMEPositionProfit}
+        </if>
+        <if test="preMarketEquity != null">
+            and a.preMarketEquity = #{preMarketEquity}
+        </if>
+        <if test="premiumIncome != null">
+            and a.premiumIncome = #{premiumIncome}
+        </if>
+        <if test="premiumPay != null">
+            and a.premiumPay = #{premiumPay}
+        </if>
+        <if test="preUnExpProfit != null">
+            and a.preUnExpProfit = #{preUnExpProfit}
+        </if>
+        <if test="tradeRate != null">
+            and a.tradeRate = #{tradeRate}
+        </if>
+        <if test="unExpProfit != null">
+            and a.unExpProfit = #{unExpProfit}
+        </if>
+        <if test="upperInitalMargin != null">
+            and a.upperInitalMargin = #{upperInitalMargin}
+        </if>
+        <if test="upperMaintenanceMargin != null">
+            and a.upperMaintenanceMargin = #{upperMaintenanceMargin}
+        </if>
+        <if test="remark != null">
+            and a.remark like '%'||#{remark}||'%'
+        </if>
+        <if test="createDate != null">
+            and a.createDate = #{createDate}
+        </if>
+        <if test="updateDate != null">
+            and a.updateDate = #{updateDate}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.uams.rpc.api.model.SysAccountFundModel">
+        SELECT
+        <include refid="sysAccountFundColumns"/>
+        FROM SysAccountFund a WHERE a.delFlag = 0
+    </select>
+
+
+</mapper>
+

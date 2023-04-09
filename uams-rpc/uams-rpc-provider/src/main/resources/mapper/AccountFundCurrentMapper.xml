@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uams.rpc.fund.mapper.AccountFundCurrentMapper">
+    <!-- 基础列 -->
+    <sql id="accountFundCurrentColumns">
+        a.id as id,
+        a.accountId as accountId,
+        a.currency as currency,
+        a.currentDate as currentDate,
+        a.businessFlag as businessFlag,
+        a.stockinfoId as stockinfoId,
+        a.occurDirect as occurDirect,
+        a.orgAmt as orgAmt,
+        a.occurAmt as occurAmt,
+        a.lastAmt as lastAmt,
+        a.forzenOrgAmt as forzenOrgAmt,
+        a.occurForzenAmt as occurForzenAmt,
+        a.forzenLastAmt as forzenLastAmt,
+        a.transId as transId,
+        a.sourceAccountBankId as sourceAccountBankId,
+        a.targetAccountBankId as targetAccountBankId,
+        a.fee as fee,
+        a.netFee as netFee,
+        a.originalBusinessId as originalBusinessId,
+        a.remark as remark
+    </sql>
+
+    <sql id="accountFundCurrentJoinColumns">
+        a.id as id,
+        a.accountId as accountId,
+        a.currency as currency,
+        a.currentDate as currentDate,
+        a.businessFlag as businessFlag,
+        a.stockinfoId as stockinfoId,
+        a.occurDirect as occurDirect,
+        a.orgAmt as orgAmt,
+        a.occurAmt as occurAmt,
+        a.lastAmt as lastAmt,
+        a.forzenOrgAmt as forzenOrgAmt,
+        a.occurForzenAmt as occurForzenAmt,
+        a.forzenLastAmt as forzenLastAmt,
+        a.transId as transId,
+        a.sourceAccountBankId as sourceAccountBankId,
+        a.targetAccountBankId as targetAccountBankId,
+        a.fee as fee,
+        a.netFee as netFee,
+        a.originalBusinessId as originalBusinessId,
+        a.remark as remark,
+        b.accountName as accountName,
+        c.stockCode as stockCode
+    </sql>
+
+    <resultMap id="accountFundCurrentResultMap" type="com.uams.rpc.fund.model.AccountFundCurrentModel">
+        <id column="id" property="id" />
+        <result column="accountId" property="accountId"/>
+        <result column="currency" property="currency"/>
+        <result column="currentDate" property="currentDate"/>
+        <result column="businessFlag" property="businessFlag"/>
+        <result column="stockinfoId" property="stockinfoId"/>
+        <result column="occurDirect" property="occurDirect"/>
+        <result column="orgAmt" property="orgAmt"/>
+        <result column="occurAmt" property="occurAmt"/>
+        <result column="lastAmt" property="lastAmt"/>
+        <result column="forzenOrgAmt" property="forzenOrgAmt"/>
+        <result column="occurForzenAmt" property="occurForzenAmt"/>
+        <result column="forzenLastAmt" property="forzenLastAmt"/>
+        <result column="transId" property="transId"/>
+        <result column="sourceAccountBankId" property="sourceAccountBankId"/>
+        <result column="targetAccountBankId" property="targetAccountBankId"/>
+        <result column="fee" property="fee"/>
+        <result column="netFee" property="netFee"/>
+        <result column="originalBusinessId" property="originalBusinessId"/>
+        <result column="remark" property="remark"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.uams.rpc.fund.model.AccountFundCurrentModel">
+        insert into AccountFundCurrent(
+            id ,
+            accountId ,
+            currency ,
+            currentDate ,
+            businessFlag ,
+            stockinfoId ,
+            occurDirect ,
+            orgAmt ,
+            occurAmt ,
+            lastAmt ,
+            forzenOrgAmt ,
+            occurForzenAmt ,
+            forzenLastAmt ,
+            transId ,
+            sourceAccountBankId ,
+            targetAccountBankId ,
+            fee ,
+            netFee ,
+            originalBusinessId ,
+            remark 
+        ) VALUES (
+            #{id} ,
+            #{accountId} ,
+            #{currency} ,
+            #{currentDate} ,
+            #{businessFlag} ,
+            #{stockinfoId} ,
+            #{occurDirect} ,
+            #{orgAmt} ,
+            #{occurAmt} ,
+            #{lastAmt} ,
+            #{forzenOrgAmt} ,
+            #{occurForzenAmt} ,
+            #{forzenLastAmt} ,
+            #{transId} ,
+            #{sourceAccountBankId} ,
+            #{targetAccountBankId} ,
+            #{fee} ,
+            #{netFee} ,
+            #{originalBusinessId} ,
+            #{remark} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from AccountFundCurrent where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update AccountFundCurrent set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.uams.rpc.fund.model.AccountFundCurrentModel">
+        insert into AccountFundCurrent
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="accountId != null">
+                accountId ,
+        </if>
+        <if test="currency != null">
+                currency ,
+        </if>
+        <if test="currentDate != null">
+                currentDate ,
+        </if>
+        <if test="businessFlag != null">
+                businessFlag ,
+        </if>
+        <if test="stockinfoId != null">
+                stockinfoId ,
+        </if>
+        <if test="occurDirect != null">
+                occurDirect ,
+        </if>
+        <if test="orgAmt != null">
+                orgAmt ,
+        </if>
+        <if test="occurAmt != null">
+                occurAmt ,
+        </if>
+        <if test="lastAmt != null">
+                lastAmt ,
+        </if>
+        <if test="forzenOrgAmt != null">
+                forzenOrgAmt ,
+        </if>
+        <if test="occurForzenAmt != null">
+                occurForzenAmt ,
+        </if>
+        <if test="forzenLastAmt != null">
+                forzenLastAmt ,
+        </if>
+        <if test="transId != null">
+                transId ,
+        </if>
+        <if test="sourceAccountBankId != null">
+                sourceAccountBankId ,
+        </if>
+        <if test="targetAccountBankId != null">
+                targetAccountBankId ,
+        </if>
+        <if test="fee != null">
+                fee ,
+        </if>
+        <if test="netFee != null">
+                netFee ,
+        </if>
+        <if test="originalBusinessId != null">
+                originalBusinessId ,
+        </if>
+        <if test="remark != null">
+                remark 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="accountId != null">
+                #{accountId} ,
+        </if>
+        <if test="currency != null">
+                #{currency} ,
+        </if>
+        <if test="currentDate != null">
+                #{currentDate} ,
+        </if>
+        <if test="businessFlag != null">
+                #{businessFlag} ,
+        </if>
+        <if test="stockinfoId != null">
+                #{stockinfoId} ,
+        </if>
+        <if test="occurDirect != null">
+                #{occurDirect} ,
+        </if>
+        <if test="orgAmt != null">
+                #{orgAmt} ,
+        </if>
+        <if test="occurAmt != null">
+                #{occurAmt} ,
+        </if>
+        <if test="lastAmt != null">
+                #{lastAmt} ,
+        </if>
+        <if test="forzenOrgAmt != null">
+                #{forzenOrgAmt} ,
+        </if>
+        <if test="occurForzenAmt != null">
+                #{occurForzenAmt} ,
+        </if>
+        <if test="forzenLastAmt != null">
+                #{forzenLastAmt} ,
+        </if>
+        <if test="transId != null">
+                #{transId} ,
+        </if>
+        <if test="sourceAccountBankId != null">
+                #{sourceAccountBankId} ,
+        </if>
+        <if test="targetAccountBankId != null">
+                #{targetAccountBankId} ,
+        </if>
+        <if test="fee != null">
+                #{fee} ,
+        </if>
+        <if test="netFee != null">
+                #{netFee} ,
+        </if>
+        <if test="originalBusinessId != null">
+                #{originalBusinessId} ,
+        </if>
+        <if test="remark != null">
+                #{remark} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.uams.rpc.fund.model.AccountFundCurrentModel">
+        update AccountFundCurrent
+           <set>
+            <if test="accountId != null">
+                accountId = #{accountId} ,
+            </if>
+            <if test="currency != null">
+                currency = #{currency} ,
+            </if>
+            <if test="currentDate != null">
+                currentDate = #{currentDate} ,
+            </if>
+            <if test="businessFlag != null">
+                businessFlag = #{businessFlag} ,
+            </if>
+            <if test="stockinfoId != null">
+                stockinfoId = #{stockinfoId} ,
+            </if>
+            <if test="occurDirect != null">
+                occurDirect = #{occurDirect} ,
+            </if>
+            <if test="orgAmt != null">
+                orgAmt = #{orgAmt} ,
+            </if>
+            <if test="occurAmt != null">
+                occurAmt = #{occurAmt} ,
+            </if>
+            <if test="lastAmt != null">
+                lastAmt = #{lastAmt} ,
+            </if>
+            <if test="forzenOrgAmt != null">
+                forzenOrgAmt = #{forzenOrgAmt} ,
+            </if>
+            <if test="occurForzenAmt != null">
+                occurForzenAmt = #{occurForzenAmt} ,
+            </if>
+            <if test="forzenLastAmt != null">
+                forzenLastAmt = #{forzenLastAmt} ,
+            </if>
+            <if test="transId != null">
+                transId = #{transId} ,
+            </if>
+            <if test="sourceAccountBankId != null">
+                sourceAccountBankId = #{sourceAccountBankId} ,
+            </if>
+            <if test="targetAccountBankId != null">
+                targetAccountBankId = #{targetAccountBankId} ,
+            </if>
+            <if test="fee != null">
+                fee = #{fee} ,
+            </if>
+            <if test="netFee != null">
+                netFee = #{netFee} ,
+            </if>
+            <if test="originalBusinessId != null">
+                originalBusinessId = #{originalBusinessId} ,
+            </if>
+            <if test="remark != null">
+                remark = #{remark} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into AccountFundCurrent(
+            id ,
+            accountId ,
+            currency ,
+            currentDate ,
+            businessFlag ,
+            stockinfoId ,
+            occurDirect ,
+            orgAmt ,
+            occurAmt ,
+            lastAmt ,
+            forzenOrgAmt ,
+            occurForzenAmt ,
+            forzenLastAmt ,
+            transId ,
+            sourceAccountBankId ,
+            targetAccountBankId ,
+            fee ,
+            netFee ,
+            originalBusinessId ,
+            remark 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.accountId} ,
+            #{item.currency} ,
+            #{item.currentDate} ,
+            #{item.businessFlag} ,
+            #{item.stockinfoId} ,
+            #{item.occurDirect} ,
+            #{item.orgAmt} ,
+            #{item.occurAmt} ,
+            #{item.lastAmt} ,
+            #{item.forzenOrgAmt} ,
+            #{item.occurForzenAmt} ,
+            #{item.forzenLastAmt} ,
+            #{item.transId} ,
+            #{item.sourceAccountBankId} ,
+            #{item.targetAccountBankId} ,
+            #{item.fee} ,
+            #{item.netFee} ,
+            #{item.originalBusinessId} ,
+            #{item.remark} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update AccountFundCurrent set
+            accountId = #{item.accountId} ,
+            currency = #{item.currency} ,
+            currentDate = #{item.currentDate} ,
+            businessFlag = #{item.businessFlag} ,
+            stockinfoId = #{item.stockinfoId} ,
+            occurDirect = #{item.occurDirect} ,
+            orgAmt = #{item.orgAmt} ,
+            occurAmt = #{item.occurAmt} ,
+            lastAmt = #{item.lastAmt} ,
+            forzenOrgAmt = #{item.forzenOrgAmt} ,
+            occurForzenAmt = #{item.occurForzenAmt} ,
+            forzenLastAmt = #{item.forzenLastAmt} ,
+            transId = #{item.transId} ,
+            sourceAccountBankId = #{item.sourceAccountBankId} ,
+            targetAccountBankId = #{item.targetAccountBankId} ,
+            fee = #{item.fee} ,
+            netFee = #{item.netFee} ,
+            originalBusinessId = #{item.originalBusinessId} ,
+            remark = #{item.remark} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.uams.rpc.fund.model.AccountFundCurrentModel">
+        update AccountFundCurrent set
+            accountId = #{accountId} ,
+            currency = #{currency} ,
+            currentDate = #{currentDate} ,
+            businessFlag = #{businessFlag} ,
+            stockinfoId = #{stockinfoId} ,
+            occurDirect = #{occurDirect} ,
+            orgAmt = #{orgAmt} ,
+            occurAmt = #{occurAmt} ,
+            lastAmt = #{lastAmt} ,
+            forzenOrgAmt = #{forzenOrgAmt} ,
+            occurForzenAmt = #{occurForzenAmt} ,
+            forzenLastAmt = #{forzenLastAmt} ,
+            transId = #{transId} ,
+            sourceAccountBankId = #{sourceAccountBankId} ,
+            targetAccountBankId = #{targetAccountBankId} ,
+            fee = #{fee} ,
+            netFee = #{netFee} ,
+            originalBusinessId = #{originalBusinessId} ,
+            remark = #{remark} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.uams.rpc.fund.model.AccountFundCurrentModel">
+        select <include refid="accountFundCurrentColumns"/> from AccountFundCurrent a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.uams.rpc.fund.model.AccountFundCurrentModel">
+        SELECT
+        <include refid="accountFundCurrentJoinColumns"/>
+        FROM AccountFundCurrent a
+        left join account b on b.id=a.accountId
+        left join stockinfo c on c.id=a.stockinfoId
+        WHERE 1=1
+        <if test="accountId != null">
+            and a.accountId = #{accountId}
+        </if>
+        <if test="accountName != null and accountName!=''">
+            and b.accountName like '%'||#{accountName}||'%'
+        </if>
+        <if test="currency != null">
+            and a.currency like '%'||#{currency}||'%'
+        </if>
+        <if test="currentDate != null">
+            and a.currentDate = #{currentDate}
+        </if>
+        <if test="businessFlag != null">
+            and a.businessFlag like '%'||#{businessFlag}||'%'
+        </if>
+        <if test="stockinfoId != null">
+            and a.stockinfoId = #{stockinfoId}
+        </if>
+        <if test="occurDirect != null">
+            and a.occurDirect like '%'||#{occurDirect}||'%'
+        </if>
+        <if test="orgAmt != null">
+            and a.orgAmt = #{orgAmt}
+        </if>
+        <if test="occurAmt != null">
+            and a.occurAmt = #{occurAmt}
+        </if>
+        <if test="lastAmt != null">
+            and a.lastAmt = #{lastAmt}
+        </if>
+        <if test="forzenOrgAmt != null">
+            and a.forzenOrgAmt = #{forzenOrgAmt}
+        </if>
+        <if test="occurForzenAmt != null">
+            and a.occurForzenAmt = #{occurForzenAmt}
+        </if>
+        <if test="forzenLastAmt != null">
+            and a.forzenLastAmt = #{forzenLastAmt}
+        </if>
+        <if test="transId != null">
+            and a.transId like '%'||#{transId}||'%'
+        </if>
+        <if test="sourceAccountBankId != null">
+            and a.sourceAccountBankId = #{sourceAccountBankId}
+        </if>
+        <if test="targetAccountBankId != null">
+            and a.targetAccountBankId = #{targetAccountBankId}
+        </if>
+        <if test="fee != null">
+            and a.fee = #{fee}
+        </if>
+        <if test="netFee != null">
+            and a.netFee = #{netFee}
+        </if>
+        <if test="originalBusinessId != null">
+            and a.originalBusinessId = #{originalBusinessId}
+        </if>
+        <if test="remark != null">
+            and a.remark like '%'||#{remark}||'%'
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.uams.rpc.fund.model.AccountFundCurrentModel">
+        SELECT
+        <include refid="accountFundCurrentColumns"/>
+        FROM AccountFundCurrent a WHERE 1=1
+    </select>
+
+
+</mapper>
+

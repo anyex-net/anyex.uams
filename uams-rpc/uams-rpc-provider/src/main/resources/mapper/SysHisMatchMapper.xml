@@ -1,0 +1,1061 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uams.rpc.api.mapper.SysHisMatchMapper">
+    <!-- 基础列 -->
+    <sql id="sysHisMatchColumns">
+        a.id as id,
+        a.accountFee as accountFee,
+        a.accountFeeCurrency as accountFeeCurrency,
+        a.accountFeeCurrencyGroup as accountFeeCurrencyGroup,
+        a.accountNo as accountNo,
+        a.accountOtherFee as accountOtherFee,
+        a.callOrPutFlag as callOrPutFlag,
+        a.closePrice as closePrice,
+        a.closeProfit as closeProfit,
+        a.closeQty as closeQty,
+        a.commodityCurrency as commodityCurrency,
+        a.commodityCurrencyGroup as commodityCurrencyGroup,
+        a.commodityNo as commodityNo,
+        a.commodityType as commodityType,
+        a.contractNo as contractNo,
+        a.exchangeMatchNo as exchangeMatchNo,
+        a.exchangeNo as exchangeNo,
+        a.hedgeFlag as hedgeFlag,
+        a.isManualFee as isManualFee,
+        a.isUpperManualFee as isUpperManualFee,
+        a.matchCmbNo as matchCmbNo,
+        a.matchDateTime as matchDateTime,
+        a.matchNo as matchNo,
+        a.matchPrice as matchPrice,
+        a.matchQty as matchQty,
+        a.matchSide as matchSide,
+        a.matchSource as matchSource,
+        a.matchStreamID as matchStreamID,
+        a.matchUpperStreamID as matchUpperStreamID,
+        a.operateTime as operateTime,
+        a.operatorNo as operatorNo,
+        a.orderNo as orderNo,
+        a.positionEffect as positionEffect,
+        a.premiumIncome as premiumIncome,
+        a.premiumPay as premiumPay,
+        a.settleDate as settleDate,
+        a.settleGroupNo as settleGroupNo,
+        a.strikePrice as strikePrice,
+        a.tradeDate as tradeDate,
+        a.turnover as turnover,
+        a.upperFee as upperFee,
+        a.upperFeeCurrency as upperFeeCurrency,
+        a.upperFeeCurrencyGroup as upperFeeCurrencyGroup,
+        a.upperMatchDateTime as upperMatchDateTime,
+        a.upperNo as upperNo,
+        a.upperOtherFee as upperOtherFee,
+        a.remark as remark,
+        a.createDate as createDate,
+        a.updateDate as updateDate
+    </sql>
+
+    <resultMap id="sysHisMatchResultMap" type="com.uams.rpc.api.model.SysHisMatchModel">
+        <id column="id" property="id" />
+        <result column="accountFee" property="accountFee"/>
+        <result column="accountFeeCurrency" property="accountFeeCurrency"/>
+        <result column="accountFeeCurrencyGroup" property="accountFeeCurrencyGroup"/>
+        <result column="accountNo" property="accountNo"/>
+        <result column="accountOtherFee" property="accountOtherFee"/>
+        <result column="callOrPutFlag" property="callOrPutFlag"/>
+        <result column="closePrice" property="closePrice"/>
+        <result column="closeProfit" property="closeProfit"/>
+        <result column="closeQty" property="closeQty"/>
+        <result column="commodityCurrency" property="commodityCurrency"/>
+        <result column="commodityCurrencyGroup" property="commodityCurrencyGroup"/>
+        <result column="commodityNo" property="commodityNo"/>
+        <result column="commodityType" property="commodityType"/>
+        <result column="contractNo" property="contractNo"/>
+        <result column="exchangeMatchNo" property="exchangeMatchNo"/>
+        <result column="exchangeNo" property="exchangeNo"/>
+        <result column="hedgeFlag" property="hedgeFlag"/>
+        <result column="isManualFee" property="isManualFee"/>
+        <result column="isUpperManualFee" property="isUpperManualFee"/>
+        <result column="matchCmbNo" property="matchCmbNo"/>
+        <result column="matchDateTime" property="matchDateTime"/>
+        <result column="matchNo" property="matchNo"/>
+        <result column="matchPrice" property="matchPrice"/>
+        <result column="matchQty" property="matchQty"/>
+        <result column="matchSide" property="matchSide"/>
+        <result column="matchSource" property="matchSource"/>
+        <result column="matchStreamID" property="matchStreamID"/>
+        <result column="matchUpperStreamID" property="matchUpperStreamID"/>
+        <result column="operateTime" property="operateTime"/>
+        <result column="operatorNo" property="operatorNo"/>
+        <result column="orderNo" property="orderNo"/>
+        <result column="positionEffect" property="positionEffect"/>
+        <result column="premiumIncome" property="premiumIncome"/>
+        <result column="premiumPay" property="premiumPay"/>
+        <result column="settleDate" property="settleDate"/>
+        <result column="settleGroupNo" property="settleGroupNo"/>
+        <result column="strikePrice" property="strikePrice"/>
+        <result column="tradeDate" property="tradeDate"/>
+        <result column="turnover" property="turnover"/>
+        <result column="upperFee" property="upperFee"/>
+        <result column="upperFeeCurrency" property="upperFeeCurrency"/>
+        <result column="upperFeeCurrencyGroup" property="upperFeeCurrencyGroup"/>
+        <result column="upperMatchDateTime" property="upperMatchDateTime"/>
+        <result column="upperNo" property="upperNo"/>
+        <result column="upperOtherFee" property="upperOtherFee"/>
+        <result column="remark" property="remark"/>
+        <result column="createDate" property="createDate"/>
+        <result column="updateDate" property="updateDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.uams.rpc.api.model.SysHisMatchModel">
+        insert into SysHisMatch(
+            id ,
+            accountFee ,
+            accountFeeCurrency ,
+            accountFeeCurrencyGroup ,
+            accountNo ,
+            accountOtherFee ,
+            callOrPutFlag ,
+            closePrice ,
+            closeProfit ,
+            closeQty ,
+            commodityCurrency ,
+            commodityCurrencyGroup ,
+            commodityNo ,
+            commodityType ,
+            contractNo ,
+            exchangeMatchNo ,
+            exchangeNo ,
+            hedgeFlag ,
+            isManualFee ,
+            isUpperManualFee ,
+            matchCmbNo ,
+            matchDateTime ,
+            matchNo ,
+            matchPrice ,
+            matchQty ,
+            matchSide ,
+            matchSource ,
+            matchStreamID ,
+            matchUpperStreamID ,
+            operateTime ,
+            operatorNo ,
+            orderNo ,
+            positionEffect ,
+            premiumIncome ,
+            premiumPay ,
+            settleDate ,
+            settleGroupNo ,
+            strikePrice ,
+            tradeDate ,
+            turnover ,
+            upperFee ,
+            upperFeeCurrency ,
+            upperFeeCurrencyGroup ,
+            upperMatchDateTime ,
+            upperNo ,
+            upperOtherFee ,
+            remark ,
+            createDate ,
+            updateDate 
+        ) VALUES (
+            #{id} ,
+            #{accountFee} ,
+            #{accountFeeCurrency} ,
+            #{accountFeeCurrencyGroup} ,
+            #{accountNo} ,
+            #{accountOtherFee} ,
+            #{callOrPutFlag} ,
+            #{closePrice} ,
+            #{closeProfit} ,
+            #{closeQty} ,
+            #{commodityCurrency} ,
+            #{commodityCurrencyGroup} ,
+            #{commodityNo} ,
+            #{commodityType} ,
+            #{contractNo} ,
+            #{exchangeMatchNo} ,
+            #{exchangeNo} ,
+            #{hedgeFlag} ,
+            #{isManualFee} ,
+            #{isUpperManualFee} ,
+            #{matchCmbNo} ,
+            #{matchDateTime} ,
+            #{matchNo} ,
+            #{matchPrice} ,
+            #{matchQty} ,
+            #{matchSide} ,
+            #{matchSource} ,
+            #{matchStreamID} ,
+            #{matchUpperStreamID} ,
+            #{operateTime} ,
+            #{operatorNo} ,
+            #{orderNo} ,
+            #{positionEffect} ,
+            #{premiumIncome} ,
+            #{premiumPay} ,
+            #{settleDate} ,
+            #{settleGroupNo} ,
+            #{strikePrice} ,
+            #{tradeDate} ,
+            #{turnover} ,
+            #{upperFee} ,
+            #{upperFeeCurrency} ,
+            #{upperFeeCurrencyGroup} ,
+            #{upperMatchDateTime} ,
+            #{upperNo} ,
+            #{upperOtherFee} ,
+            #{remark} ,
+            #{createDate} ,
+            #{updateDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from SysHisMatch where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update SysHisMatch set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.uams.rpc.api.model.SysHisMatchModel">
+        insert into SysHisMatch
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="accountFee != null">
+                accountFee ,
+        </if>
+        <if test="accountFeeCurrency != null">
+                accountFeeCurrency ,
+        </if>
+        <if test="accountFeeCurrencyGroup != null">
+                accountFeeCurrencyGroup ,
+        </if>
+        <if test="accountNo != null">
+                accountNo ,
+        </if>
+        <if test="accountOtherFee != null">
+                accountOtherFee ,
+        </if>
+        <if test="callOrPutFlag != null">
+                callOrPutFlag ,
+        </if>
+        <if test="closePrice != null">
+                closePrice ,
+        </if>
+        <if test="closeProfit != null">
+                closeProfit ,
+        </if>
+        <if test="closeQty != null">
+                closeQty ,
+        </if>
+        <if test="commodityCurrency != null">
+                commodityCurrency ,
+        </if>
+        <if test="commodityCurrencyGroup != null">
+                commodityCurrencyGroup ,
+        </if>
+        <if test="commodityNo != null">
+                commodityNo ,
+        </if>
+        <if test="commodityType != null">
+                commodityType ,
+        </if>
+        <if test="contractNo != null">
+                contractNo ,
+        </if>
+        <if test="exchangeMatchNo != null">
+                exchangeMatchNo ,
+        </if>
+        <if test="exchangeNo != null">
+                exchangeNo ,
+        </if>
+        <if test="hedgeFlag != null">
+                hedgeFlag ,
+        </if>
+        <if test="isManualFee != null">
+                isManualFee ,
+        </if>
+        <if test="isUpperManualFee != null">
+                isUpperManualFee ,
+        </if>
+        <if test="matchCmbNo != null">
+                matchCmbNo ,
+        </if>
+        <if test="matchDateTime != null">
+                matchDateTime ,
+        </if>
+        <if test="matchNo != null">
+                matchNo ,
+        </if>
+        <if test="matchPrice != null">
+                matchPrice ,
+        </if>
+        <if test="matchQty != null">
+                matchQty ,
+        </if>
+        <if test="matchSide != null">
+                matchSide ,
+        </if>
+        <if test="matchSource != null">
+                matchSource ,
+        </if>
+        <if test="matchStreamID != null">
+                matchStreamID ,
+        </if>
+        <if test="matchUpperStreamID != null">
+                matchUpperStreamID ,
+        </if>
+        <if test="operateTime != null">
+                operateTime ,
+        </if>
+        <if test="operatorNo != null">
+                operatorNo ,
+        </if>
+        <if test="orderNo != null">
+                orderNo ,
+        </if>
+        <if test="positionEffect != null">
+                positionEffect ,
+        </if>
+        <if test="premiumIncome != null">
+                premiumIncome ,
+        </if>
+        <if test="premiumPay != null">
+                premiumPay ,
+        </if>
+        <if test="settleDate != null">
+                settleDate ,
+        </if>
+        <if test="settleGroupNo != null">
+                settleGroupNo ,
+        </if>
+        <if test="strikePrice != null">
+                strikePrice ,
+        </if>
+        <if test="tradeDate != null">
+                tradeDate ,
+        </if>
+        <if test="turnover != null">
+                turnover ,
+        </if>
+        <if test="upperFee != null">
+                upperFee ,
+        </if>
+        <if test="upperFeeCurrency != null">
+                upperFeeCurrency ,
+        </if>
+        <if test="upperFeeCurrencyGroup != null">
+                upperFeeCurrencyGroup ,
+        </if>
+        <if test="upperMatchDateTime != null">
+                upperMatchDateTime ,
+        </if>
+        <if test="upperNo != null">
+                upperNo ,
+        </if>
+        <if test="upperOtherFee != null">
+                upperOtherFee ,
+        </if>
+        <if test="remark != null">
+                remark ,
+        </if>
+        <if test="createDate != null">
+                createDate ,
+        </if>
+        <if test="updateDate != null">
+                updateDate 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="accountFee != null">
+                #{accountFee} ,
+        </if>
+        <if test="accountFeeCurrency != null">
+                #{accountFeeCurrency} ,
+        </if>
+        <if test="accountFeeCurrencyGroup != null">
+                #{accountFeeCurrencyGroup} ,
+        </if>
+        <if test="accountNo != null">
+                #{accountNo} ,
+        </if>
+        <if test="accountOtherFee != null">
+                #{accountOtherFee} ,
+        </if>
+        <if test="callOrPutFlag != null">
+                #{callOrPutFlag} ,
+        </if>
+        <if test="closePrice != null">
+                #{closePrice} ,
+        </if>
+        <if test="closeProfit != null">
+                #{closeProfit} ,
+        </if>
+        <if test="closeQty != null">
+                #{closeQty} ,
+        </if>
+        <if test="commodityCurrency != null">
+                #{commodityCurrency} ,
+        </if>
+        <if test="commodityCurrencyGroup != null">
+                #{commodityCurrencyGroup} ,
+        </if>
+        <if test="commodityNo != null">
+                #{commodityNo} ,
+        </if>
+        <if test="commodityType != null">
+                #{commodityType} ,
+        </if>
+        <if test="contractNo != null">
+                #{contractNo} ,
+        </if>
+        <if test="exchangeMatchNo != null">
+                #{exchangeMatchNo} ,
+        </if>
+        <if test="exchangeNo != null">
+                #{exchangeNo} ,
+        </if>
+        <if test="hedgeFlag != null">
+                #{hedgeFlag} ,
+        </if>
+        <if test="isManualFee != null">
+                #{isManualFee} ,
+        </if>
+        <if test="isUpperManualFee != null">
+                #{isUpperManualFee} ,
+        </if>
+        <if test="matchCmbNo != null">
+                #{matchCmbNo} ,
+        </if>
+        <if test="matchDateTime != null">
+                #{matchDateTime} ,
+        </if>
+        <if test="matchNo != null">
+                #{matchNo} ,
+        </if>
+        <if test="matchPrice != null">
+                #{matchPrice} ,
+        </if>
+        <if test="matchQty != null">
+                #{matchQty} ,
+        </if>
+        <if test="matchSide != null">
+                #{matchSide} ,
+        </if>
+        <if test="matchSource != null">
+                #{matchSource} ,
+        </if>
+        <if test="matchStreamID != null">
+                #{matchStreamID} ,
+        </if>
+        <if test="matchUpperStreamID != null">
+                #{matchUpperStreamID} ,
+        </if>
+        <if test="operateTime != null">
+                #{operateTime} ,
+        </if>
+        <if test="operatorNo != null">
+                #{operatorNo} ,
+        </if>
+        <if test="orderNo != null">
+                #{orderNo} ,
+        </if>
+        <if test="positionEffect != null">
+                #{positionEffect} ,
+        </if>
+        <if test="premiumIncome != null">
+                #{premiumIncome} ,
+        </if>
+        <if test="premiumPay != null">
+                #{premiumPay} ,
+        </if>
+        <if test="settleDate != null">
+                #{settleDate} ,
+        </if>
+        <if test="settleGroupNo != null">
+                #{settleGroupNo} ,
+        </if>
+        <if test="strikePrice != null">
+                #{strikePrice} ,
+        </if>
+        <if test="tradeDate != null">
+                #{tradeDate} ,
+        </if>
+        <if test="turnover != null">
+                #{turnover} ,
+        </if>
+        <if test="upperFee != null">
+                #{upperFee} ,
+        </if>
+        <if test="upperFeeCurrency != null">
+                #{upperFeeCurrency} ,
+        </if>
+        <if test="upperFeeCurrencyGroup != null">
+                #{upperFeeCurrencyGroup} ,
+        </if>
+        <if test="upperMatchDateTime != null">
+                #{upperMatchDateTime} ,
+        </if>
+        <if test="upperNo != null">
+                #{upperNo} ,
+        </if>
+        <if test="upperOtherFee != null">
+                #{upperOtherFee} ,
+        </if>
+        <if test="remark != null">
+                #{remark} ,
+        </if>
+        <if test="createDate != null">
+                #{createDate} ,
+        </if>
+        <if test="updateDate != null">
+                #{updateDate} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.uams.rpc.api.model.SysHisMatchModel">
+        update SysHisMatch
+           <set>
+            <if test="accountFee != null">
+                accountFee = #{accountFee} ,
+            </if>
+            <if test="accountFeeCurrency != null">
+                accountFeeCurrency = #{accountFeeCurrency} ,
+            </if>
+            <if test="accountFeeCurrencyGroup != null">
+                accountFeeCurrencyGroup = #{accountFeeCurrencyGroup} ,
+            </if>
+            <if test="accountNo != null">
+                accountNo = #{accountNo} ,
+            </if>
+            <if test="accountOtherFee != null">
+                accountOtherFee = #{accountOtherFee} ,
+            </if>
+            <if test="callOrPutFlag != null">
+                callOrPutFlag = #{callOrPutFlag} ,
+            </if>
+            <if test="closePrice != null">
+                closePrice = #{closePrice} ,
+            </if>
+            <if test="closeProfit != null">
+                closeProfit = #{closeProfit} ,
+            </if>
+            <if test="closeQty != null">
+                closeQty = #{closeQty} ,
+            </if>
+            <if test="commodityCurrency != null">
+                commodityCurrency = #{commodityCurrency} ,
+            </if>
+            <if test="commodityCurrencyGroup != null">
+                commodityCurrencyGroup = #{commodityCurrencyGroup} ,
+            </if>
+            <if test="commodityNo != null">
+                commodityNo = #{commodityNo} ,
+            </if>
+            <if test="commodityType != null">
+                commodityType = #{commodityType} ,
+            </if>
+            <if test="contractNo != null">
+                contractNo = #{contractNo} ,
+            </if>
+            <if test="exchangeMatchNo != null">
+                exchangeMatchNo = #{exchangeMatchNo} ,
+            </if>
+            <if test="exchangeNo != null">
+                exchangeNo = #{exchangeNo} ,
+            </if>
+            <if test="hedgeFlag != null">
+                hedgeFlag = #{hedgeFlag} ,
+            </if>
+            <if test="isManualFee != null">
+                isManualFee = #{isManualFee} ,
+            </if>
+            <if test="isUpperManualFee != null">
+                isUpperManualFee = #{isUpperManualFee} ,
+            </if>
+            <if test="matchCmbNo != null">
+                matchCmbNo = #{matchCmbNo} ,
+            </if>
+            <if test="matchDateTime != null">
+                matchDateTime = #{matchDateTime} ,
+            </if>
+            <if test="matchNo != null">
+                matchNo = #{matchNo} ,
+            </if>
+            <if test="matchPrice != null">
+                matchPrice = #{matchPrice} ,
+            </if>
+            <if test="matchQty != null">
+                matchQty = #{matchQty} ,
+            </if>
+            <if test="matchSide != null">
+                matchSide = #{matchSide} ,
+            </if>
+            <if test="matchSource != null">
+                matchSource = #{matchSource} ,
+            </if>
+            <if test="matchStreamID != null">
+                matchStreamID = #{matchStreamID} ,
+            </if>
+            <if test="matchUpperStreamID != null">
+                matchUpperStreamID = #{matchUpperStreamID} ,
+            </if>
+            <if test="operateTime != null">
+                operateTime = #{operateTime} ,
+            </if>
+            <if test="operatorNo != null">
+                operatorNo = #{operatorNo} ,
+            </if>
+            <if test="orderNo != null">
+                orderNo = #{orderNo} ,
+            </if>
+            <if test="positionEffect != null">
+                positionEffect = #{positionEffect} ,
+            </if>
+            <if test="premiumIncome != null">
+                premiumIncome = #{premiumIncome} ,
+            </if>
+            <if test="premiumPay != null">
+                premiumPay = #{premiumPay} ,
+            </if>
+            <if test="settleDate != null">
+                settleDate = #{settleDate} ,
+            </if>
+            <if test="settleGroupNo != null">
+                settleGroupNo = #{settleGroupNo} ,
+            </if>
+            <if test="strikePrice != null">
+                strikePrice = #{strikePrice} ,
+            </if>
+            <if test="tradeDate != null">
+                tradeDate = #{tradeDate} ,
+            </if>
+            <if test="turnover != null">
+                turnover = #{turnover} ,
+            </if>
+            <if test="upperFee != null">
+                upperFee = #{upperFee} ,
+            </if>
+            <if test="upperFeeCurrency != null">
+                upperFeeCurrency = #{upperFeeCurrency} ,
+            </if>
+            <if test="upperFeeCurrencyGroup != null">
+                upperFeeCurrencyGroup = #{upperFeeCurrencyGroup} ,
+            </if>
+            <if test="upperMatchDateTime != null">
+                upperMatchDateTime = #{upperMatchDateTime} ,
+            </if>
+            <if test="upperNo != null">
+                upperNo = #{upperNo} ,
+            </if>
+            <if test="upperOtherFee != null">
+                upperOtherFee = #{upperOtherFee} ,
+            </if>
+            <if test="remark != null">
+                remark = #{remark} ,
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate} ,
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into SysHisMatch(
+            id ,
+            accountFee ,
+            accountFeeCurrency ,
+            accountFeeCurrencyGroup ,
+            accountNo ,
+            accountOtherFee ,
+            callOrPutFlag ,
+            closePrice ,
+            closeProfit ,
+            closeQty ,
+            commodityCurrency ,
+            commodityCurrencyGroup ,
+            commodityNo ,
+            commodityType ,
+            contractNo ,
+            exchangeMatchNo ,
+            exchangeNo ,
+            hedgeFlag ,
+            isManualFee ,
+            isUpperManualFee ,
+            matchCmbNo ,
+            matchDateTime ,
+            matchNo ,
+            matchPrice ,
+            matchQty ,
+            matchSide ,
+            matchSource ,
+            matchStreamID ,
+            matchUpperStreamID ,
+            operateTime ,
+            operatorNo ,
+            orderNo ,
+            positionEffect ,
+            premiumIncome ,
+            premiumPay ,
+            settleDate ,
+            settleGroupNo ,
+            strikePrice ,
+            tradeDate ,
+            turnover ,
+            upperFee ,
+            upperFeeCurrency ,
+            upperFeeCurrencyGroup ,
+            upperMatchDateTime ,
+            upperNo ,
+            upperOtherFee ,
+            remark ,
+            createDate ,
+            updateDate 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.accountFee} ,
+            #{item.accountFeeCurrency} ,
+            #{item.accountFeeCurrencyGroup} ,
+            #{item.accountNo} ,
+            #{item.accountOtherFee} ,
+            #{item.callOrPutFlag} ,
+            #{item.closePrice} ,
+            #{item.closeProfit} ,
+            #{item.closeQty} ,
+            #{item.commodityCurrency} ,
+            #{item.commodityCurrencyGroup} ,
+            #{item.commodityNo} ,
+            #{item.commodityType} ,
+            #{item.contractNo} ,
+            #{item.exchangeMatchNo} ,
+            #{item.exchangeNo} ,
+            #{item.hedgeFlag} ,
+            #{item.isManualFee} ,
+            #{item.isUpperManualFee} ,
+            #{item.matchCmbNo} ,
+            #{item.matchDateTime} ,
+            #{item.matchNo} ,
+            #{item.matchPrice} ,
+            #{item.matchQty} ,
+            #{item.matchSide} ,
+            #{item.matchSource} ,
+            #{item.matchStreamID} ,
+            #{item.matchUpperStreamID} ,
+            #{item.operateTime} ,
+            #{item.operatorNo} ,
+            #{item.orderNo} ,
+            #{item.positionEffect} ,
+            #{item.premiumIncome} ,
+            #{item.premiumPay} ,
+            #{item.settleDate} ,
+            #{item.settleGroupNo} ,
+            #{item.strikePrice} ,
+            #{item.tradeDate} ,
+            #{item.turnover} ,
+            #{item.upperFee} ,
+            #{item.upperFeeCurrency} ,
+            #{item.upperFeeCurrencyGroup} ,
+            #{item.upperMatchDateTime} ,
+            #{item.upperNo} ,
+            #{item.upperOtherFee} ,
+            #{item.remark} ,
+            #{item.createDate} ,
+            #{item.updateDate} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update SysHisMatch set
+            accountFee = #{item.accountFee} ,
+            accountFeeCurrency = #{item.accountFeeCurrency} ,
+            accountFeeCurrencyGroup = #{item.accountFeeCurrencyGroup} ,
+            accountNo = #{item.accountNo} ,
+            accountOtherFee = #{item.accountOtherFee} ,
+            callOrPutFlag = #{item.callOrPutFlag} ,
+            closePrice = #{item.closePrice} ,
+            closeProfit = #{item.closeProfit} ,
+            closeQty = #{item.closeQty} ,
+            commodityCurrency = #{item.commodityCurrency} ,
+            commodityCurrencyGroup = #{item.commodityCurrencyGroup} ,
+            commodityNo = #{item.commodityNo} ,
+            commodityType = #{item.commodityType} ,
+            contractNo = #{item.contractNo} ,
+            exchangeMatchNo = #{item.exchangeMatchNo} ,
+            exchangeNo = #{item.exchangeNo} ,
+            hedgeFlag = #{item.hedgeFlag} ,
+            isManualFee = #{item.isManualFee} ,
+            isUpperManualFee = #{item.isUpperManualFee} ,
+            matchCmbNo = #{item.matchCmbNo} ,
+            matchDateTime = #{item.matchDateTime} ,
+            matchNo = #{item.matchNo} ,
+            matchPrice = #{item.matchPrice} ,
+            matchQty = #{item.matchQty} ,
+            matchSide = #{item.matchSide} ,
+            matchSource = #{item.matchSource} ,
+            matchStreamID = #{item.matchStreamID} ,
+            matchUpperStreamID = #{item.matchUpperStreamID} ,
+            operateTime = #{item.operateTime} ,
+            operatorNo = #{item.operatorNo} ,
+            orderNo = #{item.orderNo} ,
+            positionEffect = #{item.positionEffect} ,
+            premiumIncome = #{item.premiumIncome} ,
+            premiumPay = #{item.premiumPay} ,
+            settleDate = #{item.settleDate} ,
+            settleGroupNo = #{item.settleGroupNo} ,
+            strikePrice = #{item.strikePrice} ,
+            tradeDate = #{item.tradeDate} ,
+            turnover = #{item.turnover} ,
+            upperFee = #{item.upperFee} ,
+            upperFeeCurrency = #{item.upperFeeCurrency} ,
+            upperFeeCurrencyGroup = #{item.upperFeeCurrencyGroup} ,
+            upperMatchDateTime = #{item.upperMatchDateTime} ,
+            upperNo = #{item.upperNo} ,
+            upperOtherFee = #{item.upperOtherFee} ,
+            remark = #{item.remark} ,
+            createDate = #{item.createDate} ,
+            updateDate = #{item.updateDate} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.uams.rpc.api.model.SysHisMatchModel">
+        update SysHisMatch set
+            accountFee = #{accountFee} ,
+            accountFeeCurrency = #{accountFeeCurrency} ,
+            accountFeeCurrencyGroup = #{accountFeeCurrencyGroup} ,
+            accountNo = #{accountNo} ,
+            accountOtherFee = #{accountOtherFee} ,
+            callOrPutFlag = #{callOrPutFlag} ,
+            closePrice = #{closePrice} ,
+            closeProfit = #{closeProfit} ,
+            closeQty = #{closeQty} ,
+            commodityCurrency = #{commodityCurrency} ,
+            commodityCurrencyGroup = #{commodityCurrencyGroup} ,
+            commodityNo = #{commodityNo} ,
+            commodityType = #{commodityType} ,
+            contractNo = #{contractNo} ,
+            exchangeMatchNo = #{exchangeMatchNo} ,
+            exchangeNo = #{exchangeNo} ,
+            hedgeFlag = #{hedgeFlag} ,
+            isManualFee = #{isManualFee} ,
+            isUpperManualFee = #{isUpperManualFee} ,
+            matchCmbNo = #{matchCmbNo} ,
+            matchDateTime = #{matchDateTime} ,
+            matchNo = #{matchNo} ,
+            matchPrice = #{matchPrice} ,
+            matchQty = #{matchQty} ,
+            matchSide = #{matchSide} ,
+            matchSource = #{matchSource} ,
+            matchStreamID = #{matchStreamID} ,
+            matchUpperStreamID = #{matchUpperStreamID} ,
+            operateTime = #{operateTime} ,
+            operatorNo = #{operatorNo} ,
+            orderNo = #{orderNo} ,
+            positionEffect = #{positionEffect} ,
+            premiumIncome = #{premiumIncome} ,
+            premiumPay = #{premiumPay} ,
+            settleDate = #{settleDate} ,
+            settleGroupNo = #{settleGroupNo} ,
+            strikePrice = #{strikePrice} ,
+            tradeDate = #{tradeDate} ,
+            turnover = #{turnover} ,
+            upperFee = #{upperFee} ,
+            upperFeeCurrency = #{upperFeeCurrency} ,
+            upperFeeCurrencyGroup = #{upperFeeCurrencyGroup} ,
+            upperMatchDateTime = #{upperMatchDateTime} ,
+            upperNo = #{upperNo} ,
+            upperOtherFee = #{upperOtherFee} ,
+            remark = #{remark} ,
+            createDate = #{createDate} ,
+            updateDate = #{updateDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.uams.rpc.api.model.SysHisMatchModel">
+        select <include refid="sysHisMatchColumns"/> from SysHisMatch a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.uams.rpc.api.model.SysHisMatchModel">
+        SELECT
+        <include refid="sysHisMatchColumns"/>
+        FROM SysHisMatch a WHERE 1=1
+        <if test="accountFee != null">
+            and a.accountFee = #{accountFee}
+        </if>
+        <if test="accountFeeCurrency != null">
+            and a.accountFeeCurrency like '%'||#{accountFeeCurrency}||'%'
+        </if>
+        <if test="accountFeeCurrencyGroup != null">
+            and a.accountFeeCurrencyGroup like '%'||#{accountFeeCurrencyGroup}||'%'
+        </if>
+        <if test="accountNo != null">
+            and a.accountNo like '%'||#{accountNo}||'%'
+        </if>
+        <if test="accountOtherFee != null">
+            and a.accountOtherFee = #{accountOtherFee}
+        </if>
+        <if test="callOrPutFlag != null">
+            and a.callOrPutFlag like '%'||#{callOrPutFlag}||'%'
+        </if>
+        <if test="closePrice != null">
+            and a.closePrice = #{closePrice}
+        </if>
+        <if test="closeProfit != null">
+            and a.closeProfit = #{closeProfit}
+        </if>
+        <if test="closeQty != null">
+            and a.closeQty = #{closeQty}
+        </if>
+        <if test="commodityCurrency != null">
+            and a.commodityCurrency like '%'||#{commodityCurrency}||'%'
+        </if>
+        <if test="commodityCurrencyGroup != null">
+            and a.commodityCurrencyGroup like '%'||#{commodityCurrencyGroup}||'%'
+        </if>
+        <if test="commodityNo != null">
+            and a.commodityNo like '%'||#{commodityNo}||'%'
+        </if>
+        <if test="commodityType != null">
+            and a.commodityType like '%'||#{commodityType}||'%'
+        </if>
+        <if test="contractNo != null">
+            and a.contractNo like '%'||#{contractNo}||'%'
+        </if>
+        <if test="exchangeMatchNo != null">
+            and a.exchangeMatchNo like '%'||#{exchangeMatchNo}||'%'
+        </if>
+        <if test="exchangeNo != null">
+            and a.exchangeNo like '%'||#{exchangeNo}||'%'
+        </if>
+        <if test="hedgeFlag != null">
+            and a.hedgeFlag like '%'||#{hedgeFlag}||'%'
+        </if>
+        <if test="isManualFee != null">
+            and a.isManualFee like '%'||#{isManualFee}||'%'
+        </if>
+        <if test="isUpperManualFee != null">
+            and a.isUpperManualFee like '%'||#{isUpperManualFee}||'%'
+        </if>
+        <if test="matchCmbNo != null">
+            and a.matchCmbNo like '%'||#{matchCmbNo}||'%'
+        </if>
+        <if test="matchDateTime != null">
+            and a.matchDateTime like '%'||#{matchDateTime}||'%'
+        </if>
+        <if test="matchNo != null">
+            and a.matchNo like '%'||#{matchNo}||'%'
+        </if>
+        <if test="matchPrice != null">
+            and a.matchPrice = #{matchPrice}
+        </if>
+        <if test="matchQty != null">
+            and a.matchQty = #{matchQty}
+        </if>
+        <if test="matchSide != null">
+            and a.matchSide like '%'||#{matchSide}||'%'
+        </if>
+        <if test="matchSource != null">
+            and a.matchSource like '%'||#{matchSource}||'%'
+        </if>
+        <if test="matchStreamID != null">
+            and a.matchStreamID = #{matchStreamID}
+        </if>
+        <if test="matchUpperStreamID != null">
+            and a.matchUpperStreamID = #{matchUpperStreamID}
+        </if>
+        <if test="operateTime != null">
+            and a.operateTime like '%'||#{operateTime}||'%'
+        </if>
+        <if test="operatorNo != null">
+            and a.operatorNo like '%'||#{operatorNo}||'%'
+        </if>
+        <if test="orderNo != null">
+            and a.orderNo like '%'||#{orderNo}||'%'
+        </if>
+        <if test="positionEffect != null">
+            and a.positionEffect like '%'||#{positionEffect}||'%'
+        </if>
+        <if test="premiumIncome != null">
+            and a.premiumIncome = #{premiumIncome}
+        </if>
+        <if test="premiumPay != null">
+            and a.premiumPay = #{premiumPay}
+        </if>
+        <if test="settleDate != null">
+            and a.settleDate like '%'||#{settleDate}||'%'
+        </if>
+        <if test="settleGroupNo != null">
+            and a.settleGroupNo like '%'||#{settleGroupNo}||'%'
+        </if>
+        <if test="strikePrice != null">
+            and a.strikePrice like '%'||#{strikePrice}||'%'
+        </if>
+        <if test="tradeDate != null">
+            and a.tradeDate like '%'||#{tradeDate}||'%'
+        </if>
+        <if test="turnover != null">
+            and a.turnover = #{turnover}
+        </if>
+        <if test="upperFee != null">
+            and a.upperFee = #{upperFee}
+        </if>
+        <if test="upperFeeCurrency != null">
+            and a.upperFeeCurrency like '%'||#{upperFeeCurrency}||'%'
+        </if>
+        <if test="upperFeeCurrencyGroup != null">
+            and a.upperFeeCurrencyGroup like '%'||#{upperFeeCurrencyGroup}||'%'
+        </if>
+        <if test="upperMatchDateTime != null">
+            and a.upperMatchDateTime like '%'||#{upperMatchDateTime}||'%'
+        </if>
+        <if test="upperNo != null">
+            and a.upperNo like '%'||#{upperNo}||'%'
+        </if>
+        <if test="upperOtherFee != null">
+            and a.upperOtherFee = #{upperOtherFee}
+        </if>
+        <if test="remark != null">
+            and a.remark like '%'||#{remark}||'%'
+        </if>
+        <if test="createDate != null">
+            and a.createDate = #{createDate}
+        </if>
+        <if test="updateDate != null">
+            and a.updateDate = #{updateDate}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.uams.rpc.api.model.SysHisMatchModel">
+        SELECT
+        <include refid="sysHisMatchColumns"/>
+        FROM SysHisMatch a WHERE a.delFlag = 0
+    </select>
+
+
+</mapper>
+

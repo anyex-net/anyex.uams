@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uams.rpc.api.mapper.SysAccountFeeRentMapper">
+    <!-- 基础列 -->
+    <sql id="sysAccountFeeRentColumns">
+        a.id as id,
+        a.accountNo as accountNo,
+        a.calculateMode as calculateMode,
+        a.closeTodayFee as closeTodayFee,
+        a.commodityNo as commodityNo,
+        a.commodityType as commodityType,
+        a.currencyGroupNo as currencyGroupNo,
+        a.currencyNo as currencyNo,
+        a.exchangeNo as exchangeNo,
+        a.matchSource as matchSource,
+        a.openCloseFee as openCloseFee,
+        a.remark as remark,
+        a.createDate as createDate,
+        a.updateDate as updateDate
+    </sql>
+
+    <resultMap id="sysAccountFeeRentResultMap" type="com.uams.rpc.api.model.SysAccountFeeRentModel">
+        <id column="id" property="id" />
+        <result column="accountNo" property="accountNo"/>
+        <result column="calculateMode" property="calculateMode"/>
+        <result column="closeTodayFee" property="closeTodayFee"/>
+        <result column="commodityNo" property="commodityNo"/>
+        <result column="commodityType" property="commodityType"/>
+        <result column="currencyGroupNo" property="currencyGroupNo"/>
+        <result column="currencyNo" property="currencyNo"/>
+        <result column="exchangeNo" property="exchangeNo"/>
+        <result column="matchSource" property="matchSource"/>
+        <result column="openCloseFee" property="openCloseFee"/>
+        <result column="remark" property="remark"/>
+        <result column="createDate" property="createDate"/>
+        <result column="updateDate" property="updateDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.uams.rpc.api.model.SysAccountFeeRentModel">
+        insert into SysAccountFeeRent(
+            id ,
+            accountNo ,
+            calculateMode ,
+            closeTodayFee ,
+            commodityNo ,
+            commodityType ,
+            currencyGroupNo ,
+            currencyNo ,
+            exchangeNo ,
+            matchSource ,
+            openCloseFee ,
+            remark ,
+            createDate ,
+            updateDate 
+        ) VALUES (
+            #{id} ,
+            #{accountNo} ,
+            #{calculateMode} ,
+            #{closeTodayFee} ,
+            #{commodityNo} ,
+            #{commodityType} ,
+            #{currencyGroupNo} ,
+            #{currencyNo} ,
+            #{exchangeNo} ,
+            #{matchSource} ,
+            #{openCloseFee} ,
+            #{remark} ,
+            #{createDate} ,
+            #{updateDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from SysAccountFeeRent where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update SysAccountFeeRent set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.uams.rpc.api.model.SysAccountFeeRentModel">
+        insert into SysAccountFeeRent
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="accountNo != null">
+                accountNo ,
+        </if>
+        <if test="calculateMode != null">
+                calculateMode ,
+        </if>
+        <if test="closeTodayFee != null">
+                closeTodayFee ,
+        </if>
+        <if test="commodityNo != null">
+                commodityNo ,
+        </if>
+        <if test="commodityType != null">
+                commodityType ,
+        </if>
+        <if test="currencyGroupNo != null">
+                currencyGroupNo ,
+        </if>
+        <if test="currencyNo != null">
+                currencyNo ,
+        </if>
+        <if test="exchangeNo != null">
+                exchangeNo ,
+        </if>
+        <if test="matchSource != null">
+                matchSource ,
+        </if>
+        <if test="openCloseFee != null">
+                openCloseFee ,
+        </if>
+        <if test="remark != null">
+                remark ,
+        </if>
+        <if test="createDate != null">
+                createDate ,
+        </if>
+        <if test="updateDate != null">
+                updateDate 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="accountNo != null">
+                #{accountNo} ,
+        </if>
+        <if test="calculateMode != null">
+                #{calculateMode} ,
+        </if>
+        <if test="closeTodayFee != null">
+                #{closeTodayFee} ,
+        </if>
+        <if test="commodityNo != null">
+                #{commodityNo} ,
+        </if>
+        <if test="commodityType != null">
+                #{commodityType} ,
+        </if>
+        <if test="currencyGroupNo != null">
+                #{currencyGroupNo} ,
+        </if>
+        <if test="currencyNo != null">
+                #{currencyNo} ,
+        </if>
+        <if test="exchangeNo != null">
+                #{exchangeNo} ,
+        </if>
+        <if test="matchSource != null">
+                #{matchSource} ,
+        </if>
+        <if test="openCloseFee != null">
+                #{openCloseFee} ,
+        </if>
+        <if test="remark != null">
+                #{remark} ,
+        </if>
+        <if test="createDate != null">
+                #{createDate} ,
+        </if>
+        <if test="updateDate != null">
+                #{updateDate} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.uams.rpc.api.model.SysAccountFeeRentModel">
+        update SysAccountFeeRent
+           <set>
+            <if test="accountNo != null">
+                accountNo = #{accountNo} ,
+            </if>
+            <if test="calculateMode != null">
+                calculateMode = #{calculateMode} ,
+            </if>
+            <if test="closeTodayFee != null">
+                closeTodayFee = #{closeTodayFee} ,
+            </if>
+            <if test="commodityNo != null">
+                commodityNo = #{commodityNo} ,
+            </if>
+            <if test="commodityType != null">
+                commodityType = #{commodityType} ,
+            </if>
+            <if test="currencyGroupNo != null">
+                currencyGroupNo = #{currencyGroupNo} ,
+            </if>
+            <if test="currencyNo != null">
+                currencyNo = #{currencyNo} ,
+            </if>
+            <if test="exchangeNo != null">
+                exchangeNo = #{exchangeNo} ,
+            </if>
+            <if test="matchSource != null">
+                matchSource = #{matchSource} ,
+            </if>
+            <if test="openCloseFee != null">
+                openCloseFee = #{openCloseFee} ,
+            </if>
+            <if test="remark != null">
+                remark = #{remark} ,
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate} ,
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into SysAccountFeeRent(
+            id ,
+            accountNo ,
+            calculateMode ,
+            closeTodayFee ,
+            commodityNo ,
+            commodityType ,
+            currencyGroupNo ,
+            currencyNo ,
+            exchangeNo ,
+            matchSource ,
+            openCloseFee ,
+            remark ,
+            createDate ,
+            updateDate 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.accountNo} ,
+            #{item.calculateMode} ,
+            #{item.closeTodayFee} ,
+            #{item.commodityNo} ,
+            #{item.commodityType} ,
+            #{item.currencyGroupNo} ,
+            #{item.currencyNo} ,
+            #{item.exchangeNo} ,
+            #{item.matchSource} ,
+            #{item.openCloseFee} ,
+            #{item.remark} ,
+            #{item.createDate} ,
+            #{item.updateDate} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update SysAccountFeeRent set
+            accountNo = #{item.accountNo} ,
+            calculateMode = #{item.calculateMode} ,
+            closeTodayFee = #{item.closeTodayFee} ,
+            commodityNo = #{item.commodityNo} ,
+            commodityType = #{item.commodityType} ,
+            currencyGroupNo = #{item.currencyGroupNo} ,
+            currencyNo = #{item.currencyNo} ,
+            exchangeNo = #{item.exchangeNo} ,
+            matchSource = #{item.matchSource} ,
+            openCloseFee = #{item.openCloseFee} ,
+            remark = #{item.remark} ,
+            createDate = #{item.createDate} ,
+            updateDate = #{item.updateDate} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.uams.rpc.api.model.SysAccountFeeRentModel">
+        update SysAccountFeeRent set
+            accountNo = #{accountNo} ,
+            calculateMode = #{calculateMode} ,
+            closeTodayFee = #{closeTodayFee} ,
+            commodityNo = #{commodityNo} ,
+            commodityType = #{commodityType} ,
+            currencyGroupNo = #{currencyGroupNo} ,
+            currencyNo = #{currencyNo} ,
+            exchangeNo = #{exchangeNo} ,
+            matchSource = #{matchSource} ,
+            openCloseFee = #{openCloseFee} ,
+            remark = #{remark} ,
+            createDate = #{createDate} ,
+            updateDate = #{updateDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.uams.rpc.api.model.SysAccountFeeRentModel">
+        select <include refid="sysAccountFeeRentColumns"/> from SysAccountFeeRent a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.uams.rpc.api.model.SysAccountFeeRentModel">
+        SELECT
+        <include refid="sysAccountFeeRentColumns"/>
+        FROM SysAccountFeeRent a WHERE 1=1
+        <if test="accountNo != null">
+            and a.accountNo like '%'||#{accountNo}||'%'
+        </if>
+        <if test="calculateMode != null">
+            and a.calculateMode like '%'||#{calculateMode}||'%'
+        </if>
+        <if test="closeTodayFee != null">
+            and a.closeTodayFee = #{closeTodayFee}
+        </if>
+        <if test="commodityNo != null">
+            and a.commodityNo like '%'||#{commodityNo}||'%'
+        </if>
+        <if test="commodityType != null">
+            and a.commodityType like '%'||#{commodityType}||'%'
+        </if>
+        <if test="currencyGroupNo != null">
+            and a.currencyGroupNo like '%'||#{currencyGroupNo}||'%'
+        </if>
+        <if test="currencyNo != null">
+            and a.currencyNo like '%'||#{currencyNo}||'%'
+        </if>
+        <if test="exchangeNo != null">
+            and a.exchangeNo like '%'||#{exchangeNo}||'%'
+        </if>
+        <if test="matchSource != null">
+            and a.matchSource like '%'||#{matchSource}||'%'
+        </if>
+        <if test="openCloseFee != null">
+            and a.openCloseFee = #{openCloseFee}
+        </if>
+        <if test="remark != null">
+            and a.remark like '%'||#{remark}||'%'
+        </if>
+        <if test="createDate != null">
+            and a.createDate = #{createDate}
+        </if>
+        <if test="updateDate != null">
+            and a.updateDate = #{updateDate}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.uams.rpc.api.model.SysAccountFeeRentModel">
+        SELECT
+        <include refid="sysAccountFeeRentColumns"/>
+        FROM SysAccountFeeRent a WHERE a.delFlag = 0
+    </select>
+
+
+</mapper>
+

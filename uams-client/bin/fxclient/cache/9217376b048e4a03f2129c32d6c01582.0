@@ -1,0 +1,11 @@
+http://127.0.0.1:8080/fxclient/exchangeRateManager/export.do?currencySourceList=&exchangDate=
+GET
+0
+HTTP/1.1 200 OK
+6
+Server: Apache-Coyote/1.1
+Content-Type: text/html;charset=UTF-8
+Content-Length: 1286
+Date: Sat, 16 Dec 2017 11:52:19 GMT
+OkHttp-Sent-Millis: 1513425139137
+OkHttp-Received-Millis: 1513425139177

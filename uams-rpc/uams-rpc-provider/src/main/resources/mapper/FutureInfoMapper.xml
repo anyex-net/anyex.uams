@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uams.rpc.base.mapper.FutureInfoMapper">
+    <!-- 基础列 -->
+    <sql id="FutureInfoColumns">
+        a.id as id,
+        a.interCode as interCode,
+        a.futureKindId as futureKindId,
+        a.marketId as marketId,
+        a.contractMonth as contractMonth,
+        a.isMainContract as isMainContract,
+        a.targetMarketId as targetMarketId,
+        a.targetStockCode as targetStockCode,
+        a.multiple as multiple,
+        a.lastTradeDate as lastTradeDate,
+        a.lastSettlementDate as lastSettlementDate,
+        a.lastTradeTime as lastTradeTime,
+        a.price as price,
+        a.realPrice as realPrice,
+        a.prePrice as prePrice,
+        a.positionAmount as positionAmount,
+        a.prePositionAmount as prePositionAmount,
+        a.status as status,
+        a.updateDate as updateDate
+    </sql>
+
+    <sql id="FutureInfoJoinColumns">
+        a.id as id,
+        a.interCode as interCode,
+        a.futureKindId as futureKindId,
+        a.marketId as marketId,
+        a.contractMonth as contractMonth,
+        a.isMainContract as isMainContract,
+        a.targetMarketId as targetMarketId,
+        a.targetStockCode as targetStockCode,
+        a.multiple as multiple,
+        a.lastTradeDate as lastTradeDate,
+        a.lastSettlementDate as lastSettlementDate,
+        a.lastTradeTime as lastTradeTime,
+        a.price as price,
+        a.realPrice as realPrice,
+        a.prePrice as prePrice,
+        a.positionAmount as positionAmount,
+        a.prePositionAmount as prePositionAmount,
+        a.status as status,
+        a.updateDate as updateDate,
+        b.kindName as kindName,
+        c.marketName as marketName,
+        d.marketName as targetStockName
+    </sql>
+
+    <resultMap id="FutureInfoResultMap" type="com.uams.rpc.base.model.FutureInfoModel">
+        <id column="id" property="id" />
+        <result column="interCode" property="interCode"/>
+        <result column="futureKindId" property="futureKindId"/>
+        <result column="marketId" property="marketId"/>
+        <result column="contractMonth" property="contractMonth"/>
+        <result column="isMainContract" property="isMainContract"/>
+        <result column="targetMarketId" property="targetMarketId"/>
+        <result column="targetStockCode" property="targetStockCode"/>
+        <result column="multiple" property="multiple"/>
+        <result column="lastTradeDate" property="lastTradeDate"/>
+        <result column="lastSettlementDate" property="lastSettlementDate"/>
+        <result column="lastTradeTime" property="lastTradeTime"/>
+        <result column="price" property="price"/>
+        <result column="realPrice" property="realPrice"/>
+        <result column="prePrice" property="prePrice"/>
+        <result column="positionAmount" property="positionAmount"/>
+        <result column="prePositionAmount" property="prePositionAmount"/>
+        <result column="status" property="status"/>
+        <result column="updateDate" property="updateDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.uams.rpc.base.model.FutureInfoModel">
+        insert into FutureInfo(
+            id ,
+            interCode ,
+            futureKindId ,
+            marketId ,
+            contractMonth ,
+            isMainContract ,
+            targetMarketId ,
+            targetStockCode ,
+            multiple ,
+            lastTradeDate ,
+            lastSettlementDate ,
+            lastTradeTime ,
+            price ,
+            realPrice ,
+            prePrice ,
+            positionAmount ,
+            prePositionAmount ,
+            status ,
+            updateDate 
+        ) VALUES (
+            #{id} ,
+            #{interCode} ,
+            #{futureKindId} ,
+            #{marketId} ,
+            #{contractMonth} ,
+            #{isMainContract} ,
+            #{targetMarketId} ,
+            #{targetStockCode} ,
+            #{multiple} ,
+            #{lastTradeDate} ,
+            #{lastSettlementDate} ,
+            #{lastTradeTime} ,
+            #{price} ,
+            #{realPrice} ,
+            #{prePrice} ,
+            #{positionAmount} ,
+            #{prePositionAmount} ,
+            #{status} ,
+            #{updateDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from FutureInfo where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update FutureInfo set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.uams.rpc.base.model.FutureInfoModel">
+        insert into FutureInfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="interCode != null">
+                interCode ,
+        </if>
+        <if test="futureKindId != null">
+                futureKindId ,
+        </if>
+        <if test="marketId != null">
+                marketId ,
+        </if>
+        <if test="contractMonth != null">
+                contractMonth ,
+        </if>
+        <if test="isMainContract != null">
+                isMainContract ,
+        </if>
+        <if test="targetMarketId != null">
+                targetMarketId ,
+        </if>
+        <if test="targetStockCode != null">
+                targetStockCode ,
+        </if>
+        <if test="multiple != null">
+                multiple ,
+        </if>
+        <if test="lastTradeDate != null">
+                lastTradeDate ,
+        </if>
+        <if test="lastSettlementDate != null">
+                lastSettlementDate ,
+        </if>
+        <if test="lastTradeTime != null">
+                lastTradeTime ,
+        </if>
+        <if test="price != null">
+                price ,
+        </if>
+        <if test="realPrice != null">
+                realPrice ,
+        </if>
+        <if test="prePrice != null">
+                prePrice ,
+        </if>
+        <if test="positionAmount != null">
+                positionAmount ,
+        </if>
+        <if test="prePositionAmount != null">
+                prePositionAmount ,
+        </if>
+        <if test="status != null">
+                status ,
+        </if>
+        <if test="updateDate != null">
+                updateDate 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="interCode != null">
+                #{interCode} ,
+        </if>
+        <if test="futureKindId != null">
+                #{futureKindId} ,
+        </if>
+        <if test="marketId != null">
+                #{marketId} ,
+        </if>
+        <if test="contractMonth != null">
+                #{contractMonth} ,
+        </if>
+        <if test="isMainContract != null">
+                #{isMainContract} ,
+        </if>
+        <if test="targetMarketId != null">
+                #{targetMarketId} ,
+        </if>
+        <if test="targetStockCode != null">
+                #{targetStockCode} ,
+        </if>
+        <if test="multiple != null">
+                #{multiple} ,
+        </if>
+        <if test="lastTradeDate != null">
+                #{lastTradeDate} ,
+        </if>
+        <if test="lastSettlementDate != null">
+                #{lastSettlementDate} ,
+        </if>
+        <if test="lastTradeTime != null">
+                #{lastTradeTime} ,
+        </if>
+        <if test="price != null">
+                #{price} ,
+        </if>
+        <if test="realPrice != null">
+                #{realPrice} ,
+        </if>
+        <if test="prePrice != null">
+                #{prePrice} ,
+        </if>
+        <if test="positionAmount != null">
+                #{positionAmount} ,
+        </if>
+        <if test="prePositionAmount != null">
+                #{prePositionAmount} ,
+        </if>
+        <if test="status != null">
+                #{status} ,
+        </if>
+        <if test="updateDate != null">
+                #{updateDate} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.uams.rpc.base.model.FutureInfoModel">
+        update FutureInfo
+           <set>
+            <if test="interCode != null">
+                interCode = #{interCode} ,
+            </if>
+            <if test="futureKindId != null">
+                futureKindId = #{futureKindId} ,
+            </if>
+            <if test="marketId != null">
+                marketId = #{marketId} ,
+            </if>
+            <if test="contractMonth != null">
+                contractMonth = #{contractMonth} ,
+            </if>
+            <if test="isMainContract != null">
+                isMainContract = #{isMainContract} ,
+            </if>
+            <if test="targetMarketId != null">
+                targetMarketId = #{targetMarketId} ,
+            </if>
+            <if test="targetStockCode != null">
+                targetStockCode = #{targetStockCode} ,
+            </if>
+            <if test="multiple != null">
+                multiple = #{multiple} ,
+            </if>
+            <if test="lastTradeDate != null">
+                lastTradeDate = #{lastTradeDate} ,
+            </if>
+            <if test="lastSettlementDate != null">
+                lastSettlementDate = #{lastSettlementDate} ,
+            </if>
+            <if test="lastTradeTime != null">
+                lastTradeTime = #{lastTradeTime} ,
+            </if>
+            <if test="price != null">
+                price = #{price} ,
+            </if>
+            <if test="realPrice != null">
+                realPrice = #{realPrice} ,
+            </if>
+            <if test="prePrice != null">
+                prePrice = #{prePrice} ,
+            </if>
+            <if test="positionAmount != null">
+                positionAmount = #{positionAmount} ,
+            </if>
+            <if test="prePositionAmount != null">
+                prePositionAmount = #{prePositionAmount} ,
+            </if>
+            <if test="status != null">
+                status = #{status} ,
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into FutureInfo(
+            id ,
+            interCode ,
+            futureKindId ,
+            marketId ,
+            contractMonth ,
+            isMainContract ,
+            targetMarketId ,
+            targetStockCode ,
+            multiple ,
+            lastTradeDate ,
+            lastSettlementDate ,
+            lastTradeTime ,
+            price ,
+            realPrice ,
+            prePrice ,
+            positionAmount ,
+            prePositionAmount ,
+            status ,
+            updateDate 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.interCode} ,
+            #{item.futureKindId} ,
+            #{item.marketId} ,
+            #{item.contractMonth} ,
+            #{item.isMainContract} ,
+            #{item.targetMarketId} ,
+            #{item.targetStockCode} ,
+            #{item.multiple} ,
+            #{item.lastTradeDate} ,
+            #{item.lastSettlementDate} ,
+            #{item.lastTradeTime} ,
+            #{item.price} ,
+            #{item.realPrice} ,
+            #{item.prePrice} ,
+            #{item.positionAmount} ,
+            #{item.prePositionAmount} ,
+            #{item.status} ,
+            #{item.updateDate} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update FutureInfo set
+            interCode = #{item.interCode} ,
+            futureKindId = #{item.futureKindId} ,
+            marketId = #{item.marketId} ,
+            contractMonth = #{item.contractMonth} ,
+            isMainContract = #{item.isMainContract} ,
+            targetMarketId = #{item.targetMarketId} ,
+            targetStockCode = #{item.targetStockCode} ,
+            multiple = #{item.multiple} ,
+            lastTradeDate = #{item.lastTradeDate} ,
+            lastSettlementDate = #{item.lastSettlementDate} ,
+            lastTradeTime = #{item.lastTradeTime} ,
+            price = #{item.price} ,
+            realPrice = #{item.realPrice} ,
+            prePrice = #{item.prePrice} ,
+            positionAmount = #{item.positionAmount} ,
+            prePositionAmount = #{item.prePositionAmount} ,
+            status = #{item.status} ,
+            updateDate = #{item.updateDate} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.uams.rpc.base.model.FutureInfoModel">
+        update FutureInfo set
+            interCode = #{interCode} ,
+            futureKindId = #{futureKindId} ,
+            marketId = #{marketId} ,
+            contractMonth = #{contractMonth} ,
+            isMainContract = #{isMainContract} ,
+            targetMarketId = #{targetMarketId} ,
+            targetStockCode = #{targetStockCode} ,
+            multiple = #{multiple} ,
+            lastTradeDate = #{lastTradeDate} ,
+            lastSettlementDate = #{lastSettlementDate} ,
+            lastTradeTime = #{lastTradeTime} ,
+            price = #{price} ,
+            realPrice = #{realPrice} ,
+            prePrice = #{prePrice} ,
+            positionAmount = #{positionAmount} ,
+            prePositionAmount = #{prePositionAmount} ,
+            status = #{status} ,
+            updateDate = #{updateDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.uams.rpc.base.model.FutureInfoModel">
+        select <include refid="FutureInfoColumns"/> from FutureInfo a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.uams.rpc.base.model.FutureInfoModel">
+        SELECT
+        <include refid="FutureInfoJoinColumns"/>
+        FROM FutureInfo a
+        left join futureKind b on a.futureKindId=b.id
+        left join marketInfo c on c.id=a.marketId
+        left join marketInfo d on d.id=a.targetMarketId
+        WHERE 1=1
+        <if test="interCode != null">
+            and a.interCode like '%'||#{interCode}||'%'
+        </if>
+        <if test="futureKindId != null">
+            and a.futureKindId = #{futureKindId}
+        </if>
+        <if test="marketId != null">
+            and a.marketId = #{marketId}
+        </if>
+        <if test="contractMonth != null">
+            and a.contractMonth = #{contractMonth}
+        </if>
+        <if test="isMainContract != null">
+            and a.isMainContract = #{isMainContract}
+        </if>
+        <if test="targetMarketId != null">
+            and a.targetMarketId = #{targetMarketId}
+        </if>
+        <if test="targetStockCode != null">
+            and a.targetStockCode like '%'||#{targetStockCode}||'%'
+        </if>
+        <if test="multiple != null">
+            and a.multiple = #{multiple}
+        </if>
+        <if test="lastTradeDate != null">
+            and a.lastTradeDate = #{lastTradeDate}
+        </if>
+        <if test="lastSettlementDate != null">
+            and a.lastSettlementDate = #{lastSettlementDate}
+        </if>
+        <if test="lastTradeTime != null">
+            and a.lastTradeTime = #{lastTradeTime}
+        </if>
+        <if test="price != null">
+            and a.price = #{price}
+        </if>
+        <if test="realPrice != null">
+            and a.realPrice = #{realPrice}
+        </if>
+        <if test="prePrice != null">
+            and a.prePrice = #{prePrice}
+        </if>
+        <if test="positionAmount != null">
+            and a.positionAmount = #{positionAmount}
+        </if>
+        <if test="prePositionAmount != null">
+            and a.prePositionAmount = #{prePositionAmount}
+        </if>
+        <if test="status != null">
+            and a.status = #{status}
+        </if>
+        <if test="updateDate != null">
+            and a.updateDate = #{updateDate}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.uams.rpc.base.model.FutureInfoModel">
+        SELECT
+        <include refid="FutureInfoColumns"/>
+        FROM FutureInfo a WHERE 1=1
+    </select>
+
+
+</mapper>
+

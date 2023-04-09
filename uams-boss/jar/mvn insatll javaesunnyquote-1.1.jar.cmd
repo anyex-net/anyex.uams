@@ -1,0 +1,1 @@
+mvn install:install-file  -Dfile=javaesunnyquote-1.1.jar  -DgroupId=com.esunny -DartifactId=futures.wp.quote.api -Dversion=1.1 -Dpackaging=jar

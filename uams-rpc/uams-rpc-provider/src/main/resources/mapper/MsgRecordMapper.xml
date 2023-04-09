@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uams.rpc.common.mapper.MsgRecordMapper">
+    <!-- 基础列 -->
+    <sql id="MsgRecordColumns">
+        a.id as id,
+        a.type as type,
+        a.object as object,
+        a.content as content,
+        a.createDate as createDate,
+        a.status as status
+    </sql>
+
+    <resultMap id="MsgRecordResultMap" type="com.uams.rpc.common.entity.MsgRecord">
+        <id column="id" property="id"/>
+        <result column="type" property="type"/>
+        <result column="object" property="object"/>
+        <result column="content" property="content" jdbcType="CLOB"/>
+        <result column="createDate" property="createDate"/>
+        <result column="status" property="status"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.uams.rpc.common.entity.MsgRecord">
+        insert into MsgRecord(
+            id ,
+            type ,
+            object ,
+            content ,
+            createDate ,
+            status 
+        ) VALUES (
+            #{id} ,
+            #{type} ,
+            #{object} ,
+            #{content,jdbcType=CLOB} ,
+            #{createDate} ,
+            #{status} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from MsgRecord where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update MsgRecord set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.uams.rpc.common.entity.MsgRecord">
+        insert into MsgRecord
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id ,
+            </if>
+            <if test="type != null">
+                type ,
+            </if>
+            <if test="object != null">
+                object ,
+            </if>
+            <if test="content != null">
+                content ,
+            </if>
+            <if test="createDate != null">
+                createDate ,
+            </if>
+            <if test="status != null">
+                status
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id} ,
+            </if>
+            <if test="type != null">
+                #{type} ,
+            </if>
+            <if test="object != null">
+                #{object} ,
+            </if>
+            <if test="content != null">
+                #{content} ,
+            </if>
+            <if test="createDate != null">
+                #{createDate} ,
+            </if>
+            <if test="status != null">
+                #{status}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.uams.rpc.common.entity.MsgRecord">
+        update MsgRecord
+        <set>
+            <if test="type != null">
+                object = #{type} ,
+            </if>
+            <if test="object != null">
+                object = #{object} ,
+            </if>
+            <if test="content != null">
+                content = #{content} ,
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate} ,
+            </if>
+            <if test="status != null">
+                status = #{status}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into MsgRecord(
+        id ,
+        type ,
+        object ,
+        content ,
+        createDate ,
+        status
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.type} ,
+            #{item.object} ,
+            #{item.content,jdbcType=CLOB} ,
+            #{item.createDate} ,
+            #{item.status}
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update MsgRecord set
+            type = #{item.type} ,
+            object = #{item.object} ,
+            content = #{item.content,jdbcType=CLOB} ,
+            createDate = #{item.createDate} ,
+            status = #{item.status}
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.uams.rpc.common.entity.MsgRecord">
+        update MsgRecord set
+            type = #{type} ,
+            object = #{object} ,
+            content = #{content,jdbcType=CLOB} ,
+            createDate = #{createDate} ,
+            status = #{status} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long"
+            resultType="com.uams.rpc.common.entity.MsgRecord">
+        select
+        <include refid="MsgRecordColumns"/>
+        from MsgRecord a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.uams.rpc.common.entity.MsgRecord">
+        SELECT
+        <include refid="MsgRecordColumns"/>
+        FROM MsgRecord a WHERE 1 = 1
+        <if test="uid != null">
+            and exists (select 1 from userData t where t.orgId = a.orgId and t.userId= #{uid})
+        </if>
+        <if test="object != null and object!=''">
+            and a.object like '%'||#{object}||'%'
+        </if>
+        <if test="type != null and type != ''">
+            and a.type = #{type}
+        </if>
+        <if test="timeStart != null ">
+            and a.createDate &gt;= #{timeStart}
+        </if>
+        <if test="timeEnd != null ">
+            and a.createDate &lt;= #{timeEnd}
+        </if>
+        <if test="status != null">
+            and a.status = #{status}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.uams.rpc.common.entity.MsgRecord">
+        SELECT
+        <include refid="MsgRecordColumns"/>
+        FROM MsgRecord a where 1 = 1
+        <if test="uid != null">
+            and exists (select 1 from userData t where t.orgId = a.orgId and t.userId= #{uid})
+        </if>
+    </select>
+
+
+</mapper>
+

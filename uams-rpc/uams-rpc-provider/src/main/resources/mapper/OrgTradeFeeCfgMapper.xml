@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uams.rpc.base.mapper.OrgTradeFeeCfgMapper">
+    <!-- 基础列 -->
+    <sql id="orgTradeFeeCfgColumns">
+        a.id as id,
+        a.orgId as orgId,
+        a.marketId as marketId,
+        a.futureKindId as futureKindId,
+        a.feeType as feeType,
+        a.feeRateType as feeRateType,
+        a.feeRate as feeRate,
+        a.updateDate as updateDate
+    </sql>
+
+    <sql id="orgTradeFeeCfgJoinColumns">
+        a.id as id,
+        a.orgId as orgId,
+        a.marketId as marketId,
+        a.futureKindId as futureKindId,
+        a.feeType as feeType,
+        a.feeRateType as feeRateType,
+        a.feeRate as feeRate,
+        a.updateDate as updateDate,
+        b.kindName as kindName,
+        c.marketName as marketName,
+        e.orgName as orgName
+    </sql>
+
+    <resultMap id="orgTradeFeeCfgResultMap" type="com.uams.rpc.base.model.OrgTradeFeeCfgModel">
+        <id column="id" property="id" />
+        <result column="orgId" property="orgId"/>
+        <result column="marketId" property="marketId"/>
+        <result column="futureKindId" property="futureKindId"/>
+        <result column="feeType" property="feeType"/>
+        <result column="feeRateType" property="feeRateType"/>
+        <result column="feeRate" property="feeRate"/>
+        <result column="updateDate" property="updateDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.uams.rpc.base.model.OrgTradeFeeCfgModel">
+        insert into OrgTradeFeeCfg(
+            id ,
+            orgId ,
+            marketId ,
+            futureKindId ,
+            feeType ,
+            feeRateType ,
+            feeRate ,
+            updateDate 
+        ) VALUES (
+            #{id} ,
+            #{orgId} ,
+            #{marketId} ,
+            #{futureKindId} ,
+            #{feeType} ,
+            #{feeRateType} ,
+            #{feeRate} ,
+            #{updateDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from OrgTradeFeeCfg where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update OrgTradeFeeCfg set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.uams.rpc.base.model.OrgTradeFeeCfgModel">
+        insert into OrgTradeFeeCfg
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="orgId != null">
+                orgId ,
+        </if>
+        <if test="marketId != null">
+                marketId ,
+        </if>
+        <if test="futureKindId != null">
+                futureKindId ,
+        </if>
+        <if test="feeType != null">
+                feeType ,
+        </if>
+        <if test="feeRateType != null">
+                feeRateType ,
+        </if>
+        <if test="feeRate != null">
+                feeRate ,
+        </if>
+        <if test="updateDate != null">
+                updateDate 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="orgId != null">
+                #{orgId} ,
+        </if>
+        <if test="marketId != null">
+                #{marketId} ,
+        </if>
+        <if test="futureKindId != null">
+                #{futureKindId} ,
+        </if>
+        <if test="feeType != null">
+                #{feeType} ,
+        </if>
+        <if test="feeRateType != null">
+                #{feeRateType} ,
+        </if>
+        <if test="feeRate != null">
+                #{feeRate} ,
+        </if>
+        <if test="updateDate != null">
+                #{updateDate} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.uams.rpc.base.model.OrgTradeFeeCfgModel">
+        update OrgTradeFeeCfg
+           <set>
+            <if test="orgId != null">
+                orgId = #{orgId} ,
+            </if>
+            <if test="marketId != null">
+                marketId = #{marketId} ,
+            </if>
+            <if test="futureKindId != null">
+                futureKindId = #{futureKindId} ,
+            </if>
+            <if test="feeType != null">
+                feeType = #{feeType} ,
+            </if>
+            <if test="feeRateType != null">
+                feeRateType = #{feeRateType} ,
+            </if>
+            <if test="feeRate != null">
+                feeRate = #{feeRate} ,
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into OrgTradeFeeCfg(
+            id ,
+            orgId ,
+            marketId ,
+            futureKindId ,
+            feeType ,
+            feeRateType ,
+            feeRate ,
+            updateDate 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.orgId} ,
+            #{item.marketId} ,
+            #{item.futureKindId} ,
+            #{item.feeType} ,
+            #{item.feeRateType} ,
+            #{item.feeRate} ,
+            #{item.updateDate} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update OrgTradeFeeCfg set
+            orgId = #{item.orgId} ,
+            marketId = #{item.marketId} ,
+            futureKindId = #{item.futureKindId} ,
+            feeType = #{item.feeType} ,
+            feeRateType = #{item.feeRateType} ,
+            feeRate = #{item.feeRate} ,
+            updateDate = #{item.updateDate} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.uams.rpc.base.model.OrgTradeFeeCfgModel">
+        update OrgTradeFeeCfg set
+            orgId = #{orgId} ,
+            marketId = #{marketId} ,
+            futureKindId = #{futureKindId} ,
+            feeType = #{feeType} ,
+            feeRateType = #{feeRateType} ,
+            feeRate = #{feeRate} ,
+            updateDate = #{updateDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.uams.rpc.base.model.OrgTradeFeeCfgModel">
+        select <include refid="orgTradeFeeCfgColumns"/> from OrgTradeFeeCfg a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.uams.rpc.base.model.OrgTradeFeeCfgModel">
+        SELECT
+        <include refid="orgTradeFeeCfgJoinColumns"/>
+        FROM OrgTradeFeeCfg a
+        left join futureKind b on a.futureKindId=b.id
+        left join marketInfo c on c.id=a.marketId
+        left join Organization e on e.id=a.orgId
+        WHERE 1=1
+        <if test="orgId != null">
+            and a.orgId = #{orgId}
+        </if>
+        <if test="marketId != null">
+            and a.marketId = #{marketId}
+        </if>
+        <if test="futureKindId != null">
+            and a.futureKindId = #{futureKindId}
+        </if>
+        <if test="feeType != null">
+            and a.feeType like '%'||#{feeType}||'%'
+        </if>
+        <if test="feeRateType != null">
+            and a.feeRateType like '%'||#{feeRateType}||'%'
+        </if>
+        <if test="feeRate != null">
+            and a.feeRate like '%'||#{feeRate}||'%'
+        </if>
+        <if test="updateDate != null">
+            and a.updateDate = #{updateDate}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.uams.rpc.base.model.OrgTradeFeeCfgModel">
+        SELECT
+        <include refid="orgTradeFeeCfgColumns"/>
+        FROM OrgTradeFeeCfg a WHERE 1=1
+    </select>
+
+
+</mapper>
+

@@ -1,2 +1,2 @@
-# anyex.uams
+# UAMS
 uams

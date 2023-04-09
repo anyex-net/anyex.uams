@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uams.rpc.base.mapper.MarketInfoMapper">
+    <!-- 基础列 -->
+    <sql id="marketInfoColumns">
+        a.id as id,
+        a.marketCode as marketCode,
+        a.marketName as marketName,
+        a.marketFullName as marketFullName,
+        a.isStop as isStop,
+        a.exchangeCode as exchangeCode,
+        a.countryNo as countryNo,
+        a.updateDate as updateDate
+    </sql>
+
+    <resultMap id="marketInfoResultMap" type="com.uams.rpc.base.model.MarketInfoModel">
+        <id column="id" property="id" />
+        <result column="marketCode" property="marketCode"/>
+        <result column="marketName" property="marketName"/>
+        <result column="marketFullName" property="marketFullName"/>
+        <result column="isStop" property="isStop"/>
+        <result column="exchangeCode" property="exchangeCode"/>
+        <result column="countryNo" property="countryNo"/>
+        <result column="updateDate" property="updateDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.uams.rpc.base.model.MarketInfoModel">
+        insert into MarketInfo(
+            id ,
+            marketCode ,
+            marketName ,
+            marketFullName ,
+            isStop ,
+            exchangeCode ,
+            countryNo ,
+            updateDate 
+        ) VALUES (
+            #{id} ,
+            #{marketCode} ,
+            #{marketName} ,
+            #{marketFullName} ,
+            #{isStop} ,
+            #{exchangeCode} ,
+            #{countryNo} ,
+            #{updateDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from MarketInfo where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update MarketInfo set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.uams.rpc.base.model.MarketInfoModel">
+        insert into MarketInfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="marketCode != null">
+                marketCode ,
+        </if>
+        <if test="marketName != null">
+                marketName ,
+        </if>
+        <if test="marketFullName != null">
+                marketFullName ,
+        </if>
+        <if test="isStop != null">
+                isStop ,
+        </if>
+        <if test="exchangeCode != null">
+                exchangeCode ,
+        </if>
+        <if test="countryNo != null">
+                countryNo ,
+        </if>
+        <if test="updateDate != null">
+                updateDate 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="marketCode != null">
+                #{marketCode} ,
+        </if>
+        <if test="marketName != null">
+                #{marketName} ,
+        </if>
+        <if test="marketFullName != null">
+                #{marketFullName} ,
+        </if>
+        <if test="isStop != null">
+                #{isStop} ,
+        </if>
+        <if test="exchangeCode != null">
+                #{exchangeCode} ,
+        </if>
+        <if test="countryNo != null">
+                #{countryNo} ,
+        </if>
+        <if test="updateDate != null">
+                #{updateDate} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.uams.rpc.base.model.MarketInfoModel">
+        update MarketInfo
+           <set>
+            <if test="marketCode != null">
+                marketCode = #{marketCode} ,
+            </if>
+            <if test="marketName != null">
+                marketName = #{marketName} ,
+            </if>
+            <if test="marketFullName != null">
+                marketFullName = #{marketFullName} ,
+            </if>
+            <if test="isStop != null">
+                isStop = #{isStop} ,
+            </if>
+            <if test="exchangeCode != null">
+                exchangeCode = #{exchangeCode} ,
+            </if>
+            <if test="countryNo != null">
+                countryNo = #{countryNo} ,
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into MarketInfo(
+            id ,
+            marketCode ,
+            marketName ,
+            marketFullName ,
+            isStop ,
+            exchangeCode ,
+            countryNo ,
+            updateDate 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.marketCode} ,
+            #{item.marketName} ,
+            #{item.marketFullName} ,
+            #{item.isStop} ,
+            #{item.exchangeCode} ,
+            #{item.countryNo} ,
+            #{item.updateDate} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update MarketInfo set
+            marketCode = #{item.marketCode} ,
+            marketName = #{item.marketName} ,
+            marketFullName = #{item.marketFullName} ,
+            isStop = #{item.isStop} ,
+            exchangeCode = #{item.exchangeCode} ,
+            countryNo = #{item.countryNo} ,
+            updateDate = #{item.updateDate} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.uams.rpc.base.model.MarketInfoModel">
+        update MarketInfo set
+            marketCode = #{marketCode} ,
+            marketName = #{marketName} ,
+            marketFullName = #{marketFullName} ,
+            isStop = #{isStop} ,
+            exchangeCode = #{exchangeCode} ,
+            countryNo = #{countryNo} ,
+            updateDate = #{updateDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.uams.rpc.base.model.MarketInfoModel">
+        select <include refid="marketInfoColumns"/> from MarketInfo a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.uams.rpc.base.model.MarketInfoModel">
+        SELECT
+        <include refid="marketInfoColumns"/>
+        FROM MarketInfo a WHERE 1=1
+        <if test="marketCode != null">
+            and a.marketCode like '%'||#{marketCode}||'%'
+        </if>
+        <if test="marketName != null">
+            and a.marketName like '%'||#{marketName}||'%'
+        </if>
+        <if test="marketFullName != null">
+            and a.marketFullName like '%'||#{marketFullName}||'%'
+        </if>
+        <if test="isStop != null">
+            and a.isStop = #{isStop}
+        </if>
+        <if test="exchangeCode != null">
+            and a.exchangeCode like '%'||#{exchangeCode}||'%'
+        </if>
+        <if test="countryNo != null">
+            and a.countryNo like '%'||#{countryNo}||'%'
+        </if>
+        <if test="updateDate != null">
+            and a.updateDate = #{updateDate}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.uams.rpc.base.model.MarketInfoModel">
+        SELECT
+        <include refid="marketInfoColumns"/>
+        FROM MarketInfo a WHERE 1=1
+    </select>
+
+
+</mapper>
+

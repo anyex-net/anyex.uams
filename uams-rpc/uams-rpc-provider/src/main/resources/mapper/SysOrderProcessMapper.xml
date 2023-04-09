@@ -1,0 +1,1461 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uams.rpc.api.mapper.SysOrderProcessMapper">
+    <!-- 基础列 -->
+    <sql id="sysOrderProcessColumns">
+        a.id as id,
+        a.accountNo as accountNo,
+        a.addOneIsValid as addOneIsValid,
+        a.callOrPutFlag as callOrPutFlag,
+        a.callOrPutFlag2 as callOrPutFlag2,
+        a.clientID as clientID,
+        a.clientIP as clientIP,
+        a.clientLocalIP as clientLocalIP,
+        a.clientMac as clientMac,
+        a.clientOrderNo as clientOrderNo,
+        a.commodityNo as commodityNo,
+        a.commodityType as commodityType,
+        a.contractNo as contractNo,
+        a.contractNo2 as contractNo2,
+        a.errorCode as errorCode,
+        a.errorText as errorText,
+        a.exchangeNo as exchangeNo,
+        a.expireTime as expireTime,
+        a.hedgeFlag as hedgeFlag,
+        a.inquiryNo as inquiryNo,
+        a.isAddOne as isAddOne,
+        a.isBackInput as isBackInput,
+        a.isDeleted as isDeleted,
+        a.isRiskOrder as isRiskOrder,
+        a.licenseNo as licenseNo,
+        a.maxClipSize as maxClipSize,
+        a.minClipSize as minClipSize,
+        a.orderCommandUserNo as orderCommandUserNo,
+        a.orderExchangeSystemNo as orderExchangeSystemNo,
+        a.orderInsertTime as orderInsertTime,
+        a.orderInsertUserNo as orderInsertUserNo,
+        a.orderLocalNo as orderLocalNo,
+        a.orderMatchPrice as orderMatchPrice,
+        a.orderMatchPrice2 as orderMatchPrice2,
+        a.orderMatchQty as orderMatchQty,
+        a.orderMatchQty2 as orderMatchQty2,
+        a.orderMinQty as orderMinQty,
+        a.orderNo as orderNo,
+        a.orderParentSystemNo as orderParentSystemNo,
+        a.orderPrice as orderPrice,
+        a.orderPrice2 as orderPrice2,
+        a.orderQty as orderQty,
+        a.orderSide as orderSide,
+        a.orderSource as orderSource,
+        a.orderState as orderState,
+        a.orderStreamID as orderStreamID,
+        a.orderSystemNo as orderSystemNo,
+        a.orderType as orderType,
+        a.orderUpdateTime as orderUpdateTime,
+        a.orderUpdateUserNo as orderUpdateUserNo,
+        a.positionEffect as positionEffect,
+        a.positionEffect2 as positionEffect2,
+        a.refDouble as refDouble,
+        a.refInt as refInt,
+        a.refString as refString,
+        a.serverFlag as serverFlag,
+        a.stopPrice as stopPrice,
+        a.strikePrice as strikePrice,
+        a.strikePrice2 as strikePrice2,
+        a.tacticsType as tacticsType,
+        a.timeInForce as timeInForce,
+        a.triggerCondition as triggerCondition,
+        a.triggerPriceType as triggerPriceType,
+        a.upperChannelNo as upperChannelNo,
+        a.upperNo as upperNo,
+        a.upperStreamID as upperStreamID,
+        a.remark as remark,
+        a.createDate as createDate,
+        a.updateDate as updateDate
+    </sql>
+
+    <resultMap id="sysOrderProcessResultMap" type="com.uams.rpc.api.model.SysOrderProcessModel">
+        <id column="id" property="id" />
+        <result column="accountNo" property="accountNo"/>
+        <result column="addOneIsValid" property="addOneIsValid"/>
+        <result column="callOrPutFlag" property="callOrPutFlag"/>
+        <result column="callOrPutFlag2" property="callOrPutFlag2"/>
+        <result column="clientID" property="clientID"/>
+        <result column="clientIP" property="clientIP"/>
+        <result column="clientLocalIP" property="clientLocalIP"/>
+        <result column="clientMac" property="clientMac"/>
+        <result column="clientOrderNo" property="clientOrderNo"/>
+        <result column="commodityNo" property="commodityNo"/>
+        <result column="commodityType" property="commodityType"/>
+        <result column="contractNo" property="contractNo"/>
+        <result column="contractNo2" property="contractNo2"/>
+        <result column="errorCode" property="errorCode"/>
+        <result column="errorText" property="errorText"/>
+        <result column="exchangeNo" property="exchangeNo"/>
+        <result column="expireTime" property="expireTime"/>
+        <result column="hedgeFlag" property="hedgeFlag"/>
+        <result column="inquiryNo" property="inquiryNo"/>
+        <result column="isAddOne" property="isAddOne"/>
+        <result column="isBackInput" property="isBackInput"/>
+        <result column="isDeleted" property="isDeleted"/>
+        <result column="isRiskOrder" property="isRiskOrder"/>
+        <result column="licenseNo" property="licenseNo"/>
+        <result column="maxClipSize" property="maxClipSize"/>
+        <result column="minClipSize" property="minClipSize"/>
+        <result column="orderCommandUserNo" property="orderCommandUserNo"/>
+        <result column="orderExchangeSystemNo" property="orderExchangeSystemNo"/>
+        <result column="orderInsertTime" property="orderInsertTime"/>
+        <result column="orderInsertUserNo" property="orderInsertUserNo"/>
+        <result column="orderLocalNo" property="orderLocalNo"/>
+        <result column="orderMatchPrice" property="orderMatchPrice"/>
+        <result column="orderMatchPrice2" property="orderMatchPrice2"/>
+        <result column="orderMatchQty" property="orderMatchQty"/>
+        <result column="orderMatchQty2" property="orderMatchQty2"/>
+        <result column="orderMinQty" property="orderMinQty"/>
+        <result column="orderNo" property="orderNo"/>
+        <result column="orderParentSystemNo" property="orderParentSystemNo"/>
+        <result column="orderPrice" property="orderPrice"/>
+        <result column="orderPrice2" property="orderPrice2"/>
+        <result column="orderQty" property="orderQty"/>
+        <result column="orderSide" property="orderSide"/>
+        <result column="orderSource" property="orderSource"/>
+        <result column="orderState" property="orderState"/>
+        <result column="orderStreamID" property="orderStreamID"/>
+        <result column="orderSystemNo" property="orderSystemNo"/>
+        <result column="orderType" property="orderType"/>
+        <result column="orderUpdateTime" property="orderUpdateTime"/>
+        <result column="orderUpdateUserNo" property="orderUpdateUserNo"/>
+        <result column="positionEffect" property="positionEffect"/>
+        <result column="positionEffect2" property="positionEffect2"/>
+        <result column="refDouble" property="refDouble"/>
+        <result column="refInt" property="refInt"/>
+        <result column="refString" property="refString"/>
+        <result column="serverFlag" property="serverFlag"/>
+        <result column="stopPrice" property="stopPrice"/>
+        <result column="strikePrice" property="strikePrice"/>
+        <result column="strikePrice2" property="strikePrice2"/>
+        <result column="tacticsType" property="tacticsType"/>
+        <result column="timeInForce" property="timeInForce"/>
+        <result column="triggerCondition" property="triggerCondition"/>
+        <result column="triggerPriceType" property="triggerPriceType"/>
+        <result column="upperChannelNo" property="upperChannelNo"/>
+        <result column="upperNo" property="upperNo"/>
+        <result column="upperStreamID" property="upperStreamID"/>
+        <result column="remark" property="remark"/>
+        <result column="createDate" property="createDate"/>
+        <result column="updateDate" property="updateDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.uams.rpc.api.model.SysOrderProcessModel">
+        insert into SysOrderProcess(
+            id ,
+            accountNo ,
+            addOneIsValid ,
+            callOrPutFlag ,
+            callOrPutFlag2 ,
+            clientID ,
+            clientIP ,
+            clientLocalIP ,
+            clientMac ,
+            clientOrderNo ,
+            commodityNo ,
+            commodityType ,
+            contractNo ,
+            contractNo2 ,
+            errorCode ,
+            errorText ,
+            exchangeNo ,
+            expireTime ,
+            hedgeFlag ,
+            inquiryNo ,
+            isAddOne ,
+            isBackInput ,
+            isDeleted ,
+            isRiskOrder ,
+            licenseNo ,
+            maxClipSize ,
+            minClipSize ,
+            orderCommandUserNo ,
+            orderExchangeSystemNo ,
+            orderInsertTime ,
+            orderInsertUserNo ,
+            orderLocalNo ,
+            orderMatchPrice ,
+            orderMatchPrice2 ,
+            orderMatchQty ,
+            orderMatchQty2 ,
+            orderMinQty ,
+            orderNo ,
+            orderParentSystemNo ,
+            orderPrice ,
+            orderPrice2 ,
+            orderQty ,
+            orderSide ,
+            orderSource ,
+            orderState ,
+            orderStreamID ,
+            orderSystemNo ,
+            orderType ,
+            orderUpdateTime ,
+            orderUpdateUserNo ,
+            positionEffect ,
+            positionEffect2 ,
+            refDouble ,
+            refInt ,
+            refString ,
+            serverFlag ,
+            stopPrice ,
+            strikePrice ,
+            strikePrice2 ,
+            tacticsType ,
+            timeInForce ,
+            triggerCondition ,
+            triggerPriceType ,
+            upperChannelNo ,
+            upperNo ,
+            upperStreamID ,
+            remark ,
+            createDate ,
+            updateDate 
+        ) VALUES (
+            #{id} ,
+            #{accountNo} ,
+            #{addOneIsValid} ,
+            #{callOrPutFlag} ,
+            #{callOrPutFlag2} ,
+            #{clientID} ,
+            #{clientIP} ,
+            #{clientLocalIP} ,
+            #{clientMac} ,
+            #{clientOrderNo} ,
+            #{commodityNo} ,
+            #{commodityType} ,
+            #{contractNo} ,
+            #{contractNo2} ,
+            #{errorCode} ,
+            #{errorText} ,
+            #{exchangeNo} ,
+            #{expireTime} ,
+            #{hedgeFlag} ,
+            #{inquiryNo} ,
+            #{isAddOne} ,
+            #{isBackInput} ,
+            #{isDeleted} ,
+            #{isRiskOrder} ,
+            #{licenseNo} ,
+            #{maxClipSize} ,
+            #{minClipSize} ,
+            #{orderCommandUserNo} ,
+            #{orderExchangeSystemNo} ,
+            #{orderInsertTime} ,
+            #{orderInsertUserNo} ,
+            #{orderLocalNo} ,
+            #{orderMatchPrice} ,
+            #{orderMatchPrice2} ,
+            #{orderMatchQty} ,
+            #{orderMatchQty2} ,
+            #{orderMinQty} ,
+            #{orderNo} ,
+            #{orderParentSystemNo} ,
+            #{orderPrice} ,
+            #{orderPrice2} ,
+            #{orderQty} ,
+            #{orderSide} ,
+            #{orderSource} ,
+            #{orderState} ,
+            #{orderStreamID} ,
+            #{orderSystemNo} ,
+            #{orderType} ,
+            #{orderUpdateTime} ,
+            #{orderUpdateUserNo} ,
+            #{positionEffect} ,
+            #{positionEffect2} ,
+            #{refDouble} ,
+            #{refInt} ,
+            #{refString} ,
+            #{serverFlag} ,
+            #{stopPrice} ,
+            #{strikePrice} ,
+            #{strikePrice2} ,
+            #{tacticsType} ,
+            #{timeInForce} ,
+            #{triggerCondition} ,
+            #{triggerPriceType} ,
+            #{upperChannelNo} ,
+            #{upperNo} ,
+            #{upperStreamID} ,
+            #{remark} ,
+            #{createDate} ,
+            #{updateDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from SysOrderProcess where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update SysOrderProcess set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.uams.rpc.api.model.SysOrderProcessModel">
+        insert into SysOrderProcess
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="accountNo != null">
+                accountNo ,
+        </if>
+        <if test="addOneIsValid != null">
+                addOneIsValid ,
+        </if>
+        <if test="callOrPutFlag != null">
+                callOrPutFlag ,
+        </if>
+        <if test="callOrPutFlag2 != null">
+                callOrPutFlag2 ,
+        </if>
+        <if test="clientID != null">
+                clientID ,
+        </if>
+        <if test="clientIP != null">
+                clientIP ,
+        </if>
+        <if test="clientLocalIP != null">
+                clientLocalIP ,
+        </if>
+        <if test="clientMac != null">
+                clientMac ,
+        </if>
+        <if test="clientOrderNo != null">
+                clientOrderNo ,
+        </if>
+        <if test="commodityNo != null">
+                commodityNo ,
+        </if>
+        <if test="commodityType != null">
+                commodityType ,
+        </if>
+        <if test="contractNo != null">
+                contractNo ,
+        </if>
+        <if test="contractNo2 != null">
+                contractNo2 ,
+        </if>
+        <if test="errorCode != null">
+                errorCode ,
+        </if>
+        <if test="errorText != null">
+                errorText ,
+        </if>
+        <if test="exchangeNo != null">
+                exchangeNo ,
+        </if>
+        <if test="expireTime != null">
+                expireTime ,
+        </if>
+        <if test="hedgeFlag != null">
+                hedgeFlag ,
+        </if>
+        <if test="inquiryNo != null">
+                inquiryNo ,
+        </if>
+        <if test="isAddOne != null">
+                isAddOne ,
+        </if>
+        <if test="isBackInput != null">
+                isBackInput ,
+        </if>
+        <if test="isDeleted != null">
+                isDeleted ,
+        </if>
+        <if test="isRiskOrder != null">
+                isRiskOrder ,
+        </if>
+        <if test="licenseNo != null">
+                licenseNo ,
+        </if>
+        <if test="maxClipSize != null">
+                maxClipSize ,
+        </if>
+        <if test="minClipSize != null">
+                minClipSize ,
+        </if>
+        <if test="orderCommandUserNo != null">
+                orderCommandUserNo ,
+        </if>
+        <if test="orderExchangeSystemNo != null">
+                orderExchangeSystemNo ,
+        </if>
+        <if test="orderInsertTime != null">
+                orderInsertTime ,
+        </if>
+        <if test="orderInsertUserNo != null">
+                orderInsertUserNo ,
+        </if>
+        <if test="orderLocalNo != null">
+                orderLocalNo ,
+        </if>
+        <if test="orderMatchPrice != null">
+                orderMatchPrice ,
+        </if>
+        <if test="orderMatchPrice2 != null">
+                orderMatchPrice2 ,
+        </if>
+        <if test="orderMatchQty != null">
+                orderMatchQty ,
+        </if>
+        <if test="orderMatchQty2 != null">
+                orderMatchQty2 ,
+        </if>
+        <if test="orderMinQty != null">
+                orderMinQty ,
+        </if>
+        <if test="orderNo != null">
+                orderNo ,
+        </if>
+        <if test="orderParentSystemNo != null">
+                orderParentSystemNo ,
+        </if>
+        <if test="orderPrice != null">
+                orderPrice ,
+        </if>
+        <if test="orderPrice2 != null">
+                orderPrice2 ,
+        </if>
+        <if test="orderQty != null">
+                orderQty ,
+        </if>
+        <if test="orderSide != null">
+                orderSide ,
+        </if>
+        <if test="orderSource != null">
+                orderSource ,
+        </if>
+        <if test="orderState != null">
+                orderState ,
+        </if>
+        <if test="orderStreamID != null">
+                orderStreamID ,
+        </if>
+        <if test="orderSystemNo != null">
+                orderSystemNo ,
+        </if>
+        <if test="orderType != null">
+                orderType ,
+        </if>
+        <if test="orderUpdateTime != null">
+                orderUpdateTime ,
+        </if>
+        <if test="orderUpdateUserNo != null">
+                orderUpdateUserNo ,
+        </if>
+        <if test="positionEffect != null">
+                positionEffect ,
+        </if>
+        <if test="positionEffect2 != null">
+                positionEffect2 ,
+        </if>
+        <if test="refDouble != null">
+                refDouble ,
+        </if>
+        <if test="refInt != null">
+                refInt ,
+        </if>
+        <if test="refString != null">
+                refString ,
+        </if>
+        <if test="serverFlag != null">
+                serverFlag ,
+        </if>
+        <if test="stopPrice != null">
+                stopPrice ,
+        </if>
+        <if test="strikePrice != null">
+                strikePrice ,
+        </if>
+        <if test="strikePrice2 != null">
+                strikePrice2 ,
+        </if>
+        <if test="tacticsType != null">
+                tacticsType ,
+        </if>
+        <if test="timeInForce != null">
+                timeInForce ,
+        </if>
+        <if test="triggerCondition != null">
+                triggerCondition ,
+        </if>
+        <if test="triggerPriceType != null">
+                triggerPriceType ,
+        </if>
+        <if test="upperChannelNo != null">
+                upperChannelNo ,
+        </if>
+        <if test="upperNo != null">
+                upperNo ,
+        </if>
+        <if test="upperStreamID != null">
+                upperStreamID ,
+        </if>
+        <if test="remark != null">
+                remark ,
+        </if>
+        <if test="createDate != null">
+                createDate ,
+        </if>
+        <if test="updateDate != null">
+                updateDate 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="accountNo != null">
+                #{accountNo} ,
+        </if>
+        <if test="addOneIsValid != null">
+                #{addOneIsValid} ,
+        </if>
+        <if test="callOrPutFlag != null">
+                #{callOrPutFlag} ,
+        </if>
+        <if test="callOrPutFlag2 != null">
+                #{callOrPutFlag2} ,
+        </if>
+        <if test="clientID != null">
+                #{clientID} ,
+        </if>
+        <if test="clientIP != null">
+                #{clientIP} ,
+        </if>
+        <if test="clientLocalIP != null">
+                #{clientLocalIP} ,
+        </if>
+        <if test="clientMac != null">
+                #{clientMac} ,
+        </if>
+        <if test="clientOrderNo != null">
+                #{clientOrderNo} ,
+        </if>
+        <if test="commodityNo != null">
+                #{commodityNo} ,
+        </if>
+        <if test="commodityType != null">
+                #{commodityType} ,
+        </if>
+        <if test="contractNo != null">
+                #{contractNo} ,
+        </if>
+        <if test="contractNo2 != null">
+                #{contractNo2} ,
+        </if>
+        <if test="errorCode != null">
+                #{errorCode} ,
+        </if>
+        <if test="errorText != null">
+                #{errorText} ,
+        </if>
+        <if test="exchangeNo != null">
+                #{exchangeNo} ,
+        </if>
+        <if test="expireTime != null">
+                #{expireTime} ,
+        </if>
+        <if test="hedgeFlag != null">
+                #{hedgeFlag} ,
+        </if>
+        <if test="inquiryNo != null">
+                #{inquiryNo} ,
+        </if>
+        <if test="isAddOne != null">
+                #{isAddOne} ,
+        </if>
+        <if test="isBackInput != null">
+                #{isBackInput} ,
+        </if>
+        <if test="isDeleted != null">
+                #{isDeleted} ,
+        </if>
+        <if test="isRiskOrder != null">
+                #{isRiskOrder} ,
+        </if>
+        <if test="licenseNo != null">
+                #{licenseNo} ,
+        </if>
+        <if test="maxClipSize != null">
+                #{maxClipSize} ,
+        </if>
+        <if test="minClipSize != null">
+                #{minClipSize} ,
+        </if>
+        <if test="orderCommandUserNo != null">
+                #{orderCommandUserNo} ,
+        </if>
+        <if test="orderExchangeSystemNo != null">
+                #{orderExchangeSystemNo} ,
+        </if>
+        <if test="orderInsertTime != null">
+                #{orderInsertTime} ,
+        </if>
+        <if test="orderInsertUserNo != null">
+                #{orderInsertUserNo} ,
+        </if>
+        <if test="orderLocalNo != null">
+                #{orderLocalNo} ,
+        </if>
+        <if test="orderMatchPrice != null">
+                #{orderMatchPrice} ,
+        </if>
+        <if test="orderMatchPrice2 != null">
+                #{orderMatchPrice2} ,
+        </if>
+        <if test="orderMatchQty != null">
+                #{orderMatchQty} ,
+        </if>
+        <if test="orderMatchQty2 != null">
+                #{orderMatchQty2} ,
+        </if>
+        <if test="orderMinQty != null">
+                #{orderMinQty} ,
+        </if>
+        <if test="orderNo != null">
+                #{orderNo} ,
+        </if>
+        <if test="orderParentSystemNo != null">
+                #{orderParentSystemNo} ,
+        </if>
+        <if test="orderPrice != null">
+                #{orderPrice} ,
+        </if>
+        <if test="orderPrice2 != null">
+                #{orderPrice2} ,
+        </if>
+        <if test="orderQty != null">
+                #{orderQty} ,
+        </if>
+        <if test="orderSide != null">
+                #{orderSide} ,
+        </if>
+        <if test="orderSource != null">
+                #{orderSource} ,
+        </if>
+        <if test="orderState != null">
+                #{orderState} ,
+        </if>
+        <if test="orderStreamID != null">
+                #{orderStreamID} ,
+        </if>
+        <if test="orderSystemNo != null">
+                #{orderSystemNo} ,
+        </if>
+        <if test="orderType != null">
+                #{orderType} ,
+        </if>
+        <if test="orderUpdateTime != null">
+                #{orderUpdateTime} ,
+        </if>
+        <if test="orderUpdateUserNo != null">
+                #{orderUpdateUserNo} ,
+        </if>
+        <if test="positionEffect != null">
+                #{positionEffect} ,
+        </if>
+        <if test="positionEffect2 != null">
+                #{positionEffect2} ,
+        </if>
+        <if test="refDouble != null">
+                #{refDouble} ,
+        </if>
+        <if test="refInt != null">
+                #{refInt} ,
+        </if>
+        <if test="refString != null">
+                #{refString} ,
+        </if>
+        <if test="serverFlag != null">
+                #{serverFlag} ,
+        </if>
+        <if test="stopPrice != null">
+                #{stopPrice} ,
+        </if>
+        <if test="strikePrice != null">
+                #{strikePrice} ,
+        </if>
+        <if test="strikePrice2 != null">
+                #{strikePrice2} ,
+        </if>
+        <if test="tacticsType != null">
+                #{tacticsType} ,
+        </if>
+        <if test="timeInForce != null">
+                #{timeInForce} ,
+        </if>
+        <if test="triggerCondition != null">
+                #{triggerCondition} ,
+        </if>
+        <if test="triggerPriceType != null">
+                #{triggerPriceType} ,
+        </if>
+        <if test="upperChannelNo != null">
+                #{upperChannelNo} ,
+        </if>
+        <if test="upperNo != null">
+                #{upperNo} ,
+        </if>
+        <if test="upperStreamID != null">
+                #{upperStreamID} ,
+        </if>
+        <if test="remark != null">
+                #{remark} ,
+        </if>
+        <if test="createDate != null">
+                #{createDate} ,
+        </if>
+        <if test="updateDate != null">
+                #{updateDate} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.uams.rpc.api.model.SysOrderProcessModel">
+        update SysOrderProcess
+           <set>
+            <if test="accountNo != null">
+                accountNo = #{accountNo} ,
+            </if>
+            <if test="addOneIsValid != null">
+                addOneIsValid = #{addOneIsValid} ,
+            </if>
+            <if test="callOrPutFlag != null">
+                callOrPutFlag = #{callOrPutFlag} ,
+            </if>
+            <if test="callOrPutFlag2 != null">
+                callOrPutFlag2 = #{callOrPutFlag2} ,
+            </if>
+            <if test="clientID != null">
+                clientID = #{clientID} ,
+            </if>
+            <if test="clientIP != null">
+                clientIP = #{clientIP} ,
+            </if>
+            <if test="clientLocalIP != null">
+                clientLocalIP = #{clientLocalIP} ,
+            </if>
+            <if test="clientMac != null">
+                clientMac = #{clientMac} ,
+            </if>
+            <if test="clientOrderNo != null">
+                clientOrderNo = #{clientOrderNo} ,
+            </if>
+            <if test="commodityNo != null">
+                commodityNo = #{commodityNo} ,
+            </if>
+            <if test="commodityType != null">
+                commodityType = #{commodityType} ,
+            </if>
+            <if test="contractNo != null">
+                contractNo = #{contractNo} ,
+            </if>
+            <if test="contractNo2 != null">
+                contractNo2 = #{contractNo2} ,
+            </if>
+            <if test="errorCode != null">
+                errorCode = #{errorCode} ,
+            </if>
+            <if test="errorText != null">
+                errorText = #{errorText} ,
+            </if>
+            <if test="exchangeNo != null">
+                exchangeNo = #{exchangeNo} ,
+            </if>
+            <if test="expireTime != null">
+                expireTime = #{expireTime} ,
+            </if>
+            <if test="hedgeFlag != null">
+                hedgeFlag = #{hedgeFlag} ,
+            </if>
+            <if test="inquiryNo != null">
+                inquiryNo = #{inquiryNo} ,
+            </if>
+            <if test="isAddOne != null">
+                isAddOne = #{isAddOne} ,
+            </if>
+            <if test="isBackInput != null">
+                isBackInput = #{isBackInput} ,
+            </if>
+            <if test="isDeleted != null">
+                isDeleted = #{isDeleted} ,
+            </if>
+            <if test="isRiskOrder != null">
+                isRiskOrder = #{isRiskOrder} ,
+            </if>
+            <if test="licenseNo != null">
+                licenseNo = #{licenseNo} ,
+            </if>
+            <if test="maxClipSize != null">
+                maxClipSize = #{maxClipSize} ,
+            </if>
+            <if test="minClipSize != null">
+                minClipSize = #{minClipSize} ,
+            </if>
+            <if test="orderCommandUserNo != null">
+                orderCommandUserNo = #{orderCommandUserNo} ,
+            </if>
+            <if test="orderExchangeSystemNo != null">
+                orderExchangeSystemNo = #{orderExchangeSystemNo} ,
+            </if>
+            <if test="orderInsertTime != null">
+                orderInsertTime = #{orderInsertTime} ,
+            </if>
+            <if test="orderInsertUserNo != null">
+                orderInsertUserNo = #{orderInsertUserNo} ,
+            </if>
+            <if test="orderLocalNo != null">
+                orderLocalNo = #{orderLocalNo} ,
+            </if>
+            <if test="orderMatchPrice != null">
+                orderMatchPrice = #{orderMatchPrice} ,
+            </if>
+            <if test="orderMatchPrice2 != null">
+                orderMatchPrice2 = #{orderMatchPrice2} ,
+            </if>
+            <if test="orderMatchQty != null">
+                orderMatchQty = #{orderMatchQty} ,
+            </if>
+            <if test="orderMatchQty2 != null">
+                orderMatchQty2 = #{orderMatchQty2} ,
+            </if>
+            <if test="orderMinQty != null">
+                orderMinQty = #{orderMinQty} ,
+            </if>
+            <if test="orderNo != null">
+                orderNo = #{orderNo} ,
+            </if>
+            <if test="orderParentSystemNo != null">
+                orderParentSystemNo = #{orderParentSystemNo} ,
+            </if>
+            <if test="orderPrice != null">
+                orderPrice = #{orderPrice} ,
+            </if>
+            <if test="orderPrice2 != null">
+                orderPrice2 = #{orderPrice2} ,
+            </if>
+            <if test="orderQty != null">
+                orderQty = #{orderQty} ,
+            </if>
+            <if test="orderSide != null">
+                orderSide = #{orderSide} ,
+            </if>
+            <if test="orderSource != null">
+                orderSource = #{orderSource} ,
+            </if>
+            <if test="orderState != null">
+                orderState = #{orderState} ,
+            </if>
+            <if test="orderStreamID != null">
+                orderStreamID = #{orderStreamID} ,
+            </if>
+            <if test="orderSystemNo != null">
+                orderSystemNo = #{orderSystemNo} ,
+            </if>
+            <if test="orderType != null">
+                orderType = #{orderType} ,
+            </if>
+            <if test="orderUpdateTime != null">
+                orderUpdateTime = #{orderUpdateTime} ,
+            </if>
+            <if test="orderUpdateUserNo != null">
+                orderUpdateUserNo = #{orderUpdateUserNo} ,
+            </if>
+            <if test="positionEffect != null">
+                positionEffect = #{positionEffect} ,
+            </if>
+            <if test="positionEffect2 != null">
+                positionEffect2 = #{positionEffect2} ,
+            </if>
+            <if test="refDouble != null">
+                refDouble = #{refDouble} ,
+            </if>
+            <if test="refInt != null">
+                refInt = #{refInt} ,
+            </if>
+            <if test="refString != null">
+                refString = #{refString} ,
+            </if>
+            <if test="serverFlag != null">
+                serverFlag = #{serverFlag} ,
+            </if>
+            <if test="stopPrice != null">
+                stopPrice = #{stopPrice} ,
+            </if>
+            <if test="strikePrice != null">
+                strikePrice = #{strikePrice} ,
+            </if>
+            <if test="strikePrice2 != null">
+                strikePrice2 = #{strikePrice2} ,
+            </if>
+            <if test="tacticsType != null">
+                tacticsType = #{tacticsType} ,
+            </if>
+            <if test="timeInForce != null">
+                timeInForce = #{timeInForce} ,
+            </if>
+            <if test="triggerCondition != null">
+                triggerCondition = #{triggerCondition} ,
+            </if>
+            <if test="triggerPriceType != null">
+                triggerPriceType = #{triggerPriceType} ,
+            </if>
+            <if test="upperChannelNo != null">
+                upperChannelNo = #{upperChannelNo} ,
+            </if>
+            <if test="upperNo != null">
+                upperNo = #{upperNo} ,
+            </if>
+            <if test="upperStreamID != null">
+                upperStreamID = #{upperStreamID} ,
+            </if>
+            <if test="remark != null">
+                remark = #{remark} ,
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate} ,
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into SysOrderProcess(
+            id ,
+            accountNo ,
+            addOneIsValid ,
+            callOrPutFlag ,
+            callOrPutFlag2 ,
+            clientID ,
+            clientIP ,
+            clientLocalIP ,
+            clientMac ,
+            clientOrderNo ,
+            commodityNo ,
+            commodityType ,
+            contractNo ,
+            contractNo2 ,
+            errorCode ,
+            errorText ,
+            exchangeNo ,
+            expireTime ,
+            hedgeFlag ,
+            inquiryNo ,
+            isAddOne ,
+            isBackInput ,
+            isDeleted ,
+            isRiskOrder ,
+            licenseNo ,
+            maxClipSize ,
+            minClipSize ,
+            orderCommandUserNo ,
+            orderExchangeSystemNo ,
+            orderInsertTime ,
+            orderInsertUserNo ,
+            orderLocalNo ,
+            orderMatchPrice ,
+            orderMatchPrice2 ,
+            orderMatchQty ,
+            orderMatchQty2 ,
+            orderMinQty ,
+            orderNo ,
+            orderParentSystemNo ,
+            orderPrice ,
+            orderPrice2 ,
+            orderQty ,
+            orderSide ,
+            orderSource ,
+            orderState ,
+            orderStreamID ,
+            orderSystemNo ,
+            orderType ,
+            orderUpdateTime ,
+            orderUpdateUserNo ,
+            positionEffect ,
+            positionEffect2 ,
+            refDouble ,
+            refInt ,
+            refString ,
+            serverFlag ,
+            stopPrice ,
+            strikePrice ,
+            strikePrice2 ,
+            tacticsType ,
+            timeInForce ,
+            triggerCondition ,
+            triggerPriceType ,
+            upperChannelNo ,
+            upperNo ,
+            upperStreamID ,
+            remark ,
+            createDate ,
+            updateDate 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.accountNo} ,
+            #{item.addOneIsValid} ,
+            #{item.callOrPutFlag} ,
+            #{item.callOrPutFlag2} ,
+            #{item.clientID} ,
+            #{item.clientIP} ,
+            #{item.clientLocalIP} ,
+            #{item.clientMac} ,
+            #{item.clientOrderNo} ,
+            #{item.commodityNo} ,
+            #{item.commodityType} ,
+            #{item.contractNo} ,
+            #{item.contractNo2} ,
+            #{item.errorCode} ,
+            #{item.errorText} ,
+            #{item.exchangeNo} ,
+            #{item.expireTime} ,
+            #{item.hedgeFlag} ,
+            #{item.inquiryNo} ,
+            #{item.isAddOne} ,
+            #{item.isBackInput} ,
+            #{item.isDeleted} ,
+            #{item.isRiskOrder} ,
+            #{item.licenseNo} ,
+            #{item.maxClipSize} ,
+            #{item.minClipSize} ,
+            #{item.orderCommandUserNo} ,
+            #{item.orderExchangeSystemNo} ,
+            #{item.orderInsertTime} ,
+            #{item.orderInsertUserNo} ,
+            #{item.orderLocalNo} ,
+            #{item.orderMatchPrice} ,
+            #{item.orderMatchPrice2} ,
+            #{item.orderMatchQty} ,
+            #{item.orderMatchQty2} ,
+            #{item.orderMinQty} ,
+            #{item.orderNo} ,
+            #{item.orderParentSystemNo} ,
+            #{item.orderPrice} ,
+            #{item.orderPrice2} ,
+            #{item.orderQty} ,
+            #{item.orderSide} ,
+            #{item.orderSource} ,
+            #{item.orderState} ,
+            #{item.orderStreamID} ,
+            #{item.orderSystemNo} ,
+            #{item.orderType} ,
+            #{item.orderUpdateTime} ,
+            #{item.orderUpdateUserNo} ,
+            #{item.positionEffect} ,
+            #{item.positionEffect2} ,
+            #{item.refDouble} ,
+            #{item.refInt} ,
+            #{item.refString} ,
+            #{item.serverFlag} ,
+            #{item.stopPrice} ,
+            #{item.strikePrice} ,
+            #{item.strikePrice2} ,
+            #{item.tacticsType} ,
+            #{item.timeInForce} ,
+            #{item.triggerCondition} ,
+            #{item.triggerPriceType} ,
+            #{item.upperChannelNo} ,
+            #{item.upperNo} ,
+            #{item.upperStreamID} ,
+            #{item.remark} ,
+            #{item.createDate} ,
+            #{item.updateDate} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update SysOrderProcess set
+            accountNo = #{item.accountNo} ,
+            addOneIsValid = #{item.addOneIsValid} ,
+            callOrPutFlag = #{item.callOrPutFlag} ,
+            callOrPutFlag2 = #{item.callOrPutFlag2} ,
+            clientID = #{item.clientID} ,
+            clientIP = #{item.clientIP} ,
+            clientLocalIP = #{item.clientLocalIP} ,
+            clientMac = #{item.clientMac} ,
+            clientOrderNo = #{item.clientOrderNo} ,
+            commodityNo = #{item.commodityNo} ,
+            commodityType = #{item.commodityType} ,
+            contractNo = #{item.contractNo} ,
+            contractNo2 = #{item.contractNo2} ,
+            errorCode = #{item.errorCode} ,
+            errorText = #{item.errorText} ,
+            exchangeNo = #{item.exchangeNo} ,
+            expireTime = #{item.expireTime} ,
+            hedgeFlag = #{item.hedgeFlag} ,
+            inquiryNo = #{item.inquiryNo} ,
+            isAddOne = #{item.isAddOne} ,
+            isBackInput = #{item.isBackInput} ,
+            isDeleted = #{item.isDeleted} ,
+            isRiskOrder = #{item.isRiskOrder} ,
+            licenseNo = #{item.licenseNo} ,
+            maxClipSize = #{item.maxClipSize} ,
+            minClipSize = #{item.minClipSize} ,
+            orderCommandUserNo = #{item.orderCommandUserNo} ,
+            orderExchangeSystemNo = #{item.orderExchangeSystemNo} ,
+            orderInsertTime = #{item.orderInsertTime} ,
+            orderInsertUserNo = #{item.orderInsertUserNo} ,
+            orderLocalNo = #{item.orderLocalNo} ,
+            orderMatchPrice = #{item.orderMatchPrice} ,
+            orderMatchPrice2 = #{item.orderMatchPrice2} ,
+            orderMatchQty = #{item.orderMatchQty} ,
+            orderMatchQty2 = #{item.orderMatchQty2} ,
+            orderMinQty = #{item.orderMinQty} ,
+            orderNo = #{item.orderNo} ,
+            orderParentSystemNo = #{item.orderParentSystemNo} ,
+            orderPrice = #{item.orderPrice} ,
+            orderPrice2 = #{item.orderPrice2} ,
+            orderQty = #{item.orderQty} ,
+            orderSide = #{item.orderSide} ,
+            orderSource = #{item.orderSource} ,
+            orderState = #{item.orderState} ,
+            orderStreamID = #{item.orderStreamID} ,
+            orderSystemNo = #{item.orderSystemNo} ,
+            orderType = #{item.orderType} ,
+            orderUpdateTime = #{item.orderUpdateTime} ,
+            orderUpdateUserNo = #{item.orderUpdateUserNo} ,
+            positionEffect = #{item.positionEffect} ,
+            positionEffect2 = #{item.positionEffect2} ,
+            refDouble = #{item.refDouble} ,
+            refInt = #{item.refInt} ,
+            refString = #{item.refString} ,
+            serverFlag = #{item.serverFlag} ,
+            stopPrice = #{item.stopPrice} ,
+            strikePrice = #{item.strikePrice} ,
+            strikePrice2 = #{item.strikePrice2} ,
+            tacticsType = #{item.tacticsType} ,
+            timeInForce = #{item.timeInForce} ,
+            triggerCondition = #{item.triggerCondition} ,
+            triggerPriceType = #{item.triggerPriceType} ,
+            upperChannelNo = #{item.upperChannelNo} ,
+            upperNo = #{item.upperNo} ,
+            upperStreamID = #{item.upperStreamID} ,
+            remark = #{item.remark} ,
+            createDate = #{item.createDate} ,
+            updateDate = #{item.updateDate} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.uams.rpc.api.model.SysOrderProcessModel">
+        update SysOrderProcess set
+            accountNo = #{accountNo} ,
+            addOneIsValid = #{addOneIsValid} ,
+            callOrPutFlag = #{callOrPutFlag} ,
+            callOrPutFlag2 = #{callOrPutFlag2} ,
+            clientID = #{clientID} ,
+            clientIP = #{clientIP} ,
+            clientLocalIP = #{clientLocalIP} ,
+            clientMac = #{clientMac} ,
+            clientOrderNo = #{clientOrderNo} ,
+            commodityNo = #{commodityNo} ,
+            commodityType = #{commodityType} ,
+            contractNo = #{contractNo} ,
+            contractNo2 = #{contractNo2} ,
+            errorCode = #{errorCode} ,
+            errorText = #{errorText} ,
+            exchangeNo = #{exchangeNo} ,
+            expireTime = #{expireTime} ,
+            hedgeFlag = #{hedgeFlag} ,
+            inquiryNo = #{inquiryNo} ,
+            isAddOne = #{isAddOne} ,
+            isBackInput = #{isBackInput} ,
+            isDeleted = #{isDeleted} ,
+            isRiskOrder = #{isRiskOrder} ,
+            licenseNo = #{licenseNo} ,
+            maxClipSize = #{maxClipSize} ,
+            minClipSize = #{minClipSize} ,
+            orderCommandUserNo = #{orderCommandUserNo} ,
+            orderExchangeSystemNo = #{orderExchangeSystemNo} ,
+            orderInsertTime = #{orderInsertTime} ,
+            orderInsertUserNo = #{orderInsertUserNo} ,
+            orderLocalNo = #{orderLocalNo} ,
+            orderMatchPrice = #{orderMatchPrice} ,
+            orderMatchPrice2 = #{orderMatchPrice2} ,
+            orderMatchQty = #{orderMatchQty} ,
+            orderMatchQty2 = #{orderMatchQty2} ,
+            orderMinQty = #{orderMinQty} ,
+            orderNo = #{orderNo} ,
+            orderParentSystemNo = #{orderParentSystemNo} ,
+            orderPrice = #{orderPrice} ,
+            orderPrice2 = #{orderPrice2} ,
+            orderQty = #{orderQty} ,
+            orderSide = #{orderSide} ,
+            orderSource = #{orderSource} ,
+            orderState = #{orderState} ,
+            orderStreamID = #{orderStreamID} ,
+            orderSystemNo = #{orderSystemNo} ,
+            orderType = #{orderType} ,
+            orderUpdateTime = #{orderUpdateTime} ,
+            orderUpdateUserNo = #{orderUpdateUserNo} ,
+            positionEffect = #{positionEffect} ,
+            positionEffect2 = #{positionEffect2} ,
+            refDouble = #{refDouble} ,
+            refInt = #{refInt} ,
+            refString = #{refString} ,
+            serverFlag = #{serverFlag} ,
+            stopPrice = #{stopPrice} ,
+            strikePrice = #{strikePrice} ,
+            strikePrice2 = #{strikePrice2} ,
+            tacticsType = #{tacticsType} ,
+            timeInForce = #{timeInForce} ,
+            triggerCondition = #{triggerCondition} ,
+            triggerPriceType = #{triggerPriceType} ,
+            upperChannelNo = #{upperChannelNo} ,
+            upperNo = #{upperNo} ,
+            upperStreamID = #{upperStreamID} ,
+            remark = #{remark} ,
+            createDate = #{createDate} ,
+            updateDate = #{updateDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.uams.rpc.api.model.SysOrderProcessModel">
+        select <include refid="sysOrderProcessColumns"/> from SysOrderProcess a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.uams.rpc.api.model.SysOrderProcessModel">
+        SELECT
+        <include refid="sysOrderProcessColumns"/>
+        FROM SysOrderProcess a WHERE 1=1
+        <if test="accountNo != null">
+            and a.accountNo like '%'||#{accountNo}||'%'
+        </if>
+        <if test="addOneIsValid != null">
+            and a.addOneIsValid like '%'||#{addOneIsValid}||'%'
+        </if>
+        <if test="callOrPutFlag != null">
+            and a.callOrPutFlag like '%'||#{callOrPutFlag}||'%'
+        </if>
+        <if test="callOrPutFlag2 != null">
+            and a.callOrPutFlag2 like '%'||#{callOrPutFlag2}||'%'
+        </if>
+        <if test="clientID != null">
+            and a.clientID like '%'||#{clientID}||'%'
+        </if>
+        <if test="clientIP != null">
+            and a.clientIP like '%'||#{clientIP}||'%'
+        </if>
+        <if test="clientLocalIP != null">
+            and a.clientLocalIP like '%'||#{clientLocalIP}||'%'
+        </if>
+        <if test="clientMac != null">
+            and a.clientMac like '%'||#{clientMac}||'%'
+        </if>
+        <if test="clientOrderNo != null">
+            and a.clientOrderNo like '%'||#{clientOrderNo}||'%'
+        </if>
+        <if test="commodityNo != null">
+            and a.commodityNo like '%'||#{commodityNo}||'%'
+        </if>
+        <if test="commodityType != null">
+            and a.commodityType like '%'||#{commodityType}||'%'
+        </if>
+        <if test="contractNo != null">
+            and a.contractNo like '%'||#{contractNo}||'%'
+        </if>
+        <if test="contractNo2 != null">
+            and a.contractNo2 like '%'||#{contractNo2}||'%'
+        </if>
+        <if test="errorCode != null">
+            and a.errorCode like '%'||#{errorCode}||'%'
+        </if>
+        <if test="errorText != null">
+            and a.errorText like '%'||#{errorText}||'%'
+        </if>
+        <if test="exchangeNo != null">
+            and a.exchangeNo like '%'||#{exchangeNo}||'%'
+        </if>
+        <if test="expireTime != null">
+            and a.expireTime = #{expireTime}
+        </if>
+        <if test="hedgeFlag != null">
+            and a.hedgeFlag like '%'||#{hedgeFlag}||'%'
+        </if>
+        <if test="inquiryNo != null">
+            and a.inquiryNo like '%'||#{inquiryNo}||'%'
+        </if>
+        <if test="isAddOne != null">
+            and a.isAddOne like '%'||#{isAddOne}||'%'
+        </if>
+        <if test="isBackInput != null">
+            and a.isBackInput like '%'||#{isBackInput}||'%'
+        </if>
+        <if test="isDeleted != null">
+            and a.isDeleted like '%'||#{isDeleted}||'%'
+        </if>
+        <if test="isRiskOrder != null">
+            and a.isRiskOrder like '%'||#{isRiskOrder}||'%'
+        </if>
+        <if test="licenseNo != null">
+            and a.licenseNo like '%'||#{licenseNo}||'%'
+        </if>
+        <if test="maxClipSize != null">
+            and a.maxClipSize = #{maxClipSize}
+        </if>
+        <if test="minClipSize != null">
+            and a.minClipSize = #{minClipSize}
+        </if>
+        <if test="orderCommandUserNo != null">
+            and a.orderCommandUserNo like '%'||#{orderCommandUserNo}||'%'
+        </if>
+        <if test="orderExchangeSystemNo != null">
+            and a.orderExchangeSystemNo like '%'||#{orderExchangeSystemNo}||'%'
+        </if>
+        <if test="orderInsertTime != null">
+            and a.orderInsertTime = #{orderInsertTime}
+        </if>
+        <if test="orderInsertUserNo != null">
+            and a.orderInsertUserNo like '%'||#{orderInsertUserNo}||'%'
+        </if>
+        <if test="orderLocalNo != null">
+            and a.orderLocalNo like '%'||#{orderLocalNo}||'%'
+        </if>
+        <if test="orderMatchPrice != null">
+            and a.orderMatchPrice = #{orderMatchPrice}
+        </if>
+        <if test="orderMatchPrice2 != null">
+            and a.orderMatchPrice2 = #{orderMatchPrice2}
+        </if>
+        <if test="orderMatchQty != null">
+            and a.orderMatchQty = #{orderMatchQty}
+        </if>
+        <if test="orderMatchQty2 != null">
+            and a.orderMatchQty2 = #{orderMatchQty2}
+        </if>
+        <if test="orderMinQty != null">
+            and a.orderMinQty = #{orderMinQty}
+        </if>
+        <if test="orderNo != null">
+            and a.orderNo like '%'||#{orderNo}||'%'
+        </if>
+        <if test="orderParentSystemNo != null">
+            and a.orderParentSystemNo like '%'||#{orderParentSystemNo}||'%'
+        </if>
+        <if test="orderPrice != null">
+            and a.orderPrice = #{orderPrice}
+        </if>
+        <if test="orderPrice2 != null">
+            and a.orderPrice2 = #{orderPrice2}
+        </if>
+        <if test="orderQty != null">
+            and a.orderQty = #{orderQty}
+        </if>
+        <if test="orderSide != null">
+            and a.orderSide like '%'||#{orderSide}||'%'
+        </if>
+        <if test="orderSource != null">
+            and a.orderSource like '%'||#{orderSource}||'%'
+        </if>
+        <if test="orderState != null">
+            and a.orderState like '%'||#{orderState}||'%'
+        </if>
+        <if test="orderStreamID != null">
+            and a.orderStreamID = #{orderStreamID}
+        </if>
+        <if test="orderSystemNo != null">
+            and a.orderSystemNo like '%'||#{orderSystemNo}||'%'
+        </if>
+        <if test="orderType != null">
+            and a.orderType like '%'||#{orderType}||'%'
+        </if>
+        <if test="orderUpdateTime != null">
+            and a.orderUpdateTime = #{orderUpdateTime}
+        </if>
+        <if test="orderUpdateUserNo != null">
+            and a.orderUpdateUserNo like '%'||#{orderUpdateUserNo}||'%'
+        </if>
+        <if test="positionEffect != null">
+            and a.positionEffect like '%'||#{positionEffect}||'%'
+        </if>
+        <if test="positionEffect2 != null">
+            and a.positionEffect2 like '%'||#{positionEffect2}||'%'
+        </if>
+        <if test="refDouble != null">
+            and a.refDouble = #{refDouble}
+        </if>
+        <if test="refInt != null">
+            and a.refInt = #{refInt}
+        </if>
+        <if test="refString != null">
+            and a.refString like '%'||#{refString}||'%'
+        </if>
+        <if test="serverFlag != null">
+            and a.serverFlag like '%'||#{serverFlag}||'%'
+        </if>
+        <if test="stopPrice != null">
+            and a.stopPrice = #{stopPrice}
+        </if>
+        <if test="strikePrice != null">
+            and a.strikePrice = #{strikePrice}
+        </if>
+        <if test="strikePrice2 != null">
+            and a.strikePrice2 = #{strikePrice2}
+        </if>
+        <if test="tacticsType != null">
+            and a.tacticsType like '%'||#{tacticsType}||'%'
+        </if>
+        <if test="timeInForce != null">
+            and a.timeInForce like '%'||#{timeInForce}||'%'
+        </if>
+        <if test="triggerCondition != null">
+            and a.triggerCondition like '%'||#{triggerCondition}||'%'
+        </if>
+        <if test="triggerPriceType != null">
+            and a.triggerPriceType like '%'||#{triggerPriceType}||'%'
+        </if>
+        <if test="upperChannelNo != null">
+            and a.upperChannelNo like '%'||#{upperChannelNo}||'%'
+        </if>
+        <if test="upperNo != null">
+            and a.upperNo like '%'||#{upperNo}||'%'
+        </if>
+        <if test="upperStreamID != null">
+            and a.upperStreamID = #{upperStreamID}
+        </if>
+        <if test="remark != null">
+            and a.remark like '%'||#{remark}||'%'
+        </if>
+        <if test="createDate != null">
+            and a.createDate = #{createDate}
+        </if>
+        <if test="updateDate != null">
+            and a.updateDate = #{updateDate}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.uams.rpc.api.model.SysOrderProcessModel">
+        SELECT
+        <include refid="sysOrderProcessColumns"/>
+        FROM SysOrderProcess a WHERE 1=1
+    </select>
+
+
+</mapper>
+

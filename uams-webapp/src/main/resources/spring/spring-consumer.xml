@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:consumer check="false"/>
+
+    <!-- 全局公共服务 -->
+    <!-- 数据字典 -->
+    <dubbo:reference id="dictionaryService" interface="com.uams.rpc.common.service.DictionaryService" mock="return null" version="1.0.0"/>
+    <!-- 区域代码 -->
+    <dubbo:reference id="regionService" interface="com.uams.rpc.common.service.RegionService" mock="return null" version="1.0.0"/>
+    <!-- 手机短信 -->
+    <dubbo:reference id="msgRecordService" interface="com.uams.rpc.common.service.MsgRecordService" mock="return null" version="1.0.0"/>
+    <!-- 短信模版 -->
+    <dubbo:reference id="msgTemplateService" interface="com.uams.rpc.common.service.MsgTemplateService" mock="return null" version="1.0.0"/>
+
+</beans>

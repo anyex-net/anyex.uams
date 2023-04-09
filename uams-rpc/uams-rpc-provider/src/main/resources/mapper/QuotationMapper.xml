@@ -1,0 +1,2122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uams.rpc.quotation.mapper.QuotationMapper">
+    <!-- 基础列 -->
+    <sql id="quotationColumns">
+        a.id as id,
+        a.interCode as interCode,
+        a.marketCode as marketCode,
+        a.kindCode as kindCode,
+        a.currencyNo as currencyNo,
+        a.fiveDayAvgQty as fiveDayAvgQty,
+        a.averagePrice as averagePrice,
+        a.changeRate as changeRate,
+        a.changeSpeed as changeSpeed,
+        a.changeValue as changeValue,
+        a.closingPrice as closingPrice,
+        a.currDelta as currDelta,
+        a.highPrice as highPrice,
+        a.lowPrice as lowPrice,
+        a.hisHighPrice as hisHighPrice,
+        a.hisLowPrice as hisLowPrice,
+        a.insideQty as insideQty,
+        a.outsideQty as outsideQty,
+        a.lastPrice as lastPrice,
+        a.lastQty as lastQty,
+        a.limitDownPrice as limitDownPrice,
+        a.limitUpPrice as limitUpPrice,
+        a.negotiableValue as negotiableValue,
+        a.openingPrice as openingPrice,
+        a.pERatio as pERatio,
+        a.positionTrend as positionTrend,
+        a.preClosingPrice as preClosingPrice,
+        a.prePositionQty as prePositionQty,
+        a.preSettlePrice as preSettlePrice,
+        a.settlePrice as settlePrice,
+        a.swing as swing,
+        a.totalAskQty as totalAskQty,
+        a.totalBidQty as totalBidQty,
+        a.totalQty as totalQty,
+        a.totalTurnover as totalTurnover,
+        a.totalValue as totalValue,
+        a.turnoverRate as turnoverRate,
+        a.tradingState as tradingState,
+        a.askPrice1 as askPrice1,
+        a.askPrice2 as askPrice2,
+        a.askPrice3 as askPrice3,
+        a.askPrice4 as askPrice4,
+        a.askPrice5 as askPrice5,
+        a.askPrice6 as askPrice6,
+        a.askPrice7 as askPrice7,
+        a.askPrice8 as askPrice8,
+        a.askPrice9 as askPrice9,
+        a.askPrice10 as askPrice10,
+        a.askPrice11 as askPrice11,
+        a.askPrice12 as askPrice12,
+        a.askPrice13 as askPrice13,
+        a.askPrice14 as askPrice14,
+        a.askPrice15 as askPrice15,
+        a.askPrice16 as askPrice16,
+        a.askPrice17 as askPrice17,
+        a.askPrice18 as askPrice18,
+        a.askPrice19 as askPrice19,
+        a.askPrice20 as askPrice20,
+        a.askQty1 as askQty1,
+        a.askQty2 as askQty2,
+        a.askQty3 as askQty3,
+        a.askQty4 as askQty4,
+        a.askQty5 as askQty5,
+        a.askQty6 as askQty6,
+        a.askQty7 as askQty7,
+        a.askQty8 as askQty8,
+        a.askQty9 as askQty9,
+        a.askQty10 as askQty10,
+        a.askQty11 as askQty11,
+        a.askQty12 as askQty12,
+        a.askQty13 as askQty13,
+        a.askQty14 as askQty14,
+        a.askQty15 as askQty15,
+        a.askQty16 as askQty16,
+        a.askQty17 as askQty17,
+        a.askQty18 as askQty18,
+        a.askQty19 as askQty19,
+        a.askQty20 as askQty20,
+        a.bidPrice1 as bidPrice1,
+        a.bidPrice2 as bidPrice2,
+        a.bidPrice3 as bidPrice3,
+        a.bidPrice4 as bidPrice4,
+        a.bidPrice5 as bidPrice5,
+        a.bidPrice6 as bidPrice6,
+        a.bidPrice7 as bidPrice7,
+        a.bidPrice8 as bidPrice8,
+        a.bidPrice9 as bidPrice9,
+        a.bidPrice10 as bidPrice10,
+        a.bidPrice11 as bidPrice11,
+        a.bidPrice12 as bidPrice12,
+        a.bidPrice13 as bidPrice13,
+        a.bidPrice14 as bidPrice14,
+        a.bidPrice15 as bidPrice15,
+        a.bidPrice16 as bidPrice16,
+        a.bidPrice17 as bidPrice17,
+        a.bidPrice18 as bidPrice18,
+        a.bidPrice19 as bidPrice19,
+        a.bidPrice20 as bidPrice20,
+        a.bidQty1 as bidQty1,
+        a.bidQty2 as bidQty2,
+        a.bidQty3 as bidQty3,
+        a.bidQty4 as bidQty4,
+        a.bidQty5 as bidQty5,
+        a.bidQty6 as bidQty6,
+        a.bidQty7 as bidQty7,
+        a.bidQty8 as bidQty8,
+        a.bidQty9 as bidQty9,
+        a.bidQty10 as bidQty10,
+        a.bidQty11 as bidQty11,
+        a.bidQty12 as bidQty12,
+        a.bidQty13 as bidQty13,
+        a.bidQty14 as bidQty14,
+        a.bidQty15 as bidQty15,
+        a.bidQty16 as bidQty16,
+        a.bidQty17 as bidQty17,
+        a.bidQty18 as bidQty18,
+        a.bidQty19 as bidQty19,
+        a.bidQty20 as bidQty20,
+        a.quotationTime as quotationTime
+    </sql>
+
+    <resultMap id="quotationResultMap" type="com.uams.rpc.quotation.model.QuotationModel">
+        <id column="id" property="id" />
+        <result column="interCode" property="interCode"/>
+        <result column="marketCode" property="marketCode"/>
+        <result column="kindCode" property="kindCode"/>
+        <result column="currencyNo" property="currencyNo"/>
+        <result column="fiveDayAvgQty" property="fiveDayAvgQty"/>
+        <result column="averagePrice" property="averagePrice"/>
+        <result column="changeRate" property="changeRate"/>
+        <result column="changeSpeed" property="changeSpeed"/>
+        <result column="changeValue" property="changeValue"/>
+        <result column="closingPrice" property="closingPrice"/>
+        <result column="currDelta" property="currDelta"/>
+        <result column="highPrice" property="highPrice"/>
+        <result column="lowPrice" property="lowPrice"/>
+        <result column="hisHighPrice" property="hisHighPrice"/>
+        <result column="hisLowPrice" property="hisLowPrice"/>
+        <result column="insideQty" property="insideQty"/>
+        <result column="outsideQty" property="outsideQty"/>
+        <result column="lastPrice" property="lastPrice"/>
+        <result column="lastQty" property="lastQty"/>
+        <result column="limitDownPrice" property="limitDownPrice"/>
+        <result column="limitUpPrice" property="limitUpPrice"/>
+        <result column="negotiableValue" property="negotiableValue"/>
+        <result column="openingPrice" property="openingPrice"/>
+        <result column="pERatio" property="pERatio"/>
+        <result column="positionTrend" property="positionTrend"/>
+        <result column="preClosingPrice" property="preClosingPrice"/>
+        <result column="prePositionQty" property="prePositionQty"/>
+        <result column="preSettlePrice" property="preSettlePrice"/>
+        <result column="settlePrice" property="settlePrice"/>
+        <result column="swing" property="swing"/>
+        <result column="totalAskQty" property="totalAskQty"/>
+        <result column="totalBidQty" property="totalBidQty"/>
+        <result column="totalQty" property="totalQty"/>
+        <result column="totalTurnover" property="totalTurnover"/>
+        <result column="totalValue" property="totalValue"/>
+        <result column="turnoverRate" property="turnoverRate"/>
+        <result column="tradingState" property="tradingState"/>
+        <result column="askPrice1" property="askPrice1"/>
+        <result column="askPrice2" property="askPrice2"/>
+        <result column="askPrice3" property="askPrice3"/>
+        <result column="askPrice4" property="askPrice4"/>
+        <result column="askPrice5" property="askPrice5"/>
+        <result column="askPrice6" property="askPrice6"/>
+        <result column="askPrice7" property="askPrice7"/>
+        <result column="askPrice8" property="askPrice8"/>
+        <result column="askPrice9" property="askPrice9"/>
+        <result column="askPrice10" property="askPrice10"/>
+        <result column="askPrice11" property="askPrice11"/>
+        <result column="askPrice12" property="askPrice12"/>
+        <result column="askPrice13" property="askPrice13"/>
+        <result column="askPrice14" property="askPrice14"/>
+        <result column="askPrice15" property="askPrice15"/>
+        <result column="askPrice16" property="askPrice16"/>
+        <result column="askPrice17" property="askPrice17"/>
+        <result column="askPrice18" property="askPrice18"/>
+        <result column="askPrice19" property="askPrice19"/>
+        <result column="askPrice20" property="askPrice20"/>
+        <result column="askQty1" property="askQty1"/>
+        <result column="askQty2" property="askQty2"/>
+        <result column="askQty3" property="askQty3"/>
+        <result column="askQty4" property="askQty4"/>
+        <result column="askQty5" property="askQty5"/>
+        <result column="askQty6" property="askQty6"/>
+        <result column="askQty7" property="askQty7"/>
+        <result column="askQty8" property="askQty8"/>
+        <result column="askQty9" property="askQty9"/>
+        <result column="askQty10" property="askQty10"/>
+        <result column="askQty11" property="askQty11"/>
+        <result column="askQty12" property="askQty12"/>
+        <result column="askQty13" property="askQty13"/>
+        <result column="askQty14" property="askQty14"/>
+        <result column="askQty15" property="askQty15"/>
+        <result column="askQty16" property="askQty16"/>
+        <result column="askQty17" property="askQty17"/>
+        <result column="askQty18" property="askQty18"/>
+        <result column="askQty19" property="askQty19"/>
+        <result column="askQty20" property="askQty20"/>
+        <result column="bidPrice1" property="bidPrice1"/>
+        <result column="bidPrice2" property="bidPrice2"/>
+        <result column="bidPrice3" property="bidPrice3"/>
+        <result column="bidPrice4" property="bidPrice4"/>
+        <result column="bidPrice5" property="bidPrice5"/>
+        <result column="bidPrice6" property="bidPrice6"/>
+        <result column="bidPrice7" property="bidPrice7"/>
+        <result column="bidPrice8" property="bidPrice8"/>
+        <result column="bidPrice9" property="bidPrice9"/>
+        <result column="bidPrice10" property="bidPrice10"/>
+        <result column="bidPrice11" property="bidPrice11"/>
+        <result column="bidPrice12" property="bidPrice12"/>
+        <result column="bidPrice13" property="bidPrice13"/>
+        <result column="bidPrice14" property="bidPrice14"/>
+        <result column="bidPrice15" property="bidPrice15"/>
+        <result column="bidPrice16" property="bidPrice16"/>
+        <result column="bidPrice17" property="bidPrice17"/>
+        <result column="bidPrice18" property="bidPrice18"/>
+        <result column="bidPrice19" property="bidPrice19"/>
+        <result column="bidPrice20" property="bidPrice20"/>
+        <result column="bidQty1" property="bidQty1"/>
+        <result column="bidQty2" property="bidQty2"/>
+        <result column="bidQty3" property="bidQty3"/>
+        <result column="bidQty4" property="bidQty4"/>
+        <result column="bidQty5" property="bidQty5"/>
+        <result column="bidQty6" property="bidQty6"/>
+        <result column="bidQty7" property="bidQty7"/>
+        <result column="bidQty8" property="bidQty8"/>
+        <result column="bidQty9" property="bidQty9"/>
+        <result column="bidQty10" property="bidQty10"/>
+        <result column="bidQty11" property="bidQty11"/>
+        <result column="bidQty12" property="bidQty12"/>
+        <result column="bidQty13" property="bidQty13"/>
+        <result column="bidQty14" property="bidQty14"/>
+        <result column="bidQty15" property="bidQty15"/>
+        <result column="bidQty16" property="bidQty16"/>
+        <result column="bidQty17" property="bidQty17"/>
+        <result column="bidQty18" property="bidQty18"/>
+        <result column="bidQty19" property="bidQty19"/>
+        <result column="bidQty20" property="bidQty20"/>
+        <result column="quotationTime" property="quotationTime"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.uams.rpc.quotation.model.QuotationModel">
+        insert into Quotation(
+            id ,
+            interCode ,
+            marketCode ,
+            kindCode ,
+            currencyNo ,
+            fiveDayAvgQty ,
+            averagePrice ,
+            changeRate ,
+            changeSpeed ,
+            changeValue ,
+            closingPrice ,
+            currDelta ,
+            highPrice ,
+            lowPrice ,
+            hisHighPrice ,
+            hisLowPrice ,
+            insideQty ,
+            outsideQty ,
+            lastPrice ,
+            lastQty ,
+            limitDownPrice ,
+            limitUpPrice ,
+            negotiableValue ,
+            openingPrice ,
+            pERatio ,
+            positionTrend ,
+            preClosingPrice ,
+            prePositionQty ,
+            preSettlePrice ,
+            settlePrice ,
+            swing ,
+            totalAskQty ,
+            totalBidQty ,
+            totalQty ,
+            totalTurnover ,
+            totalValue ,
+            turnoverRate ,
+            tradingState ,
+            askPrice1 ,
+            askPrice2 ,
+            askPrice3 ,
+            askPrice4 ,
+            askPrice5 ,
+            askPrice6 ,
+            askPrice7 ,
+            askPrice8 ,
+            askPrice9 ,
+            askPrice10 ,
+            askPrice11 ,
+            askPrice12 ,
+            askPrice13 ,
+            askPrice14 ,
+            askPrice15 ,
+            askPrice16 ,
+            askPrice17 ,
+            askPrice18 ,
+            askPrice19 ,
+            askPrice20 ,
+            askQty1 ,
+            askQty2 ,
+            askQty3 ,
+            askQty4 ,
+            askQty5 ,
+            askQty6 ,
+            askQty7 ,
+            askQty8 ,
+            askQty9 ,
+            askQty10 ,
+            askQty11 ,
+            askQty12 ,
+            askQty13 ,
+            askQty14 ,
+            askQty15 ,
+            askQty16 ,
+            askQty17 ,
+            askQty18 ,
+            askQty19 ,
+            askQty20 ,
+            bidPrice1 ,
+            bidPrice2 ,
+            bidPrice3 ,
+            bidPrice4 ,
+            bidPrice5 ,
+            bidPrice6 ,
+            bidPrice7 ,
+            bidPrice8 ,
+            bidPrice9 ,
+            bidPrice10 ,
+            bidPrice11 ,
+            bidPrice12 ,
+            bidPrice13 ,
+            bidPrice14 ,
+            bidPrice15 ,
+            bidPrice16 ,
+            bidPrice17 ,
+            bidPrice18 ,
+            bidPrice19 ,
+            bidPrice20 ,
+            bidQty1 ,
+            bidQty2 ,
+            bidQty3 ,
+            bidQty4 ,
+            bidQty5 ,
+            bidQty6 ,
+            bidQty7 ,
+            bidQty8 ,
+            bidQty9 ,
+            bidQty10 ,
+            bidQty11 ,
+            bidQty12 ,
+            bidQty13 ,
+            bidQty14 ,
+            bidQty15 ,
+            bidQty16 ,
+            bidQty17 ,
+            bidQty18 ,
+            bidQty19 ,
+            bidQty20 ,
+            quotationTime 
+        ) VALUES (
+            #{id} ,
+            #{interCode} ,
+            #{marketCode} ,
+            #{kindCode} ,
+            #{currencyNo} ,
+            #{fiveDayAvgQty} ,
+            #{averagePrice} ,
+            #{changeRate} ,
+            #{changeSpeed} ,
+            #{changeValue} ,
+            #{closingPrice} ,
+            #{currDelta} ,
+            #{highPrice} ,
+            #{lowPrice} ,
+            #{hisHighPrice} ,
+            #{hisLowPrice} ,
+            #{insideQty} ,
+            #{outsideQty} ,
+            #{lastPrice} ,
+            #{lastQty} ,
+            #{limitDownPrice} ,
+            #{limitUpPrice} ,
+            #{negotiableValue} ,
+            #{openingPrice} ,
+            #{pERatio} ,
+            #{positionTrend} ,
+            #{preClosingPrice} ,
+            #{prePositionQty} ,
+            #{preSettlePrice} ,
+            #{settlePrice} ,
+            #{swing} ,
+            #{totalAskQty} ,
+            #{totalBidQty} ,
+            #{totalQty} ,
+            #{totalTurnover} ,
+            #{totalValue} ,
+            #{turnoverRate} ,
+            #{tradingState} ,
+            #{askPrice1} ,
+            #{askPrice2} ,
+            #{askPrice3} ,
+            #{askPrice4} ,
+            #{askPrice5} ,
+            #{askPrice6} ,
+            #{askPrice7} ,
+            #{askPrice8} ,
+            #{askPrice9} ,
+            #{askPrice10} ,
+            #{askPrice11} ,
+            #{askPrice12} ,
+            #{askPrice13} ,
+            #{askPrice14} ,
+            #{askPrice15} ,
+            #{askPrice16} ,
+            #{askPrice17} ,
+            #{askPrice18} ,
+            #{askPrice19} ,
+            #{askPrice20} ,
+            #{askQty1} ,
+            #{askQty2} ,
+            #{askQty3} ,
+            #{askQty4} ,
+            #{askQty5} ,
+            #{askQty6} ,
+            #{askQty7} ,
+            #{askQty8} ,
+            #{askQty9} ,
+            #{askQty10} ,
+            #{askQty11} ,
+            #{askQty12} ,
+            #{askQty13} ,
+            #{askQty14} ,
+            #{askQty15} ,
+            #{askQty16} ,
+            #{askQty17} ,
+            #{askQty18} ,
+            #{askQty19} ,
+            #{askQty20} ,
+            #{bidPrice1} ,
+            #{bidPrice2} ,
+            #{bidPrice3} ,
+            #{bidPrice4} ,
+            #{bidPrice5} ,
+            #{bidPrice6} ,
+            #{bidPrice7} ,
+            #{bidPrice8} ,
+            #{bidPrice9} ,
+            #{bidPrice10} ,
+            #{bidPrice11} ,
+            #{bidPrice12} ,
+            #{bidPrice13} ,
+            #{bidPrice14} ,
+            #{bidPrice15} ,
+            #{bidPrice16} ,
+            #{bidPrice17} ,
+            #{bidPrice18} ,
+            #{bidPrice19} ,
+            #{bidPrice20} ,
+            #{bidQty1} ,
+            #{bidQty2} ,
+            #{bidQty3} ,
+            #{bidQty4} ,
+            #{bidQty5} ,
+            #{bidQty6} ,
+            #{bidQty7} ,
+            #{bidQty8} ,
+            #{bidQty9} ,
+            #{bidQty10} ,
+            #{bidQty11} ,
+            #{bidQty12} ,
+            #{bidQty13} ,
+            #{bidQty14} ,
+            #{bidQty15} ,
+            #{bidQty16} ,
+            #{bidQty17} ,
+            #{bidQty18} ,
+            #{bidQty19} ,
+            #{bidQty20} ,
+            #{quotationTime} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from Quotation where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update Quotation set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.uams.rpc.quotation.model.QuotationModel">
+        insert into Quotation
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="interCode != null">
+                interCode ,
+        </if>
+        <if test="marketCode != null">
+                marketCode ,
+        </if>
+        <if test="kindCode != null">
+                kindCode ,
+        </if>
+        <if test="currencyNo != null">
+                currencyNo ,
+        </if>
+        <if test="fiveDayAvgQty != null">
+                fiveDayAvgQty ,
+        </if>
+        <if test="averagePrice != null">
+                averagePrice ,
+        </if>
+        <if test="changeRate != null">
+                changeRate ,
+        </if>
+        <if test="changeSpeed != null">
+                changeSpeed ,
+        </if>
+        <if test="changeValue != null">
+                changeValue ,
+        </if>
+        <if test="closingPrice != null">
+                closingPrice ,
+        </if>
+        <if test="currDelta != null">
+                currDelta ,
+        </if>
+        <if test="highPrice != null">
+                highPrice ,
+        </if>
+        <if test="lowPrice != null">
+                lowPrice ,
+        </if>
+        <if test="hisHighPrice != null">
+                hisHighPrice ,
+        </if>
+        <if test="hisLowPrice != null">
+                hisLowPrice ,
+        </if>
+        <if test="insideQty != null">
+                insideQty ,
+        </if>
+        <if test="outsideQty != null">
+                outsideQty ,
+        </if>
+        <if test="lastPrice != null">
+                lastPrice ,
+        </if>
+        <if test="lastQty != null">
+                lastQty ,
+        </if>
+        <if test="limitDownPrice != null">
+                limitDownPrice ,
+        </if>
+        <if test="limitUpPrice != null">
+                limitUpPrice ,
+        </if>
+        <if test="negotiableValue != null">
+                negotiableValue ,
+        </if>
+        <if test="openingPrice != null">
+                openingPrice ,
+        </if>
+        <if test="pERatio != null">
+                pERatio ,
+        </if>
+        <if test="positionTrend != null">
+                positionTrend ,
+        </if>
+        <if test="preClosingPrice != null">
+                preClosingPrice ,
+        </if>
+        <if test="prePositionQty != null">
+                prePositionQty ,
+        </if>
+        <if test="preSettlePrice != null">
+                preSettlePrice ,
+        </if>
+        <if test="settlePrice != null">
+            settlePrice ,
+        </if>
+        <if test="swing != null">
+                swing ,
+        </if>
+        <if test="totalAskQty != null">
+                totalAskQty ,
+        </if>
+        <if test="totalBidQty != null">
+                totalBidQty ,
+        </if>
+        <if test="totalQty != null">
+                totalQty ,
+        </if>
+        <if test="totalTurnover != null">
+                totalTurnover ,
+        </if>
+        <if test="totalValue != null">
+                totalValue ,
+        </if>
+        <if test="turnoverRate != null">
+                turnoverRate ,
+        </if>
+        <if test="tradingState != null">
+                tradingState ,
+        </if>
+        <if test="askPrice1 != null">
+                askPrice1 ,
+        </if>
+        <if test="askPrice2 != null">
+                askPrice2 ,
+        </if>
+        <if test="askPrice3 != null">
+                askPrice3 ,
+        </if>
+        <if test="askPrice4 != null">
+                askPrice4 ,
+        </if>
+        <if test="askPrice5 != null">
+                askPrice5 ,
+        </if>
+        <if test="askPrice6 != null">
+                askPrice6 ,
+        </if>
+        <if test="askPrice7 != null">
+                askPrice7 ,
+        </if>
+        <if test="askPrice8 != null">
+                askPrice8 ,
+        </if>
+        <if test="askPrice9 != null">
+                askPrice9 ,
+        </if>
+        <if test="askPrice10 != null">
+                askPrice10 ,
+        </if>
+        <if test="askPrice11 != null">
+                askPrice11 ,
+        </if>
+        <if test="askPrice12 != null">
+                askPrice12 ,
+        </if>
+        <if test="askPrice13 != null">
+                askPrice13 ,
+        </if>
+        <if test="askPrice14 != null">
+                askPrice14 ,
+        </if>
+        <if test="askPrice15 != null">
+                askPrice15 ,
+        </if>
+        <if test="askPrice16 != null">
+                askPrice16 ,
+        </if>
+        <if test="askPrice17 != null">
+                askPrice17 ,
+        </if>
+        <if test="askPrice18 != null">
+                askPrice18 ,
+        </if>
+        <if test="askPrice19 != null">
+                askPrice19 ,
+        </if>
+        <if test="askPrice20 != null">
+                askPrice20 ,
+        </if>
+        <if test="askQty1 != null">
+                askQty1 ,
+        </if>
+        <if test="askQty2 != null">
+                askQty2 ,
+        </if>
+        <if test="askQty3 != null">
+            askQty3 ,
+        </if>
+        <if test="askQty4 != null">
+                askQty4 ,
+        </if>
+        <if test="askQty5 != null">
+                askQty5 ,
+        </if>
+        <if test="askQty6 != null">
+                askQty6 ,
+        </if>
+        <if test="askQty7 != null">
+                askQty7 ,
+        </if>
+        <if test="askQty8 != null">
+                askQty8 ,
+        </if>
+        <if test="askQty9 != null">
+                askQty9 ,
+        </if>
+        <if test="askQty10 != null">
+                askQty10 ,
+        </if>
+        <if test="askQty11 != null">
+                askQty11 ,
+        </if>
+        <if test="askQty12 != null">
+                askQty12 ,
+        </if>
+        <if test="askQty13 != null">
+                askQty13 ,
+        </if>
+        <if test="askQty14 != null">
+                askQty14 ,
+        </if>
+        <if test="askQty15 != null">
+                askQty15 ,
+        </if>
+        <if test="askQty16 != null">
+                askQty16 ,
+        </if>
+        <if test="askQty17 != null">
+                askQty17 ,
+        </if>
+        <if test="askQty18 != null">
+                askQty18 ,
+        </if>
+        <if test="askQty19 != null">
+                askQty19 ,
+        </if>
+        <if test="askQty20 != null">
+                askQty20 ,
+        </if>
+        <if test="bidPrice1 != null">
+                bidPrice1 ,
+        </if>
+        <if test="bidPrice2 != null">
+                bidPrice2 ,
+        </if>
+        <if test="bidPrice3 != null">
+                bidPrice3 ,
+        </if>
+        <if test="bidPrice4 != null">
+                bidPrice4 ,
+        </if>
+        <if test="bidPrice5 != null">
+                bidPrice5 ,
+        </if>
+        <if test="bidPrice6 != null">
+                bidPrice6 ,
+        </if>
+        <if test="bidPrice7 != null">
+                bidPrice7 ,
+        </if>
+        <if test="bidPrice8 != null">
+                bidPrice8 ,
+        </if>
+        <if test="bidPrice9 != null">
+                bidPrice9 ,
+        </if>
+        <if test="bidPrice10 != null">
+                bidPrice10 ,
+        </if>
+        <if test="bidPrice11 != null">
+                bidPrice11 ,
+        </if>
+        <if test="bidPrice12 != null">
+                bidPrice12 ,
+        </if>
+        <if test="bidPrice13 != null">
+                bidPrice13 ,
+        </if>
+        <if test="bidPrice14 != null">
+                bidPrice14 ,
+        </if>
+        <if test="bidPrice15 != null">
+                bidPrice15 ,
+        </if>
+        <if test="bidPrice16 != null">
+                bidPrice16 ,
+        </if>
+        <if test="bidPrice17 != null">
+                bidPrice17 ,
+        </if>
+        <if test="bidPrice18 != null">
+                bidPrice18 ,
+        </if>
+        <if test="bidPrice19 != null">
+                bidPrice19 ,
+        </if>
+        <if test="bidPrice20 != null">
+                bidPrice20 ,
+        </if>
+        <if test="bidQty1 != null">
+                bidQty1 ,
+        </if>
+        <if test="bidQty2 != null">
+                bidQty2 ,
+        </if>
+        <if test="bidQty3 != null">
+                bidQty3 ,
+        </if>
+        <if test="bidQty4 != null">
+                bidQty4 ,
+        </if>
+        <if test="bidQty5 != null">
+                bidQty5 ,
+        </if>
+        <if test="bidQty6 != null">
+                bidQty6 ,
+        </if>
+        <if test="bidQty7 != null">
+                bidQty7 ,
+        </if>
+        <if test="bidQty8 != null">
+                bidQty8 ,
+        </if>
+        <if test="bidQty9 != null">
+                bidQty9 ,
+        </if>
+        <if test="bidQty10 != null">
+                bidQty10 ,
+        </if>
+        <if test="bidQty11 != null">
+                bidQty11 ,
+        </if>
+        <if test="bidQty12 != null">
+                bidQty12 ,
+        </if>
+        <if test="bidQty13 != null">
+                bidQty13 ,
+        </if>
+        <if test="bidQty14 != null">
+                bidQty14 ,
+        </if>
+        <if test="bidQty15 != null">
+                bidQty15 ,
+        </if>
+        <if test="bidQty16 != null">
+                bidQty16 ,
+        </if>
+        <if test="bidQty17 != null">
+                bidQty17 ,
+        </if>
+        <if test="bidQty18 != null">
+                bidQty18 ,
+        </if>
+        <if test="bidQty19 != null">
+                bidQty19 ,
+        </if>
+        <if test="bidQty20 != null">
+                bidQty20 ,
+        </if>
+        <if test="quotationTime != null">
+                quotationTime 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="interCode != null">
+                #{interCode} ,
+        </if>
+        <if test="marketCode != null">
+                #{marketCode} ,
+        </if>
+        <if test="kindCode != null">
+                #{kindCode} ,
+        </if>
+        <if test="currencyNo != null">
+                #{currencyNo} ,
+        </if>
+        <if test="fiveDayAvgQty != null">
+                #{fiveDayAvgQty} ,
+        </if>
+        <if test="averagePrice != null">
+                #{averagePrice} ,
+        </if>
+        <if test="changeRate != null">
+                #{changeRate} ,
+        </if>
+        <if test="changeSpeed != null">
+                #{changeSpeed} ,
+        </if>
+        <if test="changeValue != null">
+                #{changeValue} ,
+        </if>
+        <if test="closingPrice != null">
+                #{closingPrice} ,
+        </if>
+        <if test="currDelta != null">
+                #{currDelta} ,
+        </if>
+        <if test="highPrice != null">
+                #{highPrice} ,
+        </if>
+        <if test="lowPrice != null">
+                #{lowPrice} ,
+        </if>
+        <if test="hisHighPrice != null">
+                #{hisHighPrice} ,
+        </if>
+        <if test="hisLowPrice != null">
+                #{hisLowPrice} ,
+        </if>
+        <if test="insideQty != null">
+                #{insideQty} ,
+        </if>
+        <if test="outsideQty != null">
+                #{outsideQty} ,
+        </if>
+        <if test="lastPrice != null">
+                #{lastPrice} ,
+        </if>
+        <if test="lastQty != null">
+                #{lastQty} ,
+        </if>
+        <if test="limitDownPrice != null">
+                #{limitDownPrice} ,
+        </if>
+        <if test="limitUpPrice != null">
+                #{limitUpPrice} ,
+        </if>
+        <if test="negotiableValue != null">
+                #{negotiableValue} ,
+        </if>
+        <if test="openingPrice != null">
+                #{openingPrice} ,
+        </if>
+        <if test="pERatio != null">
+                #{pERatio} ,
+        </if>
+        <if test="positionTrend != null">
+                #{positionTrend} ,
+        </if>
+        <if test="preClosingPrice != null">
+                #{preClosingPrice} ,
+        </if>
+        <if test="prePositionQty != null">
+                #{prePositionQty} ,
+        </if>
+        <if test="preSettlePrice != null">
+                #{preSettlePrice} ,
+        </if>
+        <if test="settlePrice != null">
+                #{settlePrice} ,
+        </if>
+        <if test="swing != null">
+                #{swing} ,
+        </if>
+        <if test="totalAskQty != null">
+                #{totalAskQty} ,
+        </if>
+        <if test="totalBidQty != null">
+                #{totalBidQty} ,
+        </if>
+        <if test="totalQty != null">
+                #{totalQty} ,
+        </if>
+        <if test="totalTurnover != null">
+                #{totalTurnover} ,
+        </if>
+        <if test="totalValue != null">
+                #{totalValue} ,
+        </if>
+        <if test="turnoverRate != null">
+                #{turnoverRate} ,
+        </if>
+        <if test="tradingState != null">
+                #{tradingState} ,
+        </if>
+        <if test="askPrice1 != null">
+                #{askPrice1} ,
+        </if>
+        <if test="askPrice2 != null">
+                #{askPrice2} ,
+        </if>
+        <if test="askPrice3 != null">
+                #{askPrice3} ,
+        </if>
+        <if test="askPrice4 != null">
+                #{askPrice4} ,
+        </if>
+        <if test="askPrice5 != null">
+                #{askPrice5} ,
+        </if>
+        <if test="askPrice6 != null">
+                #{askPrice6} ,
+        </if>
+        <if test="askPrice7 != null">
+                #{askPrice7} ,
+        </if>
+        <if test="askPrice8 != null">
+                #{askPrice8} ,
+        </if>
+        <if test="askPrice9 != null">
+                #{askPrice9} ,
+        </if>
+        <if test="askPrice10 != null">
+                #{askPrice10} ,
+        </if>
+        <if test="askPrice11 != null">
+                #{askPrice11} ,
+        </if>
+        <if test="askPrice12 != null">
+                #{askPrice12} ,
+        </if>
+        <if test="askPrice13 != null">
+                #{askPrice13} ,
+        </if>
+        <if test="askPrice14 != null">
+                #{askPrice14} ,
+        </if>
+        <if test="askPrice15 != null">
+                #{askPrice15} ,
+        </if>
+        <if test="askPrice16 != null">
+                #{askPrice16} ,
+        </if>
+        <if test="askPrice17 != null">
+                #{askPrice17} ,
+        </if>
+        <if test="askPrice18 != null">
+                #{askPrice18} ,
+        </if>
+        <if test="askPrice19 != null">
+                #{askPrice19} ,
+        </if>
+        <if test="askPrice20 != null">
+                #{askPrice20} ,
+        </if>
+        <if test="askQty1 != null">
+                #{askQty1} ,
+        </if>
+        <if test="askQty2 != null">
+                #{askQty2} ,
+        </if>
+        <if test="askQty3 != null">
+            #{askQty3} ,
+        </if>
+        <if test="askQty4 != null">
+                #{askQty4} ,
+        </if>
+        <if test="askQty5 != null">
+                #{askQty5} ,
+        </if>
+        <if test="askQty6 != null">
+                #{askQty6} ,
+        </if>
+        <if test="askQty7 != null">
+                #{askQty7} ,
+        </if>
+        <if test="askQty8 != null">
+                #{askQty8} ,
+        </if>
+        <if test="askQty9 != null">
+                #{askQty9} ,
+        </if>
+        <if test="askQty10 != null">
+                #{askQty10} ,
+        </if>
+        <if test="askQty11 != null">
+                #{askQty11} ,
+        </if>
+        <if test="askQty12 != null">
+                #{askQty12} ,
+        </if>
+        <if test="askQty13 != null">
+                #{askQty13} ,
+        </if>
+        <if test="askQty14 != null">
+                #{askQty14} ,
+        </if>
+        <if test="askQty15 != null">
+                #{askQty15} ,
+        </if>
+        <if test="askQty16 != null">
+                #{askQty16} ,
+        </if>
+        <if test="askQty17 != null">
+                #{askQty17} ,
+        </if>
+        <if test="askQty18 != null">
+                #{askQty18} ,
+        </if>
+        <if test="askQty19 != null">
+                #{askQty19} ,
+        </if>
+        <if test="askQty20 != null">
+                #{askQty20} ,
+        </if>
+        <if test="bidPrice1 != null">
+                #{bidPrice1} ,
+        </if>
+        <if test="bidPrice2 != null">
+                #{bidPrice2} ,
+        </if>
+        <if test="bidPrice3 != null">
+                #{bidPrice3} ,
+        </if>
+        <if test="bidPrice4 != null">
+                #{bidPrice4} ,
+        </if>
+        <if test="bidPrice5 != null">
+                #{bidPrice5} ,
+        </if>
+        <if test="bidPrice6 != null">
+                #{bidPrice6} ,
+        </if>
+        <if test="bidPrice7 != null">
+                #{bidPrice7} ,
+        </if>
+        <if test="bidPrice8 != null">
+                #{bidPrice8} ,
+        </if>
+        <if test="bidPrice9 != null">
+                #{bidPrice9} ,
+        </if>
+        <if test="bidPrice10 != null">
+                #{bidPrice10} ,
+        </if>
+        <if test="bidPrice11 != null">
+                #{bidPrice11} ,
+        </if>
+        <if test="bidPrice12 != null">
+                #{bidPrice12} ,
+        </if>
+        <if test="bidPrice13 != null">
+                #{bidPrice13} ,
+        </if>
+        <if test="bidPrice14 != null">
+                #{bidPrice14} ,
+        </if>
+        <if test="bidPrice15 != null">
+                #{bidPrice15} ,
+        </if>
+        <if test="bidPrice16 != null">
+                #{bidPrice16} ,
+        </if>
+        <if test="bidPrice17 != null">
+                #{bidPrice17} ,
+        </if>
+        <if test="bidPrice18 != null">
+                #{bidPrice18} ,
+        </if>
+        <if test="bidPrice19 != null">
+                #{bidPrice19} ,
+        </if>
+        <if test="bidPrice20 != null">
+                #{bidPrice20} ,
+        </if>
+        <if test="bidQty1 != null">
+                #{bidQty1} ,
+        </if>
+        <if test="bidQty2 != null">
+                #{bidQty2} ,
+        </if>
+        <if test="bidQty3 != null">
+                #{bidQty3} ,
+        </if>
+        <if test="bidQty4 != null">
+                #{bidQty4} ,
+        </if>
+        <if test="bidQty5 != null">
+                #{bidQty5} ,
+        </if>
+        <if test="bidQty6 != null">
+                #{bidQty6} ,
+        </if>
+        <if test="bidQty7 != null">
+                #{bidQty7} ,
+        </if>
+        <if test="bidQty8 != null">
+                #{bidQty8} ,
+        </if>
+        <if test="bidQty9 != null">
+                #{bidQty9} ,
+        </if>
+        <if test="bidQty10 != null">
+                #{bidQty10} ,
+        </if>
+        <if test="bidQty11 != null">
+                #{bidQty11} ,
+        </if>
+        <if test="bidQty12 != null">
+                #{bidQty12} ,
+        </if>
+        <if test="bidQty13 != null">
+                #{bidQty13} ,
+        </if>
+        <if test="bidQty14 != null">
+                #{bidQty14} ,
+        </if>
+        <if test="bidQty15 != null">
+                #{bidQty15} ,
+        </if>
+        <if test="bidQty16 != null">
+                #{bidQty16} ,
+        </if>
+        <if test="bidQty17 != null">
+                #{bidQty17} ,
+        </if>
+        <if test="bidQty18 != null">
+                #{bidQty18} ,
+        </if>
+        <if test="bidQty19 != null">
+                #{bidQty19} ,
+        </if>
+        <if test="bidQty20 != null">
+                #{bidQty20} ,
+        </if>
+        <if test="quotationTime != null">
+                #{quotationTime} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.uams.rpc.quotation.model.QuotationModel">
+        update Quotation
+           <set>
+            <if test="interCode != null">
+                interCode = #{interCode} ,
+            </if>
+            <if test="marketCode != null">
+                marketCode = #{marketCode} ,
+            </if>
+            <if test="kindCode != null">
+                kindCode = #{kindCode} ,
+            </if>
+            <if test="currencyNo != null">
+                currencyNo = #{currencyNo} ,
+            </if>
+            <if test="fiveDayAvgQty != null">
+                fiveDayAvgQty = #{fiveDayAvgQty} ,
+            </if>
+            <if test="averagePrice != null">
+                averagePrice = #{averagePrice} ,
+            </if>
+            <if test="changeRate != null">
+                changeRate = #{changeRate} ,
+            </if>
+            <if test="changeSpeed != null">
+                changeSpeed = #{changeSpeed} ,
+            </if>
+            <if test="changeValue != null">
+                changeValue = #{changeValue} ,
+            </if>
+            <if test="closingPrice != null">
+                closingPrice = #{closingPrice} ,
+            </if>
+            <if test="currDelta != null">
+                currDelta = #{currDelta} ,
+            </if>
+            <if test="highPrice != null">
+                highPrice = #{highPrice} ,
+            </if>
+            <if test="lowPrice != null">
+                lowPrice = #{lowPrice} ,
+            </if>
+            <if test="hisHighPrice != null">
+                hisHighPrice = #{hisHighPrice} ,
+            </if>
+            <if test="hisLowPrice != null">
+                hisLowPrice = #{hisLowPrice} ,
+            </if>
+            <if test="insideQty != null">
+                insideQty = #{insideQty} ,
+            </if>
+            <if test="outsideQty != null">
+                outsideQty = #{outsideQty} ,
+            </if>
+            <if test="lastPrice != null">
+                lastPrice = #{lastPrice} ,
+            </if>
+            <if test="lastQty != null">
+                lastQty = #{lastQty} ,
+            </if>
+            <if test="limitDownPrice != null">
+                limitDownPrice = #{limitDownPrice} ,
+            </if>
+            <if test="limitUpPrice != null">
+                limitUpPrice = #{limitUpPrice} ,
+            </if>
+            <if test="negotiableValue != null">
+                negotiableValue = #{negotiableValue} ,
+            </if>
+            <if test="openingPrice != null">
+                openingPrice = #{openingPrice} ,
+            </if>
+            <if test="pERatio != null">
+                pERatio = #{pERatio} ,
+            </if>
+            <if test="positionTrend != null">
+                positionTrend = #{positionTrend} ,
+            </if>
+            <if test="preClosingPrice != null">
+                preClosingPrice = #{preClosingPrice} ,
+            </if>
+            <if test="prePositionQty != null">
+                prePositionQty = #{prePositionQty} ,
+            </if>
+            <if test="preSettlePrice != null">
+                preSettlePrice = #{preSettlePrice} ,
+            </if>
+            <if test="settlePrice != null">
+                settlePrice = #{settlePrice} ,
+            </if>
+            <if test="swing != null">
+                swing = #{swing} ,
+            </if>
+            <if test="totalAskQty != null">
+                totalAskQty = #{totalAskQty} ,
+            </if>
+            <if test="totalBidQty != null">
+                totalBidQty = #{totalBidQty} ,
+            </if>
+            <if test="totalQty != null">
+                totalQty = #{totalQty} ,
+            </if>
+            <if test="totalTurnover != null">
+                totalTurnover = #{totalTurnover} ,
+            </if>
+            <if test="totalValue != null">
+                totalValue = #{totalValue} ,
+            </if>
+            <if test="turnoverRate != null">
+                turnoverRate = #{turnoverRate} ,
+            </if>
+            <if test="tradingState != null">
+                tradingState = #{tradingState} ,
+            </if>
+            <if test="askPrice1 != null">
+                askPrice1 = #{askPrice1} ,
+            </if>
+            <if test="askPrice2 != null">
+                askPrice2 = #{askPrice2} ,
+            </if>
+            <if test="askPrice3 != null">
+                askPrice3 = #{askPrice3} ,
+            </if>
+            <if test="askPrice4 != null">
+                askPrice4 = #{askPrice4} ,
+            </if>
+            <if test="askPrice5 != null">
+                askPrice5 = #{askPrice5} ,
+            </if>
+            <if test="askPrice6 != null">
+                askPrice6 = #{askPrice6} ,
+            </if>
+            <if test="askPrice7 != null">
+                askPrice7 = #{askPrice7} ,
+            </if>
+            <if test="askPrice8 != null">
+                askPrice8 = #{askPrice8} ,
+            </if>
+            <if test="askPrice9 != null">
+                askPrice9 = #{askPrice9} ,
+            </if>
+            <if test="askPrice10 != null">
+                askPrice10 = #{askPrice10} ,
+            </if>
+            <if test="askPrice11 != null">
+                askPrice11 = #{askPrice11} ,
+            </if>
+            <if test="askPrice12 != null">
+                askPrice12 = #{askPrice12} ,
+            </if>
+            <if test="askPrice13 != null">
+                askPrice13 = #{askPrice13} ,
+            </if>
+            <if test="askPrice14 != null">
+                askPrice14 = #{askPrice14} ,
+            </if>
+            <if test="askPrice15 != null">
+                askPrice15 = #{askPrice15} ,
+            </if>
+            <if test="askPrice16 != null">
+                askPrice16 = #{askPrice16} ,
+            </if>
+            <if test="askPrice17 != null">
+                askPrice17 = #{askPrice17} ,
+            </if>
+            <if test="askPrice18 != null">
+                askPrice18 = #{askPrice18} ,
+            </if>
+            <if test="askPrice19 != null">
+                askPrice19 = #{askPrice19} ,
+            </if>
+            <if test="askPrice20 != null">
+                askPrice20 = #{askPrice20} ,
+            </if>
+            <if test="askQty1 != null">
+                askQty1 = #{askQty1} ,
+            </if>
+            <if test="askQty2 != null">
+                askQty2 = #{askQty2} ,
+            </if>
+           <if test="askQty3 != null">
+               askQty3 = #{askQty3} ,
+           </if>
+            <if test="askQty4 != null">
+                askQty4 = #{askQty4} ,
+            </if>
+            <if test="askQty5 != null">
+                askQty5 = #{askQty5} ,
+            </if>
+            <if test="askQty6 != null">
+                askQty6 = #{askQty6} ,
+            </if>
+            <if test="askQty7 != null">
+                askQty7 = #{askQty7} ,
+            </if>
+            <if test="askQty8 != null">
+                askQty8 = #{askQty8} ,
+            </if>
+            <if test="askQty9 != null">
+                askQty9 = #{askQty9} ,
+            </if>
+            <if test="askQty10 != null">
+                askQty10 = #{askQty10} ,
+            </if>
+            <if test="askQty11 != null">
+                askQty11 = #{askQty11} ,
+            </if>
+            <if test="askQty12 != null">
+                askQty12 = #{askQty12} ,
+            </if>
+            <if test="askQty13 != null">
+                askQty13 = #{askQty13} ,
+            </if>
+            <if test="askQty14 != null">
+                askQty14 = #{askQty14} ,
+            </if>
+            <if test="askQty15 != null">
+                askQty15 = #{askQty15} ,
+            </if>
+            <if test="askQty16 != null">
+                askQty16 = #{askQty16} ,
+            </if>
+            <if test="askQty17 != null">
+                askQty17 = #{askQty17} ,
+            </if>
+            <if test="askQty18 != null">
+                askQty18 = #{askQty18} ,
+            </if>
+            <if test="askQty19 != null">
+                askQty19 = #{askQty19} ,
+            </if>
+            <if test="askQty20 != null">
+                askQty20 = #{askQty20} ,
+            </if>
+            <if test="bidPrice1 != null">
+                bidPrice1 = #{bidPrice1} ,
+            </if>
+            <if test="bidPrice2 != null">
+                bidPrice2 = #{bidPrice2} ,
+            </if>
+            <if test="bidPrice3 != null">
+                bidPrice3 = #{bidPrice3} ,
+            </if>
+            <if test="bidPrice4 != null">
+                bidPrice4 = #{bidPrice4} ,
+            </if>
+            <if test="bidPrice5 != null">
+                bidPrice5 = #{bidPrice5} ,
+            </if>
+            <if test="bidPrice6 != null">
+                bidPrice6 = #{bidPrice6} ,
+            </if>
+            <if test="bidPrice7 != null">
+                bidPrice7 = #{bidPrice7} ,
+            </if>
+            <if test="bidPrice8 != null">
+                bidPrice8 = #{bidPrice8} ,
+            </if>
+            <if test="bidPrice9 != null">
+                bidPrice9 = #{bidPrice9} ,
+            </if>
+            <if test="bidPrice10 != null">
+                bidPrice10 = #{bidPrice10} ,
+            </if>
+            <if test="bidPrice11 != null">
+                bidPrice11 = #{bidPrice11} ,
+            </if>
+            <if test="bidPrice12 != null">
+                bidPrice12 = #{bidPrice12} ,
+            </if>
+            <if test="bidPrice13 != null">
+                bidPrice13 = #{bidPrice13} ,
+            </if>
+            <if test="bidPrice14 != null">
+                bidPrice14 = #{bidPrice14} ,
+            </if>
+            <if test="bidPrice15 != null">
+                bidPrice15 = #{bidPrice15} ,
+            </if>
+            <if test="bidPrice16 != null">
+                bidPrice16 = #{bidPrice16} ,
+            </if>
+            <if test="bidPrice17 != null">
+                bidPrice17 = #{bidPrice17} ,
+            </if>
+            <if test="bidPrice18 != null">
+                bidPrice18 = #{bidPrice18} ,
+            </if>
+            <if test="bidPrice19 != null">
+                bidPrice19 = #{bidPrice19} ,
+            </if>
+            <if test="bidPrice20 != null">
+                bidPrice20 = #{bidPrice20} ,
+            </if>
+            <if test="bidQty1 != null">
+                bidQty1 = #{bidQty1} ,
+            </if>
+            <if test="bidQty2 != null">
+                bidQty2 = #{bidQty2} ,
+            </if>
+            <if test="bidQty3 != null">
+                bidQty3 = #{bidQty3} ,
+            </if>
+            <if test="bidQty4 != null">
+                bidQty4 = #{bidQty4} ,
+            </if>
+            <if test="bidQty5 != null">
+                bidQty5 = #{bidQty5} ,
+            </if>
+            <if test="bidQty6 != null">
+                bidQty6 = #{bidQty6} ,
+            </if>
+            <if test="bidQty7 != null">
+                bidQty7 = #{bidQty7} ,
+            </if>
+            <if test="bidQty8 != null">
+                bidQty8 = #{bidQty8} ,
+            </if>
+            <if test="bidQty9 != null">
+                bidQty9 = #{bidQty9} ,
+            </if>
+            <if test="bidQty10 != null">
+                bidQty10 = #{bidQty10} ,
+            </if>
+            <if test="bidQty11 != null">
+                bidQty11 = #{bidQty11} ,
+            </if>
+            <if test="bidQty12 != null">
+                bidQty12 = #{bidQty12} ,
+            </if>
+            <if test="bidQty13 != null">
+                bidQty13 = #{bidQty13} ,
+            </if>
+            <if test="bidQty14 != null">
+                bidQty14 = #{bidQty14} ,
+            </if>
+            <if test="bidQty15 != null">
+                bidQty15 = #{bidQty15} ,
+            </if>
+            <if test="bidQty16 != null">
+                bidQty16 = #{bidQty16} ,
+            </if>
+            <if test="bidQty17 != null">
+                bidQty17 = #{bidQty17} ,
+            </if>
+            <if test="bidQty18 != null">
+                bidQty18 = #{bidQty18} ,
+            </if>
+            <if test="bidQty19 != null">
+                bidQty19 = #{bidQty19} ,
+            </if>
+            <if test="bidQty20 != null">
+                bidQty20 = #{bidQty20} ,
+            </if>
+            <if test="quotationTime != null">
+                quotationTime = #{quotationTime} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into Quotation(
+            id ,
+            interCode ,
+            marketCode ,
+            kindCode ,
+            currencyNo ,
+            fiveDayAvgQty ,
+            averagePrice ,
+            changeRate ,
+            changeSpeed ,
+            changeValue ,
+            closingPrice ,
+            currDelta ,
+            highPrice ,
+            lowPrice ,
+            hisHighPrice ,
+            hisLowPrice ,
+            insideQty ,
+            outsideQty ,
+            lastPrice ,
+            lastQty ,
+            limitDownPrice ,
+            limitUpPrice ,
+            negotiableValue ,
+            openingPrice ,
+            pERatio ,
+            positionTrend ,
+            preClosingPrice ,
+            prePositionQty ,
+            preSettlePrice ,
+            settlePrice ,
+            swing ,
+            totalAskQty ,
+            totalBidQty ,
+            totalQty ,
+            totalTurnover ,
+            totalValue ,
+            turnoverRate ,
+            tradingState ,
+            askPrice1 ,
+            askPrice2 ,
+            askPrice3 ,
+            askPrice4 ,
+            askPrice5 ,
+            askPrice6 ,
+            askPrice7 ,
+            askPrice8 ,
+            askPrice9 ,
+            askPrice10 ,
+            askPrice11 ,
+            askPrice12 ,
+            askPrice13 ,
+            askPrice14 ,
+            askPrice15 ,
+            askPrice16 ,
+            askPrice17 ,
+            askPrice18 ,
+            askPrice19 ,
+            askPrice20 ,
+            askQty1 ,
+            askQty2 ,
+            askQty3 ,
+            askQty4 ,
+            askQty5 ,
+            askQty6 ,
+            askQty7 ,
+            askQty8 ,
+            askQty9 ,
+            askQty10 ,
+            askQty11 ,
+            askQty12 ,
+            askQty13 ,
+            askQty14 ,
+            askQty15 ,
+            askQty16 ,
+            askQty17 ,
+            askQty18 ,
+            askQty19 ,
+            askQty20 ,
+            bidPrice1 ,
+            bidPrice2 ,
+            bidPrice3 ,
+            bidPrice4 ,
+            bidPrice5 ,
+            bidPrice6 ,
+            bidPrice7 ,
+            bidPrice8 ,
+            bidPrice9 ,
+            bidPrice10 ,
+            bidPrice11 ,
+            bidPrice12 ,
+            bidPrice13 ,
+            bidPrice14 ,
+            bidPrice15 ,
+            bidPrice16 ,
+            bidPrice17 ,
+            bidPrice18 ,
+            bidPrice19 ,
+            bidPrice20 ,
+            bidQty1 ,
+            bidQty2 ,
+            bidQty3 ,
+            bidQty4 ,
+            bidQty5 ,
+            bidQty6 ,
+            bidQty7 ,
+            bidQty8 ,
+            bidQty9 ,
+            bidQty10 ,
+            bidQty11 ,
+            bidQty12 ,
+            bidQty13 ,
+            bidQty14 ,
+            bidQty15 ,
+            bidQty16 ,
+            bidQty17 ,
+            bidQty18 ,
+            bidQty19 ,
+            bidQty20 ,
+            quotationTime 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.interCode} ,
+            #{item.marketCode} ,
+            #{item.kindCode} ,
+            #{item.currencyNo} ,
+            #{item.fiveDayAvgQty} ,
+            #{item.averagePrice} ,
+            #{item.changeRate} ,
+            #{item.changeSpeed} ,
+            #{item.changeValue} ,
+            #{item.closingPrice} ,
+            #{item.currDelta} ,
+            #{item.highPrice} ,
+            #{item.lowPrice} ,
+            #{item.hisHighPrice} ,
+            #{item.hisLowPrice} ,
+            #{item.insideQty} ,
+            #{item.outsideQty} ,
+            #{item.lastPrice} ,
+            #{item.lastQty} ,
+            #{item.limitDownPrice} ,
+            #{item.limitUpPrice} ,
+            #{item.negotiableValue} ,
+            #{item.openingPrice} ,
+            #{item.pERatio} ,
+            #{item.positionTrend} ,
+            #{item.preClosingPrice} ,
+            #{item.prePositionQty} ,
+            #{item.preSettlePrice} ,
+            #{item.settlePrice} ,
+            #{item.swing} ,
+            #{item.totalAskQty} ,
+            #{item.totalBidQty} ,
+            #{item.totalQty} ,
+            #{item.totalTurnover} ,
+            #{item.totalValue} ,
+            #{item.turnoverRate} ,
+            #{item.tradingState} ,
+            #{item.askPrice1} ,
+            #{item.askPrice2} ,
+            #{item.askPrice3} ,
+            #{item.askPrice4} ,
+            #{item.askPrice5} ,
+            #{item.askPrice6} ,
+            #{item.askPrice7} ,
+            #{item.askPrice8} ,
+            #{item.askPrice9} ,
+            #{item.askPrice10} ,
+            #{item.askPrice11} ,
+            #{item.askPrice12} ,
+            #{item.askPrice13} ,
+            #{item.askPrice14} ,
+            #{item.askPrice15} ,
+            #{item.askPrice16} ,
+            #{item.askPrice17} ,
+            #{item.askPrice18} ,
+            #{item.askPrice19} ,
+            #{item.askPrice20} ,
+            #{item.askQty1} ,
+            #{item.askQty2} ,
+            #{item.askQty3} ,
+            #{item.askQty4} ,
+            #{item.askQty5} ,
+            #{item.askQty6} ,
+            #{item.askQty7} ,
+            #{item.askQty8} ,
+            #{item.askQty9} ,
+            #{item.askQty10} ,
+            #{item.askQty11} ,
+            #{item.askQty12} ,
+            #{item.askQty13} ,
+            #{item.askQty14} ,
+            #{item.askQty15} ,
+            #{item.askQty16} ,
+            #{item.askQty17} ,
+            #{item.askQty18} ,
+            #{item.askQty19} ,
+            #{item.askQty20} ,
+            #{item.bidPrice1} ,
+            #{item.bidPrice2} ,
+            #{item.bidPrice3} ,
+            #{item.bidPrice4} ,
+            #{item.bidPrice5} ,
+            #{item.bidPrice6} ,
+            #{item.bidPrice7} ,
+            #{item.bidPrice8} ,
+            #{item.bidPrice9} ,
+            #{item.bidPrice10} ,
+            #{item.bidPrice11} ,
+            #{item.bidPrice12} ,
+            #{item.bidPrice13} ,
+            #{item.bidPrice14} ,
+            #{item.bidPrice15} ,
+            #{item.bidPrice16} ,
+            #{item.bidPrice17} ,
+            #{item.bidPrice18} ,
+            #{item.bidPrice19} ,
+            #{item.bidPrice20} ,
+            #{item.bidQty1} ,
+            #{item.bidQty2} ,
+            #{item.bidQty3} ,
+            #{item.bidQty4} ,
+            #{item.bidQty5} ,
+            #{item.bidQty6} ,
+            #{item.bidQty7} ,
+            #{item.bidQty8} ,
+            #{item.bidQty9} ,
+            #{item.bidQty10} ,
+            #{item.bidQty11} ,
+            #{item.bidQty12} ,
+            #{item.bidQty13} ,
+            #{item.bidQty14} ,
+            #{item.bidQty15} ,
+            #{item.bidQty16} ,
+            #{item.bidQty17} ,
+            #{item.bidQty18} ,
+            #{item.bidQty19} ,
+            #{item.bidQty20} ,
+            #{item.quotationTime} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update Quotation set
+            interCode = #{item.interCode} ,
+            marketCode = #{item.marketCode} ,
+            kindCode = #{item.kindCode} ,
+            currencyNo = #{item.currencyNo} ,
+            fiveDayAvgQty = #{item.fiveDayAvgQty} ,
+            averagePrice = #{item.averagePrice} ,
+            changeRate = #{item.changeRate} ,
+            changeSpeed = #{item.changeSpeed} ,
+            changeValue = #{item.changeValue} ,
+            closingPrice = #{item.closingPrice} ,
+            currDelta = #{item.currDelta} ,
+            highPrice = #{item.highPrice} ,
+            lowPrice = #{item.lowPrice} ,
+            hisHighPrice = #{item.hisHighPrice} ,
+            hisLowPrice = #{item.hisLowPrice} ,
+            insideQty = #{item.insideQty} ,
+            outsideQty = #{item.outsideQty} ,
+            lastPrice = #{item.lastPrice} ,
+            lastQty = #{item.lastQty} ,
+            limitDownPrice = #{item.limitDownPrice} ,
+            limitUpPrice = #{item.limitUpPrice} ,
+            negotiableValue = #{item.negotiableValue} ,
+            openingPrice = #{item.openingPrice} ,
+            pERatio = #{item.pERatio} ,
+            positionTrend = #{item.positionTrend} ,
+            preClosingPrice = #{item.preClosingPrice} ,
+            prePositionQty = #{item.prePositionQty} ,
+            preSettlePrice = #{item.preSettlePrice} ,
+            settlePrice = #{item.settlePrice} ,
+            swing = #{item.swing} ,
+            totalAskQty = #{item.totalAskQty} ,
+            totalBidQty = #{item.totalBidQty} ,
+            totalQty = #{item.totalQty} ,
+            totalTurnover = #{item.totalTurnover} ,
+            totalValue = #{item.totalValue} ,
+            turnoverRate = #{item.turnoverRate} ,
+            tradingState = #{item.tradingState} ,
+            askPrice1 = #{item.askPrice1} ,
+            askPrice2 = #{item.askPrice2} ,
+            askPrice3 = #{item.askPrice3} ,
+            askPrice4 = #{item.askPrice4} ,
+            askPrice5 = #{item.askPrice5} ,
+            askPrice6 = #{item.askPrice6} ,
+            askPrice7 = #{item.askPrice7} ,
+            askPrice8 = #{item.askPrice8} ,
+            askPrice9 = #{item.askPrice9} ,
+            askPrice10 = #{item.askPrice10} ,
+            askPrice11 = #{item.askPrice11} ,
+            askPrice12 = #{item.askPrice12} ,
+            askPrice13 = #{item.askPrice13} ,
+            askPrice14 = #{item.askPrice14} ,
+            askPrice15 = #{item.askPrice15} ,
+            askPrice16 = #{item.askPrice16} ,
+            askPrice17 = #{item.askPrice17} ,
+            askPrice18 = #{item.askPrice18} ,
+            askPrice19 = #{item.askPrice19} ,
+            askPrice20 = #{item.askPrice20} ,
+            askQty1 = #{item.askQty1} ,
+            askQty2 = #{item.askQty2} ,
+            askQty3 = #{item.askQty3} ,
+            askQty4 = #{item.askQty4} ,
+            askQty5 = #{item.askQty5} ,
+            askQty6 = #{item.askQty6} ,
+            askQty7 = #{item.askQty7} ,
+            askQty8 = #{item.askQty8} ,
+            askQty9 = #{item.askQty9} ,
+            askQty10 = #{item.askQty10} ,
+            askQty11 = #{item.askQty11} ,
+            askQty12 = #{item.askQty12} ,
+            askQty13 = #{item.askQty13} ,
+            askQty14 = #{item.askQty14} ,
+            askQty15 = #{item.askQty15} ,
+            askQty16 = #{item.askQty16} ,
+            askQty17 = #{item.askQty17} ,
+            askQty18 = #{item.askQty18} ,
+            askQty19 = #{item.askQty19} ,
+            askQty20 = #{item.askQty20} ,
+            bidPrice1 = #{item.bidPrice1} ,
+            bidPrice2 = #{item.bidPrice2} ,
+            bidPrice3 = #{item.bidPrice3} ,
+            bidPrice4 = #{item.bidPrice4} ,
+            bidPrice5 = #{item.bidPrice5} ,
+            bidPrice6 = #{item.bidPrice6} ,
+            bidPrice7 = #{item.bidPrice7} ,
+            bidPrice8 = #{item.bidPrice8} ,
+            bidPrice9 = #{item.bidPrice9} ,
+            bidPrice10 = #{item.bidPrice10} ,
+            bidPrice11 = #{item.bidPrice11} ,
+            bidPrice12 = #{item.bidPrice12} ,
+            bidPrice13 = #{item.bidPrice13} ,
+            bidPrice14 = #{item.bidPrice14} ,
+            bidPrice15 = #{item.bidPrice15} ,
+            bidPrice16 = #{item.bidPrice16} ,
+            bidPrice17 = #{item.bidPrice17} ,
+            bidPrice18 = #{item.bidPrice18} ,
+            bidPrice19 = #{item.bidPrice19} ,
+            bidPrice20 = #{item.bidPrice20} ,
+            bidQty1 = #{item.bidQty1} ,
+            bidQty2 = #{item.bidQty2} ,
+            bidQty3 = #{item.bidQty3} ,
+            bidQty4 = #{item.bidQty4} ,
+            bidQty5 = #{item.bidQty5} ,
+            bidQty6 = #{item.bidQty6} ,
+            bidQty7 = #{item.bidQty7} ,
+            bidQty8 = #{item.bidQty8} ,
+            bidQty9 = #{item.bidQty9} ,
+            bidQty10 = #{item.bidQty10} ,
+            bidQty11 = #{item.bidQty11} ,
+            bidQty12 = #{item.bidQty12} ,
+            bidQty13 = #{item.bidQty13} ,
+            bidQty14 = #{item.bidQty14} ,
+            bidQty15 = #{item.bidQty15} ,
+            bidQty16 = #{item.bidQty16} ,
+            bidQty17 = #{item.bidQty17} ,
+            bidQty18 = #{item.bidQty18} ,
+            bidQty19 = #{item.bidQty19} ,
+            bidQty20 = #{item.bidQty20} ,
+            quotationTime = #{item.quotationTime} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.uams.rpc.quotation.model.QuotationModel">
+        update Quotation set
+            interCode = #{interCode} ,
+            marketCode = #{marketCode} ,
+            kindCode = #{kindCode} ,
+            currencyNo = #{currencyNo} ,
+            fiveDayAvgQty = #{fiveDayAvgQty} ,
+            averagePrice = #{averagePrice} ,
+            changeRate = #{changeRate} ,
+            changeSpeed = #{changeSpeed} ,
+            changeValue = #{changeValue} ,
+            closingPrice = #{closingPrice} ,
+            currDelta = #{currDelta} ,
+            highPrice = #{highPrice} ,
+            lowPrice = #{lowPrice} ,
+            hisHighPrice = #{hisHighPrice} ,
+            hisLowPrice = #{hisLowPrice} ,
+            insideQty = #{insideQty} ,
+            outsideQty = #{outsideQty} ,
+            lastPrice = #{lastPrice} ,
+            lastQty = #{lastQty} ,
+            limitDownPrice = #{limitDownPrice} ,
+            limitUpPrice = #{limitUpPrice} ,
+            negotiableValue = #{negotiableValue} ,
+            openingPrice = #{openingPrice} ,
+            pERatio = #{pERatio} ,
+            positionTrend = #{positionTrend} ,
+            preClosingPrice = #{preClosingPrice} ,
+            prePositionQty = #{prePositionQty} ,
+            preSettlePrice = #{preSettlePrice} ,
+            settlePrice = #{settlePrice} ,
+            swing = #{swing} ,
+            totalAskQty = #{totalAskQty} ,
+            totalBidQty = #{totalBidQty} ,
+            totalQty = #{totalQty} ,
+            totalTurnover = #{totalTurnover} ,
+            totalValue = #{totalValue} ,
+            turnoverRate = #{turnoverRate} ,
+            tradingState = #{tradingState} ,
+            askPrice1 = #{askPrice1} ,
+            askPrice2 = #{askPrice2} ,
+            askPrice3 = #{askPrice3} ,
+            askPrice4 = #{askPrice4} ,
+            askPrice5 = #{askPrice5} ,
+            askPrice6 = #{askPrice6} ,
+            askPrice7 = #{askPrice7} ,
+            askPrice8 = #{askPrice8} ,
+            askPrice9 = #{askPrice9} ,
+            askPrice10 = #{askPrice10} ,
+            askPrice11 = #{askPrice11} ,
+            askPrice12 = #{askPrice12} ,
+            askPrice13 = #{askPrice13} ,
+            askPrice14 = #{askPrice14} ,
+            askPrice15 = #{askPrice15} ,
+            askPrice16 = #{askPrice16} ,
+            askPrice17 = #{askPrice17} ,
+            askPrice18 = #{askPrice18} ,
+            askPrice19 = #{askPrice19} ,
+            askPrice20 = #{askPrice20} ,
+            askQty1 = #{askQty1} ,
+            askQty2 = #{askQty2} ,
+            askQty3 = #{askQty3} ,
+            askQty4 = #{askQty4} ,
+            askQty5 = #{askQty5} ,
+            askQty6 = #{askQty6} ,
+            askQty7 = #{askQty7} ,
+            askQty8 = #{askQty8} ,
+            askQty9 = #{askQty9} ,
+            askQty10 = #{askQty10} ,
+            askQty11 = #{askQty11} ,
+            askQty12 = #{askQty12} ,
+            askQty13 = #{askQty13} ,
+            askQty14 = #{askQty14} ,
+            askQty15 = #{askQty15} ,
+            askQty16 = #{askQty16} ,
+            askQty17 = #{askQty17} ,
+            askQty18 = #{askQty18} ,
+            askQty19 = #{askQty19} ,
+            askQty20 = #{askQty20} ,
+            bidPrice1 = #{bidPrice1} ,
+            bidPrice2 = #{bidPrice2} ,
+            bidPrice3 = #{bidPrice3} ,
+            bidPrice4 = #{bidPrice4} ,
+            bidPrice5 = #{bidPrice5} ,
+            bidPrice6 = #{bidPrice6} ,
+            bidPrice7 = #{bidPrice7} ,
+            bidPrice8 = #{bidPrice8} ,
+            bidPrice9 = #{bidPrice9} ,
+            bidPrice10 = #{bidPrice10} ,
+            bidPrice11 = #{bidPrice11} ,
+            bidPrice12 = #{bidPrice12} ,
+            bidPrice13 = #{bidPrice13} ,
+            bidPrice14 = #{bidPrice14} ,
+            bidPrice15 = #{bidPrice15} ,
+            bidPrice16 = #{bidPrice16} ,
+            bidPrice17 = #{bidPrice17} ,
+            bidPrice18 = #{bidPrice18} ,
+            bidPrice19 = #{bidPrice19} ,
+            bidPrice20 = #{bidPrice20} ,
+            bidQty1 = #{bidQty1} ,
+            bidQty2 = #{bidQty2} ,
+            bidQty3 = #{bidQty3} ,
+            bidQty4 = #{bidQty4} ,
+            bidQty5 = #{bidQty5} ,
+            bidQty6 = #{bidQty6} ,
+            bidQty7 = #{bidQty7} ,
+            bidQty8 = #{bidQty8} ,
+            bidQty9 = #{bidQty9} ,
+            bidQty10 = #{bidQty10} ,
+            bidQty11 = #{bidQty11} ,
+            bidQty12 = #{bidQty12} ,
+            bidQty13 = #{bidQty13} ,
+            bidQty14 = #{bidQty14} ,
+            bidQty15 = #{bidQty15} ,
+            bidQty16 = #{bidQty16} ,
+            bidQty17 = #{bidQty17} ,
+            bidQty18 = #{bidQty18} ,
+            bidQty19 = #{bidQty19} ,
+            bidQty20 = #{bidQty20} ,
+            quotationTime = #{quotationTime} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.uams.rpc.quotation.model.QuotationModel">
+        select <include refid="quotationColumns"/> from Quotation a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.uams.rpc.quotation.model.QuotationModel">
+        SELECT
+        <include refid="quotationColumns"/>
+        FROM Quotation a WHERE 1=1
+        <if test="interCode != null">
+            and a.interCode like '%'||#{interCode}||'%'
+        </if>
+        <if test="marketCode != null">
+            and a.marketCode like '%'||#{marketCode}||'%'
+        </if>
+        <if test="kindCode != null">
+            and a.kindCode like '%'||#{kindCode}||'%'
+        </if>
+        <if test="currencyNo != null">
+            and a.currencyNo like '%'||#{currencyNo}||'%'
+        </if>
+        <if test="quotationTime != null">
+            and a.quotationTime = #{quotationTime}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.uams.rpc.quotation.model.QuotationModel">
+        SELECT
+        <include refid="quotationColumns"/>
+        FROM Quotation a WHERE 1=1
+    </select>
+
+
+</mapper>
+

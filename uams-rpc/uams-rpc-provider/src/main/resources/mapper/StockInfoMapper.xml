@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uams.rpc.base.mapper.StockInfoMapper">
+    <!-- 基础列 -->
+    <sql id="stockInfoColumns">
+        a.id as id,
+        a.interCode as interCode,
+        a.marketId as marketId,
+        a.stockCode as stockCode,
+        a.stockName as stockName,
+        a.stockSpell as stockSpell,
+        a.stockFullName as stockFullName,
+        a.stockType as stockType,
+        a.assetClass as assetClass,
+        a.quotationTable as quotationTable,
+        a.lastPrice as lastPrice,
+        a.updateDate as updateDate
+    </sql>
+    <sql id="stockInfoJoinColumns">
+        a.id as id,
+        a.interCode as interCode,
+        a.marketId as marketId,
+        a.stockCode as stockCode,
+        a.stockName as stockName,
+        a.stockSpell as stockSpell,
+        a.stockFullName as stockFullName,
+        a.stockType as stockType,
+        a.assetClass as assetClass,
+        a.quotationTable as quotationTable,
+        a.lastPrice as lastPrice,
+        a.updateDate as updateDate,
+        c.marketName as marketName
+    </sql>
+
+    <resultMap id="stockInfoResultMap" type="com.uams.rpc.base.model.StockInfoModel">
+        <id column="id" property="id" />
+        <result column="interCode" property="interCode"/>
+        <result column="marketId" property="marketId"/>
+        <result column="stockCode" property="stockCode"/>
+        <result column="stockName" property="stockName"/>
+        <result column="stockSpell" property="stockSpell"/>
+        <result column="stockFullName" property="stockFullName"/>
+        <result column="stockType" property="stockType"/>
+        <result column="assetClass" property="assetClass"/>
+        <result column="quotationTable" property="quotationTable"/>
+        <result column="lastPrice" property="assetClass"/>
+        <result column="updateDate" property="updateDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.uams.rpc.base.model.StockInfoModel">
+        insert into StockInfo(
+            id ,
+            interCode ,
+            marketId ,
+            stockCode ,
+            stockName ,
+            stockSpell ,
+            stockFullName ,
+            stockType ,
+            assetClass ,
+            quotationTable,
+            lastPrice,
+            updateDate 
+        ) VALUES (
+            #{id} ,
+            #{interCode} ,
+            #{marketId} ,
+            #{stockCode} ,
+            #{stockName} ,
+            #{stockSpell} ,
+            #{stockFullName} ,
+            #{stockType} ,
+            #{assetClass} ,
+            #{quotationTable},
+            #{lastPrice},
+            #{updateDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from StockInfo where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update StockInfo set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.uams.rpc.base.model.StockInfoModel">
+        insert into StockInfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="interCode != null">
+                interCode ,
+        </if>
+        <if test="marketId != null">
+                marketId ,
+        </if>
+        <if test="stockCode != null">
+                stockCode ,
+        </if>
+        <if test="stockName != null">
+                stockName ,
+        </if>
+        <if test="stockSpell != null">
+                stockSpell ,
+        </if>
+        <if test="stockFullName != null">
+                stockFullName ,
+        </if>
+        <if test="stockType != null">
+                stockType ,
+        </if>
+        <if test="assetClass != null">
+                assetClass ,
+        </if>
+            <if test="quotationTable != null">
+                quotationTable ,
+            </if>
+            <if test="lastPrice != null">
+                lastPrice ,
+            </if>
+        <if test="updateDate != null">
+                updateDate 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="interCode != null">
+                #{interCode} ,
+        </if>
+        <if test="marketId != null">
+                #{marketId} ,
+        </if>
+        <if test="stockCode != null">
+                #{stockCode} ,
+        </if>
+        <if test="stockName != null">
+                #{stockName} ,
+        </if>
+        <if test="stockSpell != null">
+                #{stockSpell} ,
+        </if>
+        <if test="stockFullName != null">
+                #{stockFullName} ,
+        </if>
+        <if test="stockType != null">
+                #{stockType} ,
+        </if>
+        <if test="assetClass != null">
+                #{assetClass} ,
+        </if>
+            <if test="quotationTable != null">
+                #{quotationTable} ,
+            </if>
+            <if test="lastPrice != null">
+                #{lastPrice} ,
+            </if>
+        <if test="updateDate != null">
+                #{updateDate} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.uams.rpc.base.model.StockInfoModel">
+        update StockInfo
+           <set>
+            <if test="interCode != null">
+                interCode = #{interCode} ,
+            </if>
+            <if test="marketId != null">
+                marketId = #{marketId} ,
+            </if>
+            <if test="stockCode != null">
+                stockCode = #{stockCode} ,
+            </if>
+            <if test="stockName != null">
+                stockName = #{stockName} ,
+            </if>
+            <if test="stockSpell != null">
+                stockSpell = #{stockSpell} ,
+            </if>
+            <if test="stockFullName != null">
+                stockFullName = #{stockFullName} ,
+            </if>
+            <if test="stockType != null">
+                stockType = #{stockType} ,
+            </if>
+            <if test="assetClass != null">
+                assetClass = #{assetClass} ,
+            </if>
+               <if test="quotationTable != null">
+                   quotationTable = #{quotationTable} ,
+               </if>
+               <if test="lastPrice != null">
+                   lastPrice = #{lastPrice} ,
+               </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into StockInfo(
+            id ,
+            interCode ,
+            marketId ,
+            stockCode ,
+            stockName ,
+            stockSpell ,
+            stockFullName ,
+            stockType ,
+            assetClass ,
+        quotationTable,
+        lastPrice,
+            updateDate 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.interCode} ,
+            #{item.marketId} ,
+            #{item.stockCode} ,
+            #{item.stockName} ,
+            #{item.stockSpell} ,
+            #{item.stockFullName} ,
+            #{item.stockType} ,
+            #{item.assetClass} ,
+            #{item.quotationTable} ,
+            #{item.lastPrice} ,
+            #{item.updateDate} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update StockInfo set
+            interCode = #{item.interCode} ,
+            marketId = #{item.marketId} ,
+            stockCode = #{item.stockCode} ,
+            stockName = #{item.stockName} ,
+            stockSpell = #{item.stockSpell} ,
+            stockFullName = #{item.stockFullName} ,
+            stockType = #{item.stockType} ,
+            assetClass = #{item.assetClass} ,
+            quotationTable = #{item.quotationTable} ,
+            lastPrice = #{item.lastPrice} ,
+            updateDate = #{item.updateDate} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.uams.rpc.base.model.StockInfoModel">
+        update StockInfo set
+            interCode = #{interCode} ,
+            marketId = #{marketId} ,
+            stockCode = #{stockCode} ,
+            stockName = #{stockName} ,
+            stockSpell = #{stockSpell} ,
+            stockFullName = #{stockFullName} ,
+            stockType = #{stockType} ,
+            assetClass = #{assetClass} ,
+            quotationTable = #{quotationTable} ,
+            lastPrice = #{lastPrice} ,
+            updateDate = #{updateDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.uams.rpc.base.model.StockInfoModel">
+        select <include refid="stockInfoColumns"/> from StockInfo a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.uams.rpc.base.model.StockInfoModel">
+        SELECT
+        <include refid="stockInfoJoinColumns"/>
+        FROM StockInfo a
+        left join marketInfo c on c.id=a.marketId WHERE 1=1
+        <if test="interCode != null">
+            and a.interCode like '%'||#{interCode}||'%'
+        </if>
+        <if test="marketId != null">
+            and a.marketId = #{marketId}
+        </if>
+        <if test="stockCode != null">
+            and a.stockCode like '%'||#{stockCode}||'%'
+        </if>
+        <if test="stockName != null">
+            and a.stockName like '%'||#{stockName}||'%'
+        </if>
+        <if test="stockSpell != null">
+            and a.stockSpell like '%'||#{stockSpell}||'%'
+        </if>
+        <if test="stockFullName != null">
+            and a.stockFullName like '%'||#{stockFullName}||'%'
+        </if>
+        <if test="stockType != null">
+            and a.stockType like '%'||#{stockType}||'%'
+        </if>
+        <if test="assetClass != null">
+            and a.assetClass like '%'||#{assetClass}||'%'
+        </if>
+        <if test="updateDate != null">
+            and a.updateDate = #{updateDate}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.uams.rpc.base.model.StockInfoModel">
+        SELECT
+        <include refid="stockInfoColumns"/>
+        FROM StockInfo a WHERE 1=1
+    </select>
+
+
+</mapper>
+

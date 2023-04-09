@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uams.rpc.base.mapper.StockHolderMapper">
+    <!-- 基础列 -->
+    <sql id="stockHolderColumns">
+        a.id as id,
+        a.brokerId as brokerId,
+        a.stockHolderName as stockHolderName,
+        a.marketId as marketId,
+        a.openDate as openDate,
+        a.tradeAcount as tradeAcount,
+        a.fundAccout as fundAccout,
+        a.updateDate as updateDate
+    </sql>
+
+    <sql id="stockHolderJoinColumns">
+        a.id as id,
+        a.brokerId as brokerId,
+        a.stockHolderName as stockHolderName,
+        a.marketId as marketId,
+        a.openDate as openDate,
+        a.tradeAcount as tradeAcount,
+        a.fundAccout as fundAccout,
+        a.updateDate as updateDate,
+        b.brokerName as brokerName,
+        c.marketName as marketName
+    </sql>
+
+    <resultMap id="stockHolderResultMap" type="com.uams.rpc.base.model.StockHolderModel">
+        <id column="id" property="id" />
+        <result column="brokerId" property="brokerId"/>
+        <result column="stockHolderName" property="stockHolderName"/>
+        <result column="marketId" property="marketId"/>
+        <result column="openDate" property="openDate"/>
+        <result column="tradeAcount" property="tradeAcount"/>
+        <result column="fundAccout" property="fundAccout"/>
+        <result column="updateDate" property="updateDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.uams.rpc.base.model.StockHolderModel">
+        insert into StockHolder(
+            id ,
+            brokerId ,
+            stockHolderName ,
+            marketId ,
+            openDate ,
+            tradeAcount ,
+            fundAccout ,
+            updateDate 
+        ) VALUES (
+            #{id} ,
+            #{brokerId} ,
+            #{stockHolderName} ,
+            #{marketId} ,
+            #{openDate} ,
+            #{tradeAcount} ,
+            #{fundAccout} ,
+            #{updateDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from StockHolder where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update StockHolder set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.uams.rpc.base.model.StockHolderModel">
+        insert into StockHolder
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="brokerId != null">
+                brokerId ,
+        </if>
+        <if test="stockHolderName != null">
+                stockHolderName ,
+        </if>
+        <if test="marketId != null">
+                marketId ,
+        </if>
+        <if test="openDate != null">
+                openDate ,
+        </if>
+        <if test="tradeAcount != null">
+                tradeAcount ,
+        </if>
+        <if test="fundAccout != null">
+                fundAccout ,
+        </if>
+        <if test="updateDate != null">
+                updateDate 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="brokerId != null">
+                #{brokerId} ,
+        </if>
+        <if test="stockHolderName != null">
+                #{stockHolderName} ,
+        </if>
+        <if test="marketId != null">
+                #{marketId} ,
+        </if>
+        <if test="openDate != null">
+                #{openDate} ,
+        </if>
+        <if test="tradeAcount != null">
+                #{tradeAcount} ,
+        </if>
+        <if test="fundAccout != null">
+                #{fundAccout} ,
+        </if>
+        <if test="updateDate != null">
+                #{updateDate} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.uams.rpc.base.model.StockHolderModel">
+        update StockHolder
+           <set>
+            <if test="brokerId != null">
+                brokerId = #{brokerId} ,
+            </if>
+            <if test="stockHolderName != null">
+                stockHolderName = #{stockHolderName} ,
+            </if>
+            <if test="marketId != null">
+                marketId = #{marketId} ,
+            </if>
+            <if test="openDate != null">
+                openDate = #{openDate} ,
+            </if>
+            <if test="tradeAcount != null">
+                tradeAcount = #{tradeAcount} ,
+            </if>
+            <if test="fundAccout != null">
+                fundAccout = #{fundAccout} ,
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into StockHolder(
+            id ,
+            brokerId ,
+            stockHolderName ,
+            marketId ,
+            openDate ,
+            tradeAcount ,
+            fundAccout ,
+            updateDate 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.brokerId} ,
+            #{item.stockHolderName} ,
+            #{item.marketId} ,
+            #{item.openDate} ,
+            #{item.tradeAcount} ,
+            #{item.fundAccout} ,
+            #{item.updateDate} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update StockHolder set
+            brokerId = #{item.brokerId} ,
+            stockHolderName = #{item.stockHolderName} ,
+            marketId = #{item.marketId} ,
+            openDate = #{item.openDate} ,
+            tradeAcount = #{item.tradeAcount} ,
+            fundAccout = #{item.fundAccout} ,
+            updateDate = #{item.updateDate} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.uams.rpc.base.model.StockHolderModel">
+        update StockHolder set
+            brokerId = #{brokerId} ,
+            stockHolderName = #{stockHolderName} ,
+            marketId = #{marketId} ,
+            openDate = #{openDate} ,
+            tradeAcount = #{tradeAcount} ,
+            fundAccout = #{fundAccout} ,
+            updateDate = #{updateDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.uams.rpc.base.model.StockHolderModel">
+        select <include refid="stockHolderColumns"/> from StockHolder a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.uams.rpc.base.model.StockHolderModel">
+        SELECT
+        <include refid="stockHolderJoinColumns"/>
+        FROM StockHolder a
+        left join brokerInfo  b on b.id=a.brokerId
+        left join marketInfo c on c.id=a.marketId
+        WHERE 1=1
+        <if test="brokerId != null">
+            and a.brokerId = #{brokerId}
+        </if>
+        <if test="stockHolderName != null">
+            and a.stockHolderName like '%'||#{stockHolderName}||'%'
+        </if>
+        <if test="marketId != null">
+            and a.marketId = #{marketId}
+        </if>
+        <if test="openDate != null">
+            and a.openDate = #{openDate}
+        </if>
+        <if test="tradeAcount != null">
+            and a.tradeAcount like '%'||#{tradeAcount}||'%'
+        </if>
+        <if test="fundAccout != null">
+            and a.fundAccout like '%'||#{fundAccout}||'%'
+        </if>
+        <if test="updateDate != null">
+            and a.updateDate = #{updateDate}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.uams.rpc.base.model.StockHolderModel">
+        SELECT
+        <include refid="stockHolderColumns"/>
+        FROM StockHolder a WHERE 1=1
+    </select>
+
+
+</mapper>
+

@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uams.rpc.fund.mapper.AccountAssetMapper">
+    <!-- 基础列 -->
+    <sql id="accountAssetColumns">
+        a.id as id,
+        a.stockinfoId as stockinfoId,
+        a.accountId as accountId,
+        a.direction as direction,
+        a.currentAmount as currentAmount,
+        a.frozenAmt as frozenAmt,
+        a.initAmt as initAmt,
+        a.price as price,
+        a.updateDate as updateDate
+    </sql>
+
+    <sql id="accountAssetJoinColumns">
+        a.id as id,
+        a.stockinfoId as stockinfoId,
+        a.accountId as accountId,
+        a.direction as direction,
+        a.currentAmount as currentAmount,
+        a.frozenAmt as frozenAmt,
+        a.initAmt as initAmt,
+        a.price as price,
+        a.updateDate as updateDate,
+        b.accountName as accountName,
+        c.stockCode as stockCode
+    </sql>
+
+    <resultMap id="accountAssetResultMap" type="com.uams.rpc.fund.model.AccountAssetModel">
+        <id column="id" property="id" />
+        <result column="stockinfoId" property="stockinfoId"/>
+        <result column="accountId" property="accountId"/>
+        <result column="direction" property="direction"/>
+        <result column="currentAmount" property="currentAmount"/>
+        <result column="frozenAmt" property="frozenAmt"/>
+        <result column="initAmt" property="initAmt"/>
+        <result column="price" property="price"/>
+        <result column="updateDate" property="updateDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.uams.rpc.fund.model.AccountAssetModel">
+        insert into AccountAsset(
+            id ,
+            stockinfoId ,
+            accountId ,
+            direction ,
+            currentAmount ,
+            frozenAmt ,
+            initAmt ,
+            price ,
+            updateDate 
+        ) VALUES (
+            #{id} ,
+            #{stockinfoId} ,
+            #{accountId} ,
+            #{direction} ,
+            #{currentAmount} ,
+            #{frozenAmt} ,
+            #{initAmt} ,
+            #{price} ,
+            #{updateDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from AccountAsset where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update AccountAsset set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.uams.rpc.fund.model.AccountAssetModel">
+        insert into AccountAsset
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="stockinfoId != null">
+                stockinfoId ,
+        </if>
+        <if test="accountId != null">
+                accountId ,
+        </if>
+        <if test="direction != null">
+                direction ,
+        </if>
+        <if test="currentAmount != null">
+                currentAmount ,
+        </if>
+        <if test="frozenAmt != null">
+                frozenAmt ,
+        </if>
+        <if test="initAmt != null">
+                initAmt ,
+        </if>
+        <if test="price != null">
+                price ,
+        </if>
+        <if test="updateDate != null">
+                updateDate 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="stockinfoId != null">
+                #{stockinfoId} ,
+        </if>
+        <if test="accountId != null">
+                #{accountId} ,
+        </if>
+        <if test="direction != null">
+                #{direction} ,
+        </if>
+        <if test="currentAmount != null">
+                #{currentAmount} ,
+        </if>
+        <if test="frozenAmt != null">
+                #{frozenAmt} ,
+        </if>
+        <if test="initAmt != null">
+                #{initAmt} ,
+        </if>
+        <if test="price != null">
+                #{price} ,
+        </if>
+        <if test="updateDate != null">
+                #{updateDate} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.uams.rpc.fund.model.AccountAssetModel">
+        update AccountAsset
+           <set>
+            <if test="stockinfoId != null">
+                stockinfoId = #{stockinfoId} ,
+            </if>
+            <if test="accountId != null">
+                accountId = #{accountId} ,
+            </if>
+            <if test="direction != null">
+                direction = #{direction} ,
+            </if>
+            <if test="currentAmount != null">
+                currentAmount = #{currentAmount} ,
+            </if>
+            <if test="frozenAmt != null">
+                frozenAmt = #{frozenAmt} ,
+            </if>
+            <if test="initAmt != null">
+                initAmt = #{initAmt} ,
+            </if>
+            <if test="price != null">
+                price = #{price} ,
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into AccountAsset(
+            id ,
+            stockinfoId ,
+            accountId ,
+            direction ,
+            currentAmount ,
+            frozenAmt ,
+            initAmt ,
+            price ,
+            updateDate 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.stockinfoId} ,
+            #{item.accountId} ,
+            #{item.direction} ,
+            #{item.currentAmount} ,
+            #{item.frozenAmt} ,
+            #{item.initAmt} ,
+            #{item.price} ,
+            #{item.updateDate} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update AccountAsset set
+            stockinfoId = #{item.stockinfoId} ,
+            accountId = #{item.accountId} ,
+            direction = #{item.direction} ,
+            currentAmount = #{item.currentAmount} ,
+            frozenAmt = #{item.frozenAmt} ,
+            initAmt = #{item.initAmt} ,
+            price = #{item.price} ,
+            updateDate = #{item.updateDate} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.uams.rpc.fund.model.AccountAssetModel">
+        update AccountAsset set
+            stockinfoId = #{stockinfoId} ,
+            accountId = #{accountId} ,
+            direction = #{direction} ,
+            currentAmount = #{currentAmount} ,
+            frozenAmt = #{frozenAmt} ,
+            initAmt = #{initAmt} ,
+            price = #{price} ,
+            updateDate = #{updateDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.uams.rpc.fund.model.AccountAssetModel">
+        select <include refid="accountAssetColumns"/> from AccountAsset a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.uams.rpc.fund.model.AccountAssetModel">
+        SELECT
+        <include refid="accountAssetJoinColumns"/>
+        FROM AccountAsset a
+        left join account b on b.id=a.accountId
+        left join stockinfo c on c.id=a.stockinfoId
+        WHERE 1=1
+        <if test="stockinfoId != null">
+            and a.stockinfoId = #{stockinfoId}
+        </if>
+        <if test="accountId != null">
+            and a.accountId = #{accountId}
+        </if>
+        <if test="accountName != null and accountName!=''">
+            and b.accountName like '%'||#{accountName}||'%'
+        </if>
+        <if test="direction != null">
+            and a.direction like '%'||#{direction}||'%'
+        </if>
+        <if test="currentAmount != null">
+            and a.currentAmount = #{currentAmount}
+        </if>
+        <if test="frozenAmt != null">
+            and a.frozenAmt = #{frozenAmt}
+        </if>
+        <if test="initAmt != null">
+            and a.initAmt = #{initAmt}
+        </if>
+        <if test="price != null">
+            and a.price = #{price}
+        </if>
+        <if test="updateDate != null">
+            and a.updateDate = #{updateDate}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.uams.rpc.fund.model.AccountAssetModel">
+        SELECT
+        <include refid="accountAssetColumns"/>
+        FROM AccountAsset a WHERE 1=1
+    </select>
+
+
+</mapper>
+

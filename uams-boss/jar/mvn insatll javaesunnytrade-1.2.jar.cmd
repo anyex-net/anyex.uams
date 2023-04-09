@@ -1,0 +1,1 @@
+mvn install:install-file  -Dfile=javaesunnytrade-1.2.jar  -DgroupId=com.esunny -DartifactId=futures.wp.trade.api -Dversion=1.2 -Dpackaging=jar

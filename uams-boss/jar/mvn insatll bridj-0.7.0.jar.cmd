@@ -1,0 +1,1 @@
+mvn install:install-file  -Dfile=bridj-0.7.0.jar  -DgroupId=com.nativelibs4java  -DartifactId=bridj -Dversion=0.7.0 -Dpackaging=jar

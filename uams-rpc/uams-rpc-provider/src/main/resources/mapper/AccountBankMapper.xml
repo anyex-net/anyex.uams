@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uams.rpc.account.mapper.AccountBankMapper">
+    <!-- 基础列 -->
+    <sql id="accountBankColumns">
+        a.id as id,
+        a.accountId as accountId,
+        a.bankDeposit as bankDeposit,
+        a.bankAccountName as bankAccountName,
+        a.bankAddress as bankAddress,
+        a.bankAccountNumber as bankAccountNumber,
+        a.branchBankNo as branchBankNo,
+        a.frontSideBankCardPhoto as frontSideBankCardPhoto,
+        a.backSideBankCardPhoto as backSideBankCardPhoto,
+        a.province as province,
+        a.city as city,
+        a.district as district,
+        a.mobilePhone as mobilePhone,
+        a.status as status,
+        a.remark as remark,
+        a.createDate as createDate
+    </sql>
+    <sql id="accountBankJoinColumns">
+        a.id as id,
+        a.accountId as accountId,
+        a.bankDeposit as bankDeposit,
+        a.bankAccountName as bankAccountName,
+        a.bankAddress as bankAddress,
+        a.bankAccountNumber as bankAccountNumber,
+        a.branchBankNo as branchBankNo,
+        a.frontSideBankCardPhoto as frontSideBankCardPhoto,
+        a.backSideBankCardPhoto as backSideBankCardPhoto,
+        a.province as province,
+        a.city as city,
+        a.district as district,
+        a.mobilePhone as mobilePhone,
+        a.status as status,
+        a.remark as remark,
+        a.createDate as createDate,
+        b.accountName as accountName
+    </sql>
+
+    <resultMap id="accountBankResultMap" type="com.uams.rpc.account.model.AccountBankModel">
+        <id column="id" property="id" />
+        <result column="accountId" property="accountId"/>
+        <result column="bankDeposit" property="bankDeposit"/>
+        <result column="bankAccountName" property="bankAccountName"/>
+        <result column="bankAddress" property="bankAddress"/>
+        <result column="bankAccountNumber" property="bankAccountNumber"/>
+        <result column="branchBankNo" property="branchBankNo"/>
+        <result column="frontSideBankCardPhoto" property="frontSideBankCardPhoto"/>
+        <result column="backSideBankCardPhoto" property="backSideBankCardPhoto"/>
+        <result column="province" property="province"/>
+        <result column="city" property="city"/>
+        <result column="district" property="district"/>
+        <result column="mobilePhone" property="mobilePhone"/>
+        <result column="status" property="status"/>
+        <result column="remark" property="remark"/>
+        <result column="createDate" property="createDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.uams.rpc.account.model.AccountBankModel">
+        insert into AccountBank(
+            id ,
+            accountId ,
+            bankDeposit ,
+            bankAccountName ,
+            bankAddress ,
+            bankAccountNumber ,
+            branchBankNo ,
+            frontSideBankCardPhoto ,
+            backSideBankCardPhoto ,
+            province ,
+            city ,
+            district ,
+            mobilePhone ,
+            status ,
+            remark ,
+            createDate 
+        ) VALUES (
+            #{id} ,
+            #{accountId} ,
+            #{bankDeposit} ,
+            #{bankAccountName} ,
+            #{bankAddress} ,
+            #{bankAccountNumber} ,
+            #{branchBankNo} ,
+            #{frontSideBankCardPhoto} ,
+            #{backSideBankCardPhoto} ,
+            #{province} ,
+            #{city} ,
+            #{district} ,
+            #{mobilePhone} ,
+            #{status} ,
+            #{remark} ,
+            #{createDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from AccountBank where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update AccountBank set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.uams.rpc.account.model.AccountBankModel">
+        insert into AccountBank
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="accountId != null">
+                accountId ,
+        </if>
+        <if test="bankDeposit != null">
+                bankDeposit ,
+        </if>
+        <if test="bankAccountName != null">
+                bankAccountName ,
+        </if>
+        <if test="bankAddress != null">
+                bankAddress ,
+        </if>
+        <if test="bankAccountNumber != null">
+                bankAccountNumber ,
+        </if>
+        <if test="branchBankNo != null">
+                branchBankNo ,
+        </if>
+        <if test="frontSideBankCardPhoto != null">
+                frontSideBankCardPhoto ,
+        </if>
+        <if test="backSideBankCardPhoto != null">
+                backSideBankCardPhoto ,
+        </if>
+        <if test="province != null">
+                province ,
+        </if>
+        <if test="city != null">
+                city ,
+        </if>
+        <if test="district != null">
+                district ,
+        </if>
+        <if test="mobilePhone != null">
+                mobilePhone ,
+        </if>
+        <if test="status != null">
+                status ,
+        </if>
+        <if test="remark != null">
+                remark ,
+        </if>
+        <if test="createDate != null">
+                createDate 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="accountId != null">
+                #{accountId} ,
+        </if>
+        <if test="bankDeposit != null">
+                #{bankDeposit} ,
+        </if>
+        <if test="bankAccountName != null">
+                #{bankAccountName} ,
+        </if>
+        <if test="bankAddress != null">
+                #{bankAddress} ,
+        </if>
+        <if test="bankAccountNumber != null">
+                #{bankAccountNumber} ,
+        </if>
+        <if test="branchBankNo != null">
+                #{branchBankNo} ,
+        </if>
+        <if test="frontSideBankCardPhoto != null">
+                #{frontSideBankCardPhoto} ,
+        </if>
+        <if test="backSideBankCardPhoto != null">
+                #{backSideBankCardPhoto} ,
+        </if>
+        <if test="province != null">
+                #{province} ,
+        </if>
+        <if test="city != null">
+                #{city} ,
+        </if>
+        <if test="district != null">
+                #{district} ,
+        </if>
+        <if test="mobilePhone != null">
+                #{mobilePhone} ,
+        </if>
+        <if test="status != null">
+                #{status} ,
+        </if>
+        <if test="remark != null">
+                #{remark} ,
+        </if>
+        <if test="createDate != null">
+                #{createDate} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.uams.rpc.account.model.AccountBankModel">
+        update AccountBank
+           <set>
+            <if test="accountId != null">
+                accountId = #{accountId} ,
+            </if>
+            <if test="bankDeposit != null">
+                bankDeposit = #{bankDeposit} ,
+            </if>
+            <if test="bankAccountName != null">
+                bankAccountName = #{bankAccountName} ,
+            </if>
+            <if test="bankAddress != null">
+                bankAddress = #{bankAddress} ,
+            </if>
+            <if test="bankAccountNumber != null">
+                bankAccountNumber = #{bankAccountNumber} ,
+            </if>
+            <if test="branchBankNo != null">
+                branchBankNo = #{branchBankNo} ,
+            </if>
+            <if test="frontSideBankCardPhoto != null">
+                frontSideBankCardPhoto = #{frontSideBankCardPhoto} ,
+            </if>
+            <if test="backSideBankCardPhoto != null">
+                backSideBankCardPhoto = #{backSideBankCardPhoto} ,
+            </if>
+            <if test="province != null">
+                province = #{province} ,
+            </if>
+            <if test="city != null">
+                city = #{city} ,
+            </if>
+            <if test="district != null">
+                district = #{district} ,
+            </if>
+            <if test="mobilePhone != null">
+                mobilePhone = #{mobilePhone} ,
+            </if>
+            <if test="status != null">
+                status = #{status} ,
+            </if>
+            <if test="remark != null">
+                remark = #{remark} ,
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into AccountBank(
+            id ,
+            accountId ,
+            bankDeposit ,
+            bankAccountName ,
+            bankAddress ,
+            bankAccountNumber ,
+            branchBankNo ,
+            frontSideBankCardPhoto ,
+            backSideBankCardPhoto ,
+            province ,
+            city ,
+            district ,
+            mobilePhone ,
+            status ,
+            remark ,
+            createDate 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.accountId} ,
+            #{item.bankDeposit} ,
+            #{item.bankAccountName} ,
+            #{item.bankAddress} ,
+            #{item.bankAccountNumber} ,
+            #{item.branchBankNo} ,
+            #{item.frontSideBankCardPhoto} ,
+            #{item.backSideBankCardPhoto} ,
+            #{item.province} ,
+            #{item.city} ,
+            #{item.district} ,
+            #{item.mobilePhone} ,
+            #{item.status} ,
+            #{item.remark} ,
+            #{item.createDate} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update AccountBank set
+            accountId = #{item.accountId} ,
+            bankDeposit = #{item.bankDeposit} ,
+            bankAccountName = #{item.bankAccountName} ,
+            bankAddress = #{item.bankAddress} ,
+            bankAccountNumber = #{item.bankAccountNumber} ,
+            branchBankNo = #{item.branchBankNo} ,
+            frontSideBankCardPhoto = #{item.frontSideBankCardPhoto} ,
+            backSideBankCardPhoto = #{item.backSideBankCardPhoto} ,
+            province = #{item.province} ,
+            city = #{item.city} ,
+            district = #{item.district} ,
+            mobilePhone = #{item.mobilePhone} ,
+            status = #{item.status} ,
+            remark = #{item.remark} ,
+            createDate = #{item.createDate} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.uams.rpc.account.model.AccountBankModel">
+        update AccountBank set
+            accountId = #{accountId} ,
+            bankDeposit = #{bankDeposit} ,
+            bankAccountName = #{bankAccountName} ,
+            bankAddress = #{bankAddress} ,
+            bankAccountNumber = #{bankAccountNumber} ,
+            branchBankNo = #{branchBankNo} ,
+            frontSideBankCardPhoto = #{frontSideBankCardPhoto} ,
+            backSideBankCardPhoto = #{backSideBankCardPhoto} ,
+            province = #{province} ,
+            city = #{city} ,
+            district = #{district} ,
+            mobilePhone = #{mobilePhone} ,
+            status = #{status} ,
+            remark = #{remark} ,
+            createDate = #{createDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.uams.rpc.account.model.AccountBankModel">
+        select <include refid="accountBankJoinColumns"/> from AccountBank a
+        left join Account b on b.id=a.accountId
+        where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.uams.rpc.account.model.AccountBankModel">
+        SELECT
+        <include refid="accountBankJoinColumns"/>
+        FROM AccountBank a
+        left join Account b on b.id=a.accountId
+        WHERE 1=1
+        <if test="accountId != null">
+            and a.accountId = #{accountId}
+        </if>
+        <if test="accountName != null and accountName!=''">
+            and b.accountName like '%'||#{accountName}||'%'
+        </if>
+        <if test="bankDeposit != null">
+            and a.bankDeposit like '%'||#{bankDeposit}||'%'
+        </if>
+        <if test="bankAccountName != null and bankAccountName!=''">
+            and a.bankAccountName like '%'||#{bankAccountName}||'%'
+        </if>
+        <if test="bankAddress != null">
+            and a.bankAddress like '%'||#{bankAddress}||'%'
+        </if>
+        <if test="bankAccountNumber != null">
+            and a.bankAccountNumber like '%'||#{bankAccountNumber}||'%'
+        </if>
+        <if test="branchBankNo != null">
+            and a.branchBankNo like '%'||#{branchBankNo}||'%'
+        </if>
+        <if test="frontSideBankCardPhoto != null">
+            and a.frontSideBankCardPhoto like '%'||#{frontSideBankCardPhoto}||'%'
+        </if>
+        <if test="backSideBankCardPhoto != null">
+            and a.backSideBankCardPhoto like '%'||#{backSideBankCardPhoto}||'%'
+        </if>
+        <if test="province != null">
+            and a.province like '%'||#{province}||'%'
+        </if>
+        <if test="city != null">
+            and a.city like '%'||#{city}||'%'
+        </if>
+        <if test="district != null">
+            and a.district like '%'||#{district}||'%'
+        </if>
+        <if test="mobilePhone != null">
+            and a.mobilePhone like '%'||#{mobilePhone}||'%'
+        </if>
+        <if test="status != null">
+            and a.status like '%'||#{status}||'%'
+        </if>
+        <if test="remark != null">
+            and a.remark like '%'||#{remark}||'%'
+        </if>
+        <if test="createDate != null">
+            and a.createDate = #{createDate}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.uams.rpc.account.model.AccountBankModel">
+        SELECT
+        <include refid="accountBankColumns"/>
+        FROM AccountBank a WHERE 1=1
+    </select>
+
+
+</mapper>
+

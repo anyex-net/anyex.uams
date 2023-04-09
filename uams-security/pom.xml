@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>uams-parent</artifactId>
+        <groupId>com.uams</groupId>
+        <version>1.0.1-RELEASE</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>uams-security</artifactId>
+    <groupId>com.uams</groupId>
+    <version>1.0.1-RELEASE</version>
+    <description>Shiro 权限控制</description>
+
+    <properties>
+        <fastjson.version>1.0.1-RELEASE</fastjson.version>
+        <uams-tools.version>1.0.1-RELEASE</uams-tools.version>
+        <uams-rpc.version>1.0.1-RELEASE</uams-rpc.version>
+        <uams-orm.version>1.0.1-RELEASE</uams-orm.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.uams</groupId>
+            <artifactId>uams-fastjson</artifactId>
+            <version>${fastjson.version}</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.uams</groupId>
+            <artifactId>uams-orm</artifactId>
+            <version>${uams-orm.version}</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.uams</groupId>
+            <artifactId>uams-tools</artifactId>
+            <version>${uams-tools.version}</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.uams</groupId>
+            <artifactId>uams-rpc-hander</artifactId>
+            <version>${uams-rpc.version}</version>
+            <optional>true</optional>
+        </dependency>
+        <!-- spring -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jsp-api</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!-- shiro-core -->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-all</artifactId>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
