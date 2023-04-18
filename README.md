@@ -1,2 +1,3 @@
 # UAMS
-uams asset esunny
+UAMS Asset Management System   
+Esunny API
